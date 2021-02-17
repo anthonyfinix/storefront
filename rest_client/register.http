@@ -16,14 +16,7 @@ Content-Type: application/json
             "full":"2190, sector 8, faridabad, Haryana",
             "city":"faridabad",
             "state":"Haryana",
-            "coordinates":[
-                28.392406,77.340799
-            ]
+            "coordinates":[28.392406,77.340799]
         }
-    },
-    "role":"Admin",
-    "assigned_store":{
-        "id":"1232131",
-        "name":"store1"
     }
 }

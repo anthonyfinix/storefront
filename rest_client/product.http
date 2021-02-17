@@ -3,6 +3,11 @@ GET http://localhost:8080/api/product
 
 ### ADD / EDIT
 POST http://localhost:8080/api/product
+Content-Type: application/json
+
+{
+    "name":"Anthony Finix"
+}
 
 ### DELETE
 DELETE http://localhost:8080/api/product

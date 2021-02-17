@@ -18,7 +18,7 @@ const schema = new mongoose.Schema(
         full: { type: String, require: true },
         city: { type: String, require: true },
         state: { type: String, require: true },
-        coordinates: [String]
+        coordinates: [Number]
       }
     },
     active: { type: Boolean, default: config.default_user_state },
@@ -37,7 +37,8 @@ const schema = new mongoose.Schema(
         path: String,
         isVerified: Boolean
       }
-    ]
+    ],
+    created_at: { type: Number, require: true, defualt: Date.now() }
   },
   { versionKey: false }
 );

@@ -1,47 +1,46 @@
 const joi = require("joi");
 
 module.exports = joi.object({
-  name: String,
-  sku: String,
+  name: joi.string().required(),
+  sku: joi.string().required(),
   media: [
     {
-      name: String,
-      src: String
+      name: joi.string().required(),
+      src: joi.string().required()
     }
   ],
   category: [
     {
-      name: String,
-      id: String
+      name: joi.string().required(),
+      id: joi.string().required()
     }
   ],
   dimension: {
-    height: Number,
-    width: Number,
-    length: Number
+    height: joi.number().required(),
+    width: joi.number().required(),
+    length: joi.number().required()
   },
-  manufacturer: String,
-  brand: String,
-  sale_price: Number,
-  selling_price: Number,
-  buying_price: Number,
+  manufacturer: joi.string().required(),
+  brand: joi.string().required(),
+  sale_price: joi.number().required(),
+  current_price: joi.number().required(),
+  buying_price: joi.number().required(),
   stores: [
     {
-      name: String,
-      id: String,
+      name: joi.string().required(),
+      id: joi.string().required(),
       stock: {
-        currentStock: Number,
-        openingStock: Number,
-        closingStock: Number
+        currentStock: joi.number().required(),
+        openingStock: joi.number().required(),
+        closingStock: joi.number().required()
       }
     }
   ],
   suppliers: [
     {
-      name: String,
-      id: String
+      name: joi.string().required(),
+      id: joi.string().required()
     }
   ],
-  created_by: Number,
-  active: Boolean
-});
+  active: joi.bool()
+}); 

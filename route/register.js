@@ -9,7 +9,6 @@ module.exports = async (req, res) => {
     username,
     password,
     contact_details,
-    role,
     assigned_store,
     active
   } = req.body;
@@ -18,7 +17,6 @@ module.exports = async (req, res) => {
     username,
     password,
     contact_details,
-    role,
     assigned_store,
     active
   });
@@ -32,11 +30,9 @@ module.exports = async (req, res) => {
   // create new user details object
   let new_user_details = {};
   if (active) new_user_details.active = active;
-  if (role) new_user_details.role = role;
   new_user_details.username = username;
   new_user_details.password = encrypted_password;
   new_user_details.contact_details = contact_details;
-  if (assigned_store) new_user_details.assigned_store = assigned_store;
   let user = new User(new_user_details);
   // save user and return new user or error
   try {
