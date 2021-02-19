@@ -7,7 +7,7 @@ const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 const config = require("./config");
 const attachUserObject = require("./middleware/attachUserObject.js");
-const databaseURL = process.env.MONGO_URL || "mongodb://localhost/storefront";
+const databaseURL = process.env.MONGO_URL;
 (async () => {
   await mongoose.connect(databaseURL, {
     useNewUrlParser: true,
