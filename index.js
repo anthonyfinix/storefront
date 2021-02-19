@@ -1,11 +1,12 @@
 const express = require("express");
 const app = express();
+const port = process.env.PORT || 80;
 const mongoose = require("mongoose");
 const routes = require("./route");
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 const config = require("./config");
-const authentication = require("./middleware/authenticate");
+const attachUserObject = require("./middleware/attachUserObject.js");
 (async () => {
   await mongoose.connect("mongodb://localhost/storefront", {
     useNewUrlParser: true,
@@ -22,9 +23,9 @@ const authentication = require("./middleware/authenticate");
   );
   app.use(express.urlencoded({ extended: true }));
   app.use(express.json());
-  app.use(authentication);
+  app.use(attachUserObject);
   app.use(routes);
-  app.listen(8080, () => {
+  app.listen(port, () => {
     console.log("Listening to 8080");
   });
 })();

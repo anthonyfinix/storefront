@@ -24,20 +24,11 @@ const schema = new mongoose.Schema(
     active: { type: Boolean, default: config.default_user_state },
     isVerified: {
       type: Boolean,
+      require: true,
       default: config.default_user_verification_state
     },
-    role: { type: String, require: true, default: config.default_user_role },
-    assigned_store: {
-      id: String,
-      name: String
-    },
-    documents: [
-      {
-        name: String,
-        path: String,
-        isVerified: Boolean
-      }
-    ],
+    isEmployee: { type: Boolean, require: true },
+    employee: { type: mongoose.Schema.Types.ObjectId, ref: "Employee" },
     created_at: { type: Number, require: true, defualt: Date.now() }
   },
   { versionKey: false }

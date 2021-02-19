@@ -18,11 +18,15 @@ const schema = new mongoose.Schema(
         coordinates: [Number]
       }
     },
-    created_by: { type: String, require: true },
-    created_at: { type: Number, require: true, defualt: Date.now() },
-    last_visit: { type: Number, require: true, defualt: Date.now() },
+    last_visit: { type: Number, require: true, default: Date.now() },
     total_purchase: { type: Number, require: true },
-    active: { type: Boolean, required: true }
+    active: { type: Boolean, required: true },
+    created_by: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      require: true
+    },
+    created_at: { type: Number, require: true, defualt: Date.now() }
   },
   { versionKey: false }
 );

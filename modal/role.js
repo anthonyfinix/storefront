@@ -1,4 +1,4 @@
-const roles = new mongoose.Schema({
+const schema = new mongoose.Schema({
   role_name: String,
   product: {
     read: { type: Boolean, require: true },
@@ -41,7 +41,13 @@ const roles = new mongoose.Schema({
     write: { type: Boolean, require: true },
     update: { type: Boolean, require: true },
     delete: { type: Boolean, require: true }
+  },
+  created_at: { type: Number, require: true },
+  created_by: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    require: true
   }
-});
+},{ versionKey: false });
 
 module.exports = mongoose.model("Role", schema);

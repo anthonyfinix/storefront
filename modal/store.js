@@ -16,7 +16,11 @@ const schema = new mongoose.Schema(
     roles: [{ type: mongoose.Schema.Types.ObjectId, ref: "Role" }],
     gmt: { type: String, require: true },
     currency: { type: String, require: true },
-    created_by: { type: String, require: true },
+    created_by: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      require: true
+    },
     created_at: { type: Number, require: true, default: Date.now() }
   },
   { versionKey: false }

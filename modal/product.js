@@ -42,7 +42,11 @@ const schema = new mongoose.Schema(
         id: { type: String, require: true }
       }
     ],
-    created_by: { type: String, require: true },
+    created_by: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      require: true
+    },
     created_at: { type: Number, require: true, default: Date.now() },
     active: { type: Boolean, require: true, default: true }
   },

@@ -1,12 +1,9 @@
 const router = require("express").Router();
-const createProduct = require("./createProduct");
+const rejectIfNotLoggedIn = require("../../middleware/rejectIfNotLoggedIn");
+const createEditProduct = require("./createEditProduct");
+const getAllProducts = require("./getAllProducts");
 
-router.get("/", (req, res) => {
-  // check if logged in
-  if (!req.user) return res.send("Not Logged in");
-
-  return res.send("Products");
-});
-router.post("/", createProduct);
+router.get("/", rejectIfNotLoggedIn, getAllProducts);
+router.post("/",rejectIfNotLoggedIn, createEditProduct);
 
 module.exports = router;
