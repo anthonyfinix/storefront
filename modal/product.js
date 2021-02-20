@@ -1,54 +1,54 @@
 const mongoose = require("mongoose");
 const schema = new mongoose.Schema(
   {
-    name: { type: String, require: true },
-    sku: { type: String, require: true },
+    name: { type: String, required: true },
+    sku: { type: String, required: true },
     media: [
       {
-        name: { type: String, require: true },
-        src: { type: String, require: true }
+        name: { type: String, required: true },
+        src: { type: String, required: true }
       }
     ],
     category: [
       {
-        name: { type: String, require: true },
-        id: { type: String, require: true }
+        name: { type: String, required: true },
+        id: { type: String, required: true }
       }
     ],
     dimension: {
-      height: { type: Number, require: true },
-      width: { type: Number, require: true },
-      length: { type: Number, require: true }
+      height: { type: Number, required: true },
+      width: { type: Number, required: true },
+      length: { type: Number, required: true }
     },
-    manufacturer: { type: String, require: true },
-    brand: { type: String, require: true },
-    sale_price: { type: String, require: true },
-    current_price: { type: String, require: true },
-    buying_price: { type: String, require: true },
+    manufacturer: { type: String, required: true },
+    brand: { type: String, required: true },
+    sale_price: { type: String, required: true },
+    current_price: { type: String, required: true },
+    buying_price: { type: String, required: true },
     stores: [
       {
-        name: { type: String, require: true },
-        id: { type: String, require: true },
+        name: { type: String, required: true },
+        id: { type: String, required: true },
         stock: {
-          currentStock: { type: Number, require: true },
-          openingStock: { type: Number, require: true },
-          closingStock: { type: Number, require: true }
+          currentStock: { type: Number, required: true },
+          openingStock: { type: Number, required: true },
+          closingStock: { type: Number, required: true }
         }
       }
     ],
     suppliers: [
       {
-        name: { type: String, require: true },
-        id: { type: String, require: true }
+        name: { type: String, required: true },
+        id: { type: String, required: true }
       }
     ],
     created_by: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
-      require: true
+      required: true
     },
-    created_at: { type: Number, require: true, default: Date.now() },
-    active: { type: Boolean, require: true, default: true }
+    created_at: { type: Number, required: true, default: Date.now() },
+    active: { type: Boolean, required: true, default: true }
   },
   { versionKey: false }
 );

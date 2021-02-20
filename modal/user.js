@@ -1,37 +1,42 @@
 const mongoose = require("mongoose");
 const config = require("../config");
-const schema = new mongoose.Schema(
+
+const nameSchema = new mongoose.Schema({
+  first_name: { type: String, required: true },
+  middle_name: { type: String },
+  last_name: { type: String, required: true }
+});
+
+const contactDetails = new mongoose.Schema({
+  primary_number: { type: Number, required: true },
+  secondary_number: Number,
+  mobile_number: Number,
+  email: { type: String, required: true },
+  address: {
+    full: { type: String, required: true },
+    city: { type: String, required: true },
+    state: { type: String, required: true },
+    coordinates: [Number]
+  }
+});
+
+const Userschema = new mongoose.Schema(
   {
-    name: {
-      first_name: { type: String, require: true },
-      middle_name: String,
-      last_name: String
-    },
-    username: { type: String, require: true },
-    password: { type: String, require: true },
-    contact_details: {
-      primary_number: { type: Number, require: true },
-      secondary_number: Number,
-      mobile_number: Number,
-      email: { type: String, require: true },
-      address: {
-        full: { type: String, require: true },
-        city: { type: String, require: true },
-        state: { type: String, require: true },
-        coordinates: [Number]
-      }
-    },
-    active: { type: Boolean, default: config.default_user_state },
+    name: { type: nameSchema, required: true },
+    username: { type: String, required: true },
+    password: { type: String, required: true },
+    contact_details: { type: contactDetails, required: true },
     isVerified: {
       type: Boolean,
-      require: true,
+      required: true,
       default: config.default_user_verification_state
     },
-    isEmployee: { type: Boolean, require: true },
-    employee: { type: mongoose.Schema.Types.ObjectId, ref: "Employee" },
-    created_at: { type: Number, require: true, defualt: Date.now() }
+    role: String,
+    employeeId: { type: mongoose.Schema.Types.ObjectId, ref: "Employee" },
+    active: { type: Boolean, default: config.default_user_state },
+    created_at: { type: Number, required: true, default: Date.now() }
   },
   { versionKey: false }
 );
 
-module.exports = mongoose.model("User", schema);
+module.exports = mongoose.model("User", Userschema);

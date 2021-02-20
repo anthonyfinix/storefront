@@ -7,7 +7,7 @@ const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 const config = require("./config");
 const attachUserObject = require("./middleware/attachUserObject.js");
-const databaseURL = process.env.MONGO_URL;
+const databaseURL = process.env.MONGO_URL || "https://storefront.com";
 (async () => {
   await mongoose.connect(databaseURL, {
     useNewUrlParser: true,
@@ -27,6 +27,6 @@ const databaseURL = process.env.MONGO_URL;
   app.use(attachUserObject);
   app.use(routes);
   app.listen(port, () => {
-    console.log("Listening to 8080");
+    console.log("Listening to " + port);
   });
 })();

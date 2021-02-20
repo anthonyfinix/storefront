@@ -1,0 +1,7 @@
+### ADD / EDIT
+POST http://localhost:80/api/product
+Content-Type: application/json
+
+{
+    "name":"Red Chief Men's Blue Leather Casual Shoes",
+}

@@ -1,0 +1,23 @@
+### ADD / EDIT
+POST http://localhost:80/register
+Content-Type: application/json
+
+{
+    "name":{
+        "first_name":"Anthony",
+        "last_name":"Finix"
+    },
+    "username":"anthonyfinix",
+    "password":"anthonyfinix@123",
+    "isEmployee":true,
+    "contact_details":{
+        "primary_number":9818031042,
+        "email":"anthonyfinix@gmail.com",
+        "address":{
+            "full":"2190 sector 8, faridabad, haryana 121006",
+            "city":"faridabad",
+            "state":"Haryana"
+        }
+    },
+    "role":"admin"
+}

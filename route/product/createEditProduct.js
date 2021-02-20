@@ -2,7 +2,7 @@ const Product = require("../../modal/product");
 const validation = require("../../validation/joi.product");
 
 module.exports = async (req, res) => {
-  if (!req.user && !req.user.role === "admin") return res.json({ error });
+  console.log(req.body)
   let {
     name,
     sku,

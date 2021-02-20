@@ -23,6 +23,7 @@ module.exports = joi.object({
       coordinates: joi.array().items(joi.number())
     })
   }),
+  employeeId:joi.string(),
   active:joi.boolean(),
   role: joi.string(),
   assigned_store: joi.object({ id: joi.string(), name: joi.string() }),

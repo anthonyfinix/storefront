@@ -4,8 +4,7 @@ const getAllUsers = require("./getAllUsers");
 const addEditUsers = require("./addEditUsers");
 const deleteUser = require("./deleteUser");
 
-router.get("/", rejectIfNotLoggedIn, getAllUsers);
-router.post("/", rejectIfNotLoggedIn, addEditUsers);
-router.delete("/", rejectIfNotLoggedIn, deleteUser);
+router.get("/", getAllUsers);
+router.delete("/", deleteUser);
 
 module.exports = router;

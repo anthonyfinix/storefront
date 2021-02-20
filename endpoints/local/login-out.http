@@ -1,0 +1,12 @@
+POST http://localhost:80/login
+Content-Type: application/json
+
+{
+    "username":"anthonyfinix",
+    "password":"anthonyfinix@123"
+}
+
+
+###
+GET http://localhost:80/logout
+Content-Type: application/json

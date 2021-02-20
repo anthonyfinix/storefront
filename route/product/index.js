@@ -5,5 +5,4 @@ const getAllProducts = require("./getAllProducts");
 
 router.get("/", rejectIfNotLoggedIn, getAllProducts);
 router.post("/",rejectIfNotLoggedIn, createEditProduct);
-
 module.exports = router;

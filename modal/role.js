@@ -1,52 +1,54 @@
+const mongoose = require('mongoose');
+
 const schema = new mongoose.Schema({
   role_name: String,
   product: {
-    read: { type: Boolean, require: true },
-    write: { type: Boolean, require: true },
-    update: { type: Boolean, require: true },
-    delete: { type: Boolean, require: true }
+    read: { type: Boolean, required: true },
+    write: { type: Boolean, required: true },
+    update: { type: Boolean, required: true },
+    delete: { type: Boolean, required: true }
   },
   store: {
-    read: { type: Boolean, require: true },
-    write: { type: Boolean, require: true },
-    update: { type: Boolean, require: true },
-    delete: { type: Boolean, require: true }
+    read: { type: Boolean, required: true },
+    write: { type: Boolean, required: true },
+    update: { type: Boolean, required: true },
+    delete: { type: Boolean, required: true }
   },
   user: {
-    read: { type: Boolean, require: true },
-    write: { type: Boolean, require: true },
-    update: { type: Boolean, require: true },
-    delete: { type: Boolean, require: true }
+    read: { type: Boolean, required: true },
+    write: { type: Boolean, required: true },
+    update: { type: Boolean, required: true },
+    delete: { type: Boolean, required: true }
   },
   customer: {
-    read: { type: Boolean, require: true },
-    write: { type: Boolean, require: true },
-    update: { type: Boolean, require: true },
-    delete: { type: Boolean, require: true }
+    read: { type: Boolean, required: true },
+    write: { type: Boolean, required: true },
+    update: { type: Boolean, required: true },
+    delete: { type: Boolean, required: true }
   },
   product: {
-    read: { type: Boolean, require: true },
-    write: { type: Boolean, require: true },
-    update: { type: Boolean, require: true },
-    delete: { type: Boolean, require: true }
+    read: { type: Boolean, required: true },
+    write: { type: Boolean, required: true },
+    update: { type: Boolean, required: true },
+    delete: { type: Boolean, required: true }
   },
   productCategory: {
-    read: { type: Boolean, require: true },
-    write: { type: Boolean, require: true },
-    update: { type: Boolean, require: true },
-    delete: { type: Boolean, require: true }
+    read: { type: Boolean, required: true },
+    write: { type: Boolean, required: true },
+    update: { type: Boolean, required: true },
+    delete: { type: Boolean, required: true }
   },
   supplier: {
-    read: { type: Boolean, require: true },
-    write: { type: Boolean, require: true },
-    update: { type: Boolean, require: true },
-    delete: { type: Boolean, require: true }
+    read: { type: Boolean, required: true },
+    write: { type: Boolean, required: true },
+    update: { type: Boolean, required: true },
+    delete: { type: Boolean, required: true }
   },
-  created_at: { type: Number, require: true },
+  created_at: { type: Number, required: true },
   created_by: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
-    require: true
+    required: true
   }
 },{ versionKey: false });
 

@@ -1,0 +1,2 @@
+### DELETE
+DELETE http://localhost:80/api/user?userId=6030e3737a2af7361cdaf495
