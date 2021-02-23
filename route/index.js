@@ -2,9 +2,9 @@ const router = require("express").Router();
 const api = require("./api");
 const notFound = require("./util/notFound");
 const errorHandle = require("./util/errorHandleRoute");
-const login = require("./login");
-const logout = require("./logout");
-const register = require("./register_user");
+const login = require("./api/user/login");
+const logout = require("./api/user/logout");
+const register = require("./api/user/service.create");
 
 router.get("/", (req, res) => res.send("store front root (PROVIDE CLIENT UI) "));
 router.use("/api", api);

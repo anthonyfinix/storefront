@@ -3,5 +3,19 @@ POST http://localhost:80/api/product
 Content-Type: application/json
 
 {
-    "name":"Red Chief Men's Blue Leather Casual Shoes",
+    "name":"Red Chief Masen's Blue Leather sCasual Shoes",
+    "sku":"3s2s3",
+    "manufacturer":"abc",
+    "brand":"brand123",
+    "sale_price":1233,
+    "current_price":1233,
+    "buying_price":1233,
+    "dimension":{
+        "length":12,
+        "width":32,
+        "height":32
+    },
+    "category":[
+        "sjflkjslkfjlsdfj","sdfsdfsdfs"
+    ]
 }

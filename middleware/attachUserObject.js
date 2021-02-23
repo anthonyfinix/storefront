@@ -1,4 +1,4 @@
-const User = require("../modal/user");
+const User = require("../route/api/user/modal");
 module.exports = async (req, res, next) => {
   let { user_id } = req.session;
   if (user_id) {

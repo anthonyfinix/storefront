@@ -43,4 +43,4 @@ module.exports = joi.object({
     }
   ],
   active: joi.bool()
-}); 
+});
