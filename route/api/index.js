@@ -6,6 +6,7 @@ const customer = require("./customer");
 const product = require("./product");
 const store = require("./store");
 const user = require("./user");
+const role = require("./role");
 
 router.get("/", (req, res) => res.send("storefront api root"));
 router.use("/user", user);
@@ -14,5 +15,6 @@ router.use("/customer", customer);
 router.use("/store", store);
 router.use("/supplier", supplier);
 router.use("/productCategory", productCategory);
+router.use("/role", role);
 
 module.exports = router;
