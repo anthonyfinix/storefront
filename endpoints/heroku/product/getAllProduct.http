@@ -1,2 +1,2 @@
 ### GET ALL
-GET http://localhost:80/api/product
+GET https://storefrnt.herokuapp.com/api/product

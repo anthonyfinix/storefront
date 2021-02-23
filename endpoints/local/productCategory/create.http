@@ -3,5 +3,5 @@ POST http://localhost:80/api/productCategory
 Content-Type: application/json
 
 {
-    "name":"Kitchenware"
+    "name":"Thataf"
 }
