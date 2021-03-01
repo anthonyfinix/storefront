@@ -1,0 +1,24 @@
+### GET ALL
+POST http://localhost:80/api/purchase
+Content-Type: application/json
+
+{
+    "store":{
+        "name":"Store 2",
+        "id":"6039d78c62c0570a18de58ca"
+    },
+    "customer":{
+        "name":"Aditya Sharma",
+        "id":"603cafdafcbf3d491ccfc365"
+    },
+    "amount":{
+        "price":2000
+    },
+    "product":[
+        {
+            "name":"Red Chief Men's Blue Leather Casual Shoes",
+            "product_id":"603342c7ef006b1c1c16f5d6"
+        }
+    ]
+
+}
