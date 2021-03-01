@@ -3,7 +3,20 @@ POST http://localhost:80/api/product
 Content-Type: application/json
 
 {
-    "name":"Red Chief Masen's Blxue Leather sCasual Shoes",
-    "sku":"3s2ds3"
-    
+    "name":"Red Chiefc Masen's Blxue Leather sCasual Shoes",
+    "sku":"3ss2ds3",
+    "dimension":{
+        "width":20,
+        "height":43,
+        "length":20
+    },
+    "category":{
+        "id":"603491b28b4dfc2d50725f31",
+        "name":"Clothing"
+    },
+    "manufacturer":"manufacturer",
+    "brand":"brand",
+    "sale_price":23,
+    "current_price":45,
+    "buying_price":26
 }

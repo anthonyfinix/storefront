@@ -1,2 +1,2 @@
 ### ADD / EDIT
-GET http://localhost:8080/api/product
+GET https://storefrnt.herokuapp.com/api/product

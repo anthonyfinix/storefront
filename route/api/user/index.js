@@ -1,10 +1,9 @@
 const router = require("express").Router();
 const rejectIfNotLoggedIn = require("../../../middleware/rejectIfNotLoggedIn");
-const getAllUsers = require("./service.get");
-const addEditUsers = require("./service.create");
-const deleteUser = require("./service.delete");
+const get = require("./controller.get");
+const del = require("./controller.delete");
 
-router.get("/", getAllUsers);
-router.delete("/", deleteUser);
+router.get("/", get);
+router.delete("/", del);
 
 module.exports = router;

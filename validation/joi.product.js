@@ -25,8 +25,8 @@ module.exports = joi.object({
   sale_price: joi.number().required(),
   current_price: joi.number().required(),
   buying_price: joi.number().required(),
-  stores: [
-    {
+  stores: joi.array().items(
+    joi.object({
       name: joi.string().required(),
       id: joi.string().required(),
       stock: {
@@ -34,8 +34,8 @@ module.exports = joi.object({
         openingStock: joi.number().required(),
         closingStock: joi.number().required()
       }
-    }
-  ],
+    })
+  ),
   suppliers: [
     {
       name: joi.string().required(),

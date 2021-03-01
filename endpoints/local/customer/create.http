@@ -1,14 +1,19 @@
-### ADD / EDIT
-POST http://localhost:80/register
+### POST ALL
+POST http://localhost:80/api/customer
 Content-Type: application/json
 
 {
     "name":{
-        "first_name":"Nitin",
-        "last_name":"Verma"
+        "first_name":"Aditya",
+        "last_name":"Sharma"
     },
-    "username":"nitinverma",
-    "password":"nitinverma@123",
+    "store_visited":[{
+        "id":"6039d78c62c0570a18de58ca",
+        "name":"Store 2"
+    }],
+    "total_purchase":{
+        "amount":12343
+    },
     "contact_details":{
         "primary_number":123123123,
         "email":"nitinverma@gmail.com",

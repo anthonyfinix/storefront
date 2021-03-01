@@ -1,7 +1,7 @@
 const router = require('express').Router();
+const create = require('./controller.create');
+const get = require('./controller.get');
 
-router.get('/',(req,res)=>{
-    res.send('Store')
-})
-
+router.get('/',get);
+router.post('/',create);
 module.exports = router;

@@ -16,6 +16,7 @@ const contactDetails = new mongoose.Schema({
     full: { type: String, required: true },
     city: { type: String, required: true },
     state: { type: String, required: true },
+    pincode: { type: Number, required: true },
     coordinates: [Number]
   }
 });

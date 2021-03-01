@@ -1,7 +1,7 @@
 const User = require("./modal");
 const decryptPassword = require("../../../util/decryptPassword");
 module.exports = async (req, res) => {
-  if (req.session.user_id) return res.json({ error: "already Logged in" });
+  if (req.user) return res.json({ error: "already Logged in" });
   let { username, password } = req.body;
   // get user from db
   let user = await User.findOne({ username });

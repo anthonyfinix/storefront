@@ -1,0 +1,2 @@
+### delete ALL
+DELETE http://localhost:80/api/customer?id=603c90155bbf9c4a7ca6cec7

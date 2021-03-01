@@ -17,9 +17,14 @@ const schema = new mongoose.Schema(
         y: Number
       }
     },
-    created_by: { type: mongoose.Schema.Types.ObjectId, ref: "User",require:true },
-    created_on: Number,
-    total_purchase: Number
+    total_purchase: { amount: { type: Number, require: true } },
+    created_at: { type: Number, require: true, default: Date.now() },
+    created_by: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      require: true
+    },
+    active: { type: Boolean, require: true }
   },
   { versionKey: false }
 );
