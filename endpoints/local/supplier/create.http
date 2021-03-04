@@ -1,0 +1,16 @@
+POST http://localhost:80/api/supplier
+Content-Type: application/json
+
+{
+    "name":{
+        "first_name":"jhssddfskjfd",
+        "last_name":"sljdsdfdsf"
+    },
+    "contact_details":{
+        "primary_number":1212313,
+        "secondary_number":1212313,
+        "email":"anthonyfinxi@gmail.com"
+    },
+    "active":true,
+    "total_purchase":3432
+}

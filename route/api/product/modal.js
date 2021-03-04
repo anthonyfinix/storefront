@@ -22,7 +22,8 @@ const schema = new mongoose.Schema(
     dimension: {
       height: { type: Number, required: true },
       width: { type: Number, required: true },
-      length: { type: Number, required: true }
+      length: { type: Number, required: true },
+      weight: { type: Number, required: true }
     },
     manufacturer: { type: String, required: true },
     brand: { type: String, required: true },

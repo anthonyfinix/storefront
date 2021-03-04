@@ -2,10 +2,12 @@ const joi = require("joi");
 
 module.exports = joi.object({
   name: joi.object({
-    first_name: joi.string(),
+    first_name: joi.string().required(),
     middle_name: joi.string(),
-    last_name: joi.string(),
-    contact_details: {
+    last_name: joi.string().required()
+  }),
+  contact_details: joi
+    .object({
       primary_number: joi.number().required(),
       secondary_number: joi.number(),
       mobile_number: joi.number(),
@@ -19,10 +21,10 @@ module.exports = joi.object({
         state: joi.string(),
         coordinates: joi.array().items(joi.number())
       })
-    },
-    active: joi.boolean(),
-    created_by: joi.string(),
-    created_on: joi.number(),
-    total_purchase: joi.number()
-  })
+    })
+    .required(),
+  active: joi.boolean(),
+  created_by: joi.string(),
+  created_on: joi.number(),
+  total_purchase: joi.number()
 });

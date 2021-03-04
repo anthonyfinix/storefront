@@ -1,0 +1,43 @@
+### GET ALL
+POST http: //localhost:80/api/role
+Content-Type: application/json
+
+{
+    "role_name": "Employee",
+    "product": {
+        "read": true,
+        "write": true,
+        "delete": true,
+        "update": true
+    },
+    "store": {
+        "read": true,
+        "write": true,
+        "delete": true,
+        "update": true
+    },
+    "user": {
+        "read": true,
+        "write": true,
+        "delete": true,
+        "update": true
+    },
+    "customer": {
+        "read": true,
+        "write": true,
+        "delete": true,
+        "update": true
+    },
+    "supplier": {
+        "read": true,
+        "write": true,
+        "delete": true,
+        "update": true
+    },
+    "productCategory": {
+        "read": true,
+        "write": true,
+        "delete": true,
+        "update": true
+    }
+}

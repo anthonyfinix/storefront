@@ -9,16 +9,18 @@ module.exports = joi.object({
       src: joi.string().required()
     }
   ],
-  category: [
-    {
+  category: joi
+    .array()
+    .items({
       name: joi.string().required(),
       id: joi.string().required()
-    }
-  ],
+    })
+    .min(1),
   dimension: {
     height: joi.number().required(),
     width: joi.number().required(),
-    length: joi.number().required()
+    length: joi.number().required(),
+    weight: joi.number().required()
   },
   manufacturer: joi.string().required(),
   brand: joi.string().required(),

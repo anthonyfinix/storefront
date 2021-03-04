@@ -1,2 +1,2 @@
-GET https://storefrnt.herokuapp.com/
+GET https://storefrnt.herokuapp.com/api/product
 ###

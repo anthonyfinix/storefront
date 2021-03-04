@@ -1,6 +1,6 @@
 const Product = require("./modal");
 
-module.exports = ({
+module.exports = async ({
   name,
   sku,
   media,
@@ -16,6 +16,25 @@ module.exports = ({
   created_at,
   created_by
 }) => {
-  let products = Product.find({});
-  return;
+  let params = {};
+  if (name && name != "") params.name = name;
+  if (sku && sku != "") params.sku = sku;
+  if (category) {
+    let { name: categoryName, id: categoryId } = category;
+    if (categoryName || categoryId) {
+      params.category = {};
+      categoryName ? (params.category.name = categoryName) : null;
+      categoryId ? (params.category.id = categoryId) : null;
+    }
+  }
+  if (dimension) {
+    let { length, breath, height } = dimension;
+  }
+  try {
+    console.log(params)
+    let products = await Product.find(params);
+    return { products };
+  } catch (e) {
+    return { error: e.message };
+  }
 };

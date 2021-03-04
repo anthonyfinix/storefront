@@ -4,6 +4,7 @@ const nameExists = require("./checkNameExist");
 const { response } = require("express");
 
 module.exports = async (req, res) => {
+  // fetch content
   let { name, contact_details, active, total_purchase } = req.body;
   let { error } = validation.validate({
     name,
@@ -12,12 +13,12 @@ module.exports = async (req, res) => {
     total_purchase
   });
   if (error) return res.json({ error: error.details });
-  if ((await nameExists(name)).exist)
-    return res.json({ error: "name already exist" });
+  if(!!(await nameExists(name)))  return res.json({ error: "name already exist" });
+
   let created_at = Date.now();
   let created_by = req.user._id;
   if (!active) active = config.default_customer_state;
-  let { e, message, ...data } = createSuppplier({
+  let { e, message, ...data } = await createSuppplier({
     name,
     contact_details,
     active,
