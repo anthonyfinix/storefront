@@ -12,8 +12,6 @@ module.exports = async (req, res) => {
     role
   } = req.body;
 
-  let created_by = req.user.user_id;
-  let created_at = Date.now();
   let { error } = validation.validate({
     name,
     product,
@@ -23,10 +21,10 @@ module.exports = async (req, res) => {
     productCategory,
     supplier,
     role,
-    created_at,
-    created_by
   });
   if (error) return res.json({ error: error.details });
+  let created_by = req.user.user_id;
+  let created_at = Date.now();
   let { e, message, ...data } = createRole({
     name,
     product,

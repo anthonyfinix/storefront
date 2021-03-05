@@ -1,9 +1,10 @@
 import React from 'react';
 import useSupplier from '../supplier/useSupplier';
+import useProduct from '../product/useProduct';
 
 export const ContentContext = React.createContext();
 const ContentProvider = ({ children, ...props }) => {
-    const [products] = React.useState();
+    const products = React.useState();
     const suppliers = useSupplier();
     const [customers] = React.useState();
     const [productCategories] = React.useState();
@@ -16,7 +17,7 @@ const ContentProvider = ({ children, ...props }) => {
         }} >
             {children}
         </ContentContext.Provider>
-    )
+    ) 
 }
 
 export default ContentProvider;

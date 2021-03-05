@@ -1,6 +1,6 @@
 import React from 'react';
 import './product.css';
-import Productable from './table';
+import Table from './table';
 import { ContentContext } from '../contentProvider';
 const Product = () => {
 
@@ -13,7 +13,7 @@ const Product = () => {
                 <button>Add</button>
             </div>
             <div id="table-wrapper">
-                <Productable data={products} />
+                <Table data={products} />
             </div>
         </article>
     )

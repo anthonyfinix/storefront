@@ -49,7 +49,5 @@ module.exports = joi.object({
     write: joi.boolean().required(),
     update: joi.boolean().required(),
     delete: joi.boolean().required(),
-  }),
-  created_at:joi.number().required(),
-  created_by:joi.string().required(),
+  })
 });
