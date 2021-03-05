@@ -1,14 +1,16 @@
 import './productCategory.css';
-// import Productable from './table';
+import Table from './table';
+import { ContentContext } from '../contentProvider';
 
 const ProductCategory = () => {
+    let { productCategory } = React.useContext(ContentContext);
     return (
         <article id="product-wrapper">
             <div id="product-header">
                 <h3>Product Category</h3>
                 <button>Add</button>
             </div>
-            {/* <div id="table-wrapper"><Productable /></div> */}
+            <div id="table-wrapper"><Table data={productCategory} /></div>
         </article>
     )
 }

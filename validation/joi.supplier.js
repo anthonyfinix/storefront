@@ -1,6 +1,7 @@
 const joi = require("joi");
 
 module.exports = joi.object({
+  company_name: joi.string().required(),
   name: joi.object({
     first_name: joi.string().required(),
     middle_name: joi.string(),
@@ -17,10 +18,10 @@ module.exports = joi.object({
         .required(),
       address: joi.object({
         full: joi.string(),
-        city: joi.string(),
-        state: joi.string(),
+        city: joi.string().required(),
+        state: joi.string().required(),
         coordinates: joi.array().items(joi.number())
-      })
+      }).required(),
     })
     .required(),
   active: joi.boolean(),

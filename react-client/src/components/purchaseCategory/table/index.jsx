@@ -1,7 +1,7 @@
 import React from 'react';
 import Rows from './Rows';
 import './table.css';
-const Productable = ({ products }) => {
+const Table = ({ data }) => {
     const [loading, setLoading] = React.useState([]);
     return (
         <table className="data-table">
@@ -12,9 +12,9 @@ const Productable = ({ products }) => {
                 </tr>
             </thead>
             <tbody>
-                <Rows rows={products} />
+                <Rows rows={data} />
             </tbody>
         </table>
     )
 }
-export default Productable;
+export default Table;

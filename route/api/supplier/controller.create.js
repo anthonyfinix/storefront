@@ -1,12 +1,14 @@
 const validation = require("../../../validation/joi.supplier");
 const createSuppplier = require("./createSuppplier");
 const nameExists = require("./checkNameExist");
-const { response } = require("express");
+const checkCompanyName = require("./checkCompanyName");
+const config = require('../../../config');
 
 module.exports = async (req, res) => {
   // fetch content
-  let { name, contact_details, active, total_purchase } = req.body;
+  let {company_name, name, contact_details, active, total_purchase } = req.body;
   let { error } = validation.validate({
+    company_name,
     name,
     contact_details,
     active,
@@ -14,11 +16,13 @@ module.exports = async (req, res) => {
   });
   if (error) return res.json({ error: error.details });
   if(!!(await nameExists(name)))  return res.json({ error: "name already exist" });
+  // if(!!(await checkCompanyName(name)))  return res.json({ error: "company name already exist" });
 
   let created_at = Date.now();
   let created_by = req.user._id;
   if (!active) active = config.default_customer_state;
   let { e, message, ...data } = await createSuppplier({
+    company_name,
     name,
     contact_details,
     active,

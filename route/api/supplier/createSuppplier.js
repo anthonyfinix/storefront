@@ -1,5 +1,6 @@
 const Supplier = require("./modal");
 module.exports = async ({
+  company_name,
   name,
   contact_details,
   roles,
@@ -11,6 +12,7 @@ module.exports = async ({
 }) => {
   try {
     let response = await Supplier({
+      company_name,
       name,
       contact_details,
       roles,

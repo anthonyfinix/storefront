@@ -13,7 +13,7 @@ const Product = () => {
                 <button>Add</button>
             </div>
             <div id="table-wrapper">
-                <Productable products={products} />
+                <Productable data={products} />
             </div>
         </article>
     )
