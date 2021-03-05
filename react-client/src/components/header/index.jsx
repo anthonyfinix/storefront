@@ -5,7 +5,6 @@ import { UserContext } from '../user/userContext';
 
 const Header = () => {
     const user = React.useContext(UserContext);
-    console.log(user)
     return (
         <div id="header-wrapper">
             <p className="header-brand">Storefront</p>

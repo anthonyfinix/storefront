@@ -2,13 +2,13 @@ import React from 'react';
 import Rows from './Rows';
 import './table.css';
 const Table = ({ data }) => {
-    const [loading, setLoading] = React.useState([]);
     return (
         <table className="data-table">
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Class</th>
+                    <th style={{ flexBasis: "10%" }}>Name</th>
+                    <th style={{ flexBasis: "30%" }}>Primary Number</th>
+                    <th style={{ flexBasis: "30%" }}>Email</th>
                 </tr>
             </thead>
             <tbody>

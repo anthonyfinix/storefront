@@ -16,7 +16,7 @@ module.exports = async (req, res) => {
   });
   if (error) return res.json({ error: error.details });
   if(!!(await nameExists(name)))  return res.json({ error: "name already exist" });
-  // if(!!(await checkCompanyName(name)))  return res.json({ error: "company name already exist" });
+  if(!!(await checkCompanyName(company_name)))  return res.json({ error: "company name already exist" });
 
   let created_at = Date.now();
   let created_by = req.user._id;

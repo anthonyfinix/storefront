@@ -1,3 +1,4 @@
+import React from 'react';
 import './productCategory.css';
 import Table from './table';
 import { ContentContext } from '../contentProvider';

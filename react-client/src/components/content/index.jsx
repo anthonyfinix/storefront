@@ -1,3 +1,4 @@
+import React from 'react';
 import './content.css';
 import { Route, Switch } from 'react-router-dom';
 import Role from '../role';
@@ -10,6 +11,7 @@ import ProductCategory from '../purchaseCategory';
 import ContentProvider from '../contentProvider';
 
 const Content = () => {
+    const [isLoading, setLoading] = React.useState(true);
     return (
         <article id="content-wrapper">
             <ContentProvider>

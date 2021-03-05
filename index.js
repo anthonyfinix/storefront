@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require('cors');
 const app = express();
 const port = process.env.PORT || 80;
 const mongoose = require("mongoose");
@@ -13,6 +14,7 @@ const databaseURL = process.env.MONGO_URL || "https://storefront.com";
     useNewUrlParser: true,
     useUnifiedTopology: true
   });
+  app.use(cors());
   app.use(
     session({
       secret: config.cookie_secret,

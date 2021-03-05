@@ -1,6 +1,7 @@
 module.exports = {
   cookie_secret: "storefront",
   salt_round: 10,
+  api_baseUrl:'http://localhost:80/api',
   default_user_role: "employee",
   default_purchase_state: true,
   default_supplier_state: true,
