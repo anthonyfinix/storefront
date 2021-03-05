@@ -17,7 +17,7 @@ const useProduct = () => {
     get().then(results => setProducts(results));
   },[]);
 
-  return suppliers;
+  return products;
 };
 
-export default useSupplier;
+export default useProduct;

@@ -28,7 +28,7 @@ module.exports = async ({
     });
     return {
       message: "success",
-      role: newRole
+      result: newRole
     };
   } catch (e) {
     return e;

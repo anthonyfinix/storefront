@@ -4,7 +4,7 @@ import useProduct from '../product/useProduct';
 
 export const ContentContext = React.createContext();
 const ContentProvider = ({ children, ...props }) => {
-    const products = React.useState();
+    const products = useProduct();
     const suppliers = useSupplier();
     const [customers] = React.useState();
     const [productCategories] = React.useState();

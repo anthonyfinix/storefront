@@ -23,9 +23,9 @@ module.exports = async (req, res) => {
     role,
   });
   if (error) return res.json({ error: error.details });
-  let created_by = req.user.user_id;
+  let created_by = req.user._id;
   let created_at = Date.now();
-  let { e, message, ...data } = createRole({
+  let { e, message, ...data } = await createRole({
     name,
     product,
     store,
@@ -38,6 +38,5 @@ module.exports = async (req, res) => {
     created_by
   });
   if (error) return res.json({ error: e.message });
-  if (message == "success") return res.json({ message, data });
-  return res.json({});
+  if (message == "success") return res.json({ message, ...data });
 };

@@ -1,9 +1,9 @@
 ### GET ALL
-POST http: //localhost:80/api/role
+POST http://localhost:80/api/role
 Content-Type: application/json
 
 {
-    "role_name": "Employee",
+    "name": "Employee",
     "product": {
         "read": true,
         "write": true,
