@@ -3,10 +3,7 @@ import './product.css';
 import Table from './table';
 import { ContentContext } from '../contentProvider';
 const Product = () => {
-
     let { products } = React.useContext(ContentContext);
-    console.log(products)
-
     return (
         <article id="product-wrapper">
             <div id="product-header">

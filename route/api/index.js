@@ -10,7 +10,6 @@ const user = require("./user");
 const role = require("./role");
 
 router.get("/", (req, res) => res.send("storefront api root"));
-
 router.use("/role", role);
 router.use("/user", user);
 router.use("/store", store);
