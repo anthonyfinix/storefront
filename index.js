@@ -1,7 +1,7 @@
 const express = require("express");
-const cors = require('cors');
+const cors = require("cors");
 const app = express();
-const port = process.env.PORT || 80;
+const port = process.env.PORT || 8080;
 const mongoose = require("mongoose");
 const routes = require("./route");
 const session = require("express-session");
@@ -20,7 +20,11 @@ const databaseURL = process.env.MONGO_URL || "https://storefront.com";
       secret: config.cookie_secret,
       resave: false,
       saveUninitialized: true,
-      cookie: { maxAge: config.cookie_maxAge, httpOnly: true },
+      cookie: {
+        maxAge: config.cookie_maxAge,
+        httpOnly: config.httpOnly,
+        secure: false
+      },
       store: new MongoStore({ mongooseConnection: mongoose.connection })
     })
   );
