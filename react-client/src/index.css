@@ -1,31 +1,31 @@
 @font-face {
   font-family: "Yantramanav";
-  src: url("./assets/fonts/Yantramanav/Yantramanav-Black.ttf") format("ttf");
+  src: url("./assets/fonts/Yantramanav/Yantramanav-Black.ttf");
   font-weight: 900;
 }
 @font-face {
   font-family: "Yantramanav";
-  src: url("./assets/fonts/Yantramanav/Yantramanav-Bold.ttf") format("ttf");
+  src: url("./assets/fonts/Yantramanav/Yantramanav-Bold.ttf");
   font-weight: 700;
 }
 @font-face {
   font-family: "Yantramanav";
-  src: url("./assets/fonts/Yantramanav/Yantramanav-Medium.ttf") format("ttf");
+  src: url("./assets/fonts/Yantramanav/Yantramanav-Medium.ttf");
   font-weight: 500;
 }
 @font-face {
   font-family: "Yantramanav";
-  src: url("./assets/fonts/Yantramanav/Yantramanav-Regular.ttf") format("ttf");
+  src: url("./assets/fonts/Yantramanav/Yantramanav-Regular.ttf");
   font-weight: 400;
 }
 @font-face {
   font-family: "Yantramanav";
-  src: url("./assets/fonts/Yantramanav/Yantramanav-Light.ttf") format("ttf");
+  src: url("./assets/fonts/Yantramanav/Yantramanav-Light.ttf");
   font-weight: 300;
 }
 @font-face {
   font-family: "Yantramanav";
-  src: url("./assets/fonts/Yantramanav/Yantramanav-Thin.ttf") format("ttf");
+  src: url("./assets/fonts/Yantramanav/Yantramanav-Thin.ttf");
   font-weight: 100;
 }
 
