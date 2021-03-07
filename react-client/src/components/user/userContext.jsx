@@ -6,17 +6,17 @@ class UserProvider extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            user: {},
+            user: null,
             isloading: true,
-            redirect: null
+            redirect: null,
         };
         this.setUser = this.setUser.bind(this);
     }
     componentDidMount() {
         getUser().then(response => {
-            console.log(response);
-            let { error, data } = response;
-            if (data) this.setState({ user: data, isloading: false });
+            let { error, user } = response;
+            if (user) return this.setState({ user, isloading: false });
+            return this.setState({ isloading: false });
         })
     }
     setUser(user) {
@@ -25,7 +25,7 @@ class UserProvider extends React.Component {
     render() {
         return (
             <UserContext.Provider value={{ user: this.state.user, setUser: this.setUser }} >
-                {this.props.children}
+                {this.state.isloading ? <h1>Is Loading</h1> : this.props.children}
             </UserContext.Provider>
         );
     }

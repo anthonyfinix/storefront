@@ -1,20 +1,22 @@
 import { UserContext } from '../user/userContext';
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import getUser from '../user/getUser';
 import './login.css';
-const Login = () => {
+const Login = (props) => {
     const [username, setUsername] = useState({});
     const [password, setPassword] = useState({});
-    const user = React.useContext(UserContext);
+    const { user, setUser } = React.useContext(UserContext);
+    const history = useHistory()
+    useEffect(() => {
+        if (user) {
+            props.history.push('/');
+        }
+    }, [])
     const handleLoginClick = () => {
         getUser(username, password)
             .then(response => {
                 let { error, message, user } = response;
-                console.log(user)
-                // if (message === 'success' && !!user) {
-                //     setUser(user)
-                // }
             });
     }
     const handleUsernameChange = (e) => {
