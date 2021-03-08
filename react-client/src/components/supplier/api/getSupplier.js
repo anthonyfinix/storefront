@@ -1,5 +1,5 @@
 import axios from '../../../axios';
 
 export default async ()=>{
-   return  axios.get('/supplier');
+   return  axios.get('api/supplier');
 }

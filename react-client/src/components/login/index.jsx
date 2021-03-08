@@ -18,11 +18,11 @@ const Login = (props) => {
             .then(response => {
                 let { error, message, user } = response;
                 console.log(response);
-                if(user) {
+                if (error) return window.alert(error);
+                if (user && message === 'success') {
                     setUser(user)
                     history.push('/')
                 };
-                window.alert(error);
             });
     }
     const handleUsernameChange = (e) => {
