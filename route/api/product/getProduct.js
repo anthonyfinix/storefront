@@ -31,7 +31,7 @@ module.exports = async ({
     let { length, breath, height } = dimension;
   }
   try {
-    console.log(params)
+    // console.log(params)
     let products = await Product.find(params);
     return { products };
   } catch (e) {

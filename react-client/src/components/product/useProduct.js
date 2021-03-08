@@ -7,15 +7,15 @@ const useProduct = () => {
   const get = async () => {
     let response = await getProduct();
     if (response.status === 200) {
-      let { message, results, error } = response.data;
+      let { message, result, error } = response.data;
       if (error) return error;
-      return results;
+      return result;
     }
   };
 
   useEffect(() => {
     get().then(results => setProducts(results));
-  },[]);
+  }, []);
 
   return products;
 };

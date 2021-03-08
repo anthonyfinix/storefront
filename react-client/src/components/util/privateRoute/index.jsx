@@ -4,7 +4,6 @@ import { Redirect, Route } from 'react-router-dom';
 const PrivateRoute = ({ component: Component, ...rest }) => {
     const { user } = React.useContext(UserContext);
     return <Route {...rest} component={(props) => {
-        console.log(user)
         if (!!user) {
             return <Component {...props} />
         } else {

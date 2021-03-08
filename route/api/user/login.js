@@ -4,7 +4,8 @@ module.exports = async (req, res) => {
   if (req.user) return res.json({ user: req.user });
   let { username, password } = req.body;
   // get user from db
-  let user = await User.findOne({ username });
+  let user = await User.find({ username });
+  console.log(user)
   // check user exists
   if (!user) return res.json({ error: "no user found" });
   // check password

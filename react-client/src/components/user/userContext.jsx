@@ -15,8 +15,11 @@ class UserProvider extends React.Component {
     componentDidMount() {
         getUser().then(response => {
             let { error, user } = response;
-            if (user) return this.setState({ user, isloading: false });
-            return this.setState({ isloading: false });
+            if (user) {
+                this.setState({ user:user, isloading: false })
+            } else {
+                this.setState({ isloading: false });
+            };
         })
     }
     setUser(user) {

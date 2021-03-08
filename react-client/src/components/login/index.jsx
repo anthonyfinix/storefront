@@ -17,6 +17,12 @@ const Login = (props) => {
         getUser(username, password)
             .then(response => {
                 let { error, message, user } = response;
+                console.log(response);
+                if(user) {
+                    setUser(user)
+                    history.push('/')
+                };
+                window.alert(error);
             });
     }
     const handleUsernameChange = (e) => {
