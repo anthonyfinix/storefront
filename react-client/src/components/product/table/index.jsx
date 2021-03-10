@@ -1,9 +1,8 @@
 import React from 'react';
 import Rows from './Rows';
 import './table.css';
-const Table = ({ data }) => {
+const Table = ({ data, toggleSidebar }) => {
     const dataTable = React.useRef(null);
-    console.log(data);
     const toggleDropdown = (e, id) => {
         let row = dataTable.current.querySelector(`.row[data-row="${id}"]+div`);
         if (row.classList.contains('hide')) {
@@ -22,7 +21,7 @@ const Table = ({ data }) => {
                 </tr>
             </thead>
             <tbody>
-                <Rows rows={data} toggleDropdown={toggleDropdown} />
+                <Rows rows={data} toggleSidebar={toggleSidebar} toggleDropdown={toggleDropdown} />
             </tbody>
         </table>
     )

@@ -1,8 +1,7 @@
 import React from 'react';
-const GetProducts = ({ rows, toggleDropdown }) => {
+const GetProducts = ({ rows, toggleDropdown, toggleSidebar }) => {
     return rows.map(row =>
         <>
-            {console.log(row)}
             <tr className="row product_row" key={row._id} data-row={row._id}>
                 <td className="row-data product-data">{row.name}</td>
                 <td className="row-data product-data">{row.sku}</td>
@@ -13,7 +12,7 @@ const GetProducts = ({ rows, toggleDropdown }) => {
             </tr>
             <div className="row-dropdown hide">
                 <p>{row._id}</p>
-                <small>Show Suppliers</small>
+                <small onClick={(e) => toggleSidebar(row.suppliers)}>Show Suppliers</small>
             </div>
         </>
     )

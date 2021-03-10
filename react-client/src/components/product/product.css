@@ -21,7 +21,7 @@
 #product-content > #table-wrapper{
     flex-grow: 1;
 }
-#product-content > #product-sidebar{
+#product-content > .sidebar{
     flex-basis: 250px;
 }
 #table-wrapper{

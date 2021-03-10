@@ -6,6 +6,6 @@ module.exports = async (req, res) => {
   let { products, error } = await getProduct({ name });
   if (error) return res.json({ error });
   if (!products.length)
-    return res.json({ message: "success", result: products });
-  return res.json({ message: "no products found", result: products });
+    return res.json({ message: "no products found", result: products });
+  return res.json({ message: "success", result: products });
 };
