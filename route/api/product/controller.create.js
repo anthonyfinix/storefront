@@ -1,5 +1,7 @@
 const Product = require("./modal");
 const validation = require("../../../validation/joi.product");
+const checkNameExist = require("../product/checkNameExist");
+const checkSKUExist = require("../product/checkSKUExist");
 
 module.exports = async (req, res) => {
   let { user } = req;
@@ -17,9 +19,9 @@ module.exports = async (req, res) => {
     stores,
     supplier
   } = req.body;
-  let productNameExist = await Product.findOne({ name });
+  let productNameExist = await checkNameExist(name);
   if (productNameExist) return res.json({ error: "Name already exists" });
-  let productSKUExist = await Product.findOne({ sku });
+  let productSKUExist = await checkSKUExist({ sku });
   if (productSKUExist) return res.json({ error: "SKU already exists" });
   let product = new Product({
     name,

@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const get = require("./service.get");
+const get = require("./controller.get");
 const create = require("./controller.create");
 
 router.get("/", get);
