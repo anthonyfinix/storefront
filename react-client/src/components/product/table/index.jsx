@@ -3,11 +3,12 @@ import Rows from './Rows';
 import './table.css';
 const Table = ({ data }) => {
     const dataTable = React.useRef(null);
+    console.log(data);
     const toggleDropdown = (e, id) => {
         let row = dataTable.current.querySelector(`.row[data-row="${id}"]+div`);
-        if(row.classList.contains('hide')){
+        if (row.classList.contains('hide')) {
             row.classList.remove('hide');
-        }else{
+        } else {
             row.classList.add('hide');
         }
     }

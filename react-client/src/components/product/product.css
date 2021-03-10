@@ -2,16 +2,27 @@
     display: flex;
     flex-direction: column;
     flex-grow: 1;
+    height: 100%;
 }
 #product-header{
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 15px;
-    min-height: 40px;
+    flex-basis: 40px;
 } 
 #product-header *{
     margin: 0px;
+}
+#product-content{
+    display: flex;
+    flex-grow: 1;
+}
+#product-content > #table-wrapper{
+    flex-grow: 1;
+}
+#product-content > #product-sidebar{
+    flex-basis: 250px;
 }
 #table-wrapper{
     flex-grow: 1;
