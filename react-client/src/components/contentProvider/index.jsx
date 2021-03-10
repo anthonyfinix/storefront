@@ -6,8 +6,8 @@ export const ContentContext = React.createContext();
 const ContentProvider = ({ children, ...props }) => {
     const products = useProduct();
     const suppliers = useSupplier();
-    const [customers] = React.useState();
-    const [productCategories] = React.useState();
+    const [customers] = React.useState([]);
+    const [productCategories] = React.useState([]);
     return (
         <ContentContext.Provider value={{
             products,

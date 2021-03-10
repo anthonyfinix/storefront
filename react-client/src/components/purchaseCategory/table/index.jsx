@@ -12,7 +12,8 @@ const Table = ({ data }) => {
                 </tr>
             </thead>
             <tbody>
-                <Rows rows={data} />
+                {console.log(data)}
+                {/* <Rows rows={data} /> */}
             </tbody>
         </table>
     )
