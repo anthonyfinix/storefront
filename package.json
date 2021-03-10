@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "env-cmd -f ./.env-dev nodemon index.js",
     "test": "env-cmd -f ./.env-prod nodemon index.js",
-    "start": "env-cmd -f ./.env-prod node index.js"
+    "start": "node index.js"
   },
 
   "repository": {
