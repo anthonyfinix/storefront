@@ -1,0 +1,9 @@
+### GET ALL
+GET http://localhost:8080/api/product
+
+
+### GET NAME
+GET http://localhost:8080/api/product?name=Nike Cap
+
+### GET Partial Search
+GET http://localhost:8080/api/product?query=C

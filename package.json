@@ -8,7 +8,6 @@
     "test": "env-cmd -f ./.env-prod nodemon index.js",
     "start": "node index.js"
   },
-
   "repository": {
     "type": "git",
     "url": "git+https://github.com/anthonyfinix/storefront.git"
