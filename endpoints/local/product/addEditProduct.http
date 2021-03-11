@@ -1,19 +1,26 @@
 ### ADD / EDIT
-POST http://localhost:80/api/product
+POST http://localhost:8080/api/product
 Content-Type: application/json
 
 {
-    "name":"Red Chiefc Masen's Blxue Leather sCasual Shoes",
+    "name":"Red Chief Shoes",
     "sku":"3ss2ds3",
-    "dimension":{
-        "width":20,
-        "height":43,
-        "length":20
-    },
     "category":{
-        "id":"603491b28b4dfc2d50725f31",
-        "name":"Clothing"
+        "id":"604089641aec2e0015418be2",
+        "name":"Nike Cap"
     },
+    "dimension":{
+        "weight":20,
+        "height":30,
+        "length":23,
+        "width":12
+    },
+    "suppplier":[
+        {
+            "name":"nike ads",
+            "id":"6041d82456eb0500150c8181"
+        }
+    ],
     "manufacturer":"manufacturer",
     "brand":"brand",
     "sale_price":23,

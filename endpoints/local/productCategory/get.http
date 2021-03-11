@@ -1,2 +1,8 @@
 ### GET ALL
-GET http://localhost:80/api/productCategory
+GET http://localhost:8080/api/productCategory
+
+### GET WITH NAME
+GET http://localhost:8080/api/productCategory?name=abcd
+
+### GET WITH NAME
+GET http://localhost:8080/api/productCategory?query=a

@@ -9,13 +9,10 @@ module.exports = joi.object({
       src: joi.string().required()
     }
   ],
-  category: joi
-    .array()
-    .items({
-      name: joi.string().required(),
-      id: joi.string().required()
-    })
-    .min(1),
+  category: joi.object({
+    name: joi.string().required(),
+    id: joi.string().required()
+  }),
   dimension: {
     height: joi.number().required(),
     width: joi.number().required(),
@@ -38,11 +35,13 @@ module.exports = joi.object({
       }
     })
   ),
-  suppliers: [
-    {
+  suppliers: joi
+    .array()
+    .items({
       name: joi.string().required(),
       id: joi.string().required()
-    }
-  ],
+    })
+    .min(1)
+    .required(),
   active: joi.bool()
 });

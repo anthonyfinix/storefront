@@ -1,5 +1,5 @@
-const Product = require('./modal');
-module.exports = ({
+const Product = require("./modal");
+module.exports = async ({
   name,
   sku,
   media,
@@ -15,26 +15,25 @@ module.exports = ({
   created_at,
   created_by
 }) => {
-    try {
+  try {
     let newProduct = await Product({
-        name,
-        sku,
-        media,
-        category,
-        dimension,
-        manufacturer,
-        brand,
-        sale_price,
-        current_price,
-        buying_price,
-        stores,
-        supplier,
-        created_at,
-        created_by
+      name,
+      sku,
+      media,
+      category,
+      dimension,
+      manufacturer,
+      brand,
+      sale_price,
+      current_price,
+      buying_price,
+      stores,
+      supplier,
+      created_at,
+      created_by
     }).save();
-    return res.json({ message: "Success", response:newProduct });
-    } catch (e) {
-    let { errors } = e;
-    return res.json({ errors });
-    }
+    return { result: newProduct };
+  } catch (e) {
+    return { errors: e.message };
+  }
 };
