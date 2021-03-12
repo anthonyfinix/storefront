@@ -2,7 +2,4 @@
 GET http://localhost:8080/api/productCategory
 
 ### GET WITH NAME
-GET http://localhost:8080/api/productCategory?name=abcd
-
-### GET WITH NAME
-GET http://localhost:8080/api/productCategory?query=a
+GET http://localhost:8080/api/productCategory?id=6040954a1aec2e0015418c0f

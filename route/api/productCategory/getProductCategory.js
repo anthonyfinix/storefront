@@ -5,8 +5,7 @@ module.exports = async ({ name, id }) => {
   if (id) params.id = id;
   try {
     let productCategory = await ProductCategory.find(params);
-    if (productCategory)
-      return { message: "success", results: productCategory };
+    if (productCategory) return { message: "success", results: productCategory };
   } catch (e) {
     return { error: e.message };
   }

@@ -1,6 +1,6 @@
 const createProductCategory = require("./createProductCategory");
 const checkNameExist = require("./checkNameExist");
-const updateProduct = require("./updateProduct");
+const updateProduct = require("./updateProductCategory");
 const validation = require("../../../validation/joi.productCategory");
 module.exports = async (req, res) => {
   let { name, id } = req.body;

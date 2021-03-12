@@ -13,12 +13,18 @@ const schema = new mongoose.Schema(
         coordinates: [Number]
       }
     },
-    store_visited: [
+    roles: [
       {
-        id: { type: mongoose.Types.ObjectId, ref: "Store" },
-        name: String
+        name: { type: String, required: true },
+        id: {
+          type: mongoose.Schema.Types.ObjectId,
+          required: true,
+          ref: "Role"
+        }
       }
     ],
+    gmt: { type: String, required: true },
+    currency: { type: String, required: true },
     created_by: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",

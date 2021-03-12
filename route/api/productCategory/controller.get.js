@@ -3,12 +3,15 @@ const getProductCategory = require("./getProductCategory");
 const getNamePartialSearch = require("./getNamePartialSearch");
 module.exports = async (req, res) => {
   let { name, id, query } = req.query;
-  if(query){
+  if (query) {
     let { error, results } = await getNamePartialSearch(query);
     if (error) return res.json({ error });
-    return res.json({ message:"success", results });
+    return res.json({ message: "success", results });
   }
-  let { error, message, results } = await getProductCategory({ name, id });
+  let params = {};
+  if (id) params.id = id;
+  if (name) params.name = name;
+  let { error, message, results } = await getProductCategory(params);
   if (error) return res.json({ error });
   return res.json({ message, results });
 };

@@ -3,8 +3,9 @@ POST http://localhost:8080/api/product
 Content-Type: application/json
 
 {
+    "id":"604af12d5495114eac3cffc3",
     "name":"Red Chief Shoes",
-    "sku":"3ss2ds3",
+    "sku":"lksads",
     "category":{
         "id":"604089641aec2e0015418be2",
         "name":"Nike Cap"
@@ -15,7 +16,7 @@ Content-Type: application/json
         "length":23,
         "width":12
     },
-    "suppplier":[
+    "suppliers":[
         {
             "name":"nike ads",
             "id":"6041d82456eb0500150c8181"

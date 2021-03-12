@@ -9,12 +9,16 @@ const MongoStore = require("connect-mongo")(session);
 const config = require("./config");
 const attachUserObject = require("./middleware/attachUserObject.js");
 const databaseURL = process.env.MONGO_URL || "https://storefront.com";
-const headers = require('./middleware/headers');
+const headers = require("./middleware/headers");
 (async () => {
-  await mongoose.connect(databaseURL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  });
+  try {
+    await mongoose.connect(databaseURL, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true
+    });
+  } catch (e) {
+    console.log(e.message);
+  }
   app.use(headers);
   app.use(cors({ origin: "http://localhost:3000" }));
   app.use(
@@ -25,9 +29,9 @@ const headers = require('./middleware/headers');
       cookie: {
         maxAge: config.cookie_maxAge,
         httpOnly: config.httpOnly,
-        secure: false,
+        secure: false
       },
-      store: new MongoStore({ mongooseConnection: mongoose.connection }),
+      store: new MongoStore({ mongooseConnection: mongoose.connection })
     })
   );
   app.use(express.urlencoded({ extended: true }));
