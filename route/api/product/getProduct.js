@@ -33,7 +33,7 @@ module.exports = async ({
   }
   try {
     let products = await Product.find(params);
-    return { results: products };
+    return { result: products };
   } catch (e) {
     return { error: e.message };
   }

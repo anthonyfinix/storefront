@@ -18,7 +18,6 @@ const schema = new mongoose.Schema(
         coordinates: [Number]
       }
     },
-    total_purchase: { type: Number, required: true },
     last_visit: { type: Number, require: true, default: Date.now() },
     total_purchase: { amount: { type: Number, require: true } },
     active: { type: Boolean, required: true },
