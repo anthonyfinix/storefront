@@ -1,46 +1,33 @@
 const joi = require("joi");
+const name = require("./joi.name");
+const contact_details = require("./joi.contact_details");
+const username = joi.string();
+const password = joi.string();
+const employeeId = joi.string();
+const active = joi.boolean();
+const role = joi.string();
+const documents = joi.array().items(
+    joi.object({ name: joi.string().required(), path: joi.string().required() })
+  ).allow("");
+const assigned_store = joi.object({ id: joi.string(), name: joi.string() });
+
+exports.user_name = name;
+exports.user_username = username;
+exports.user_contact_details = contact_details;
+exports.user_active = active;
+exports.employeeId = employeeId;
+exports.user_role = role;
+exports.assigned_store = assigned_store;
+exports.user_documents = documents;
 
 module.exports = joi.object({
-  name: joi
-    .object({
-      first_name: joi.string(),
-      middle_name: joi.string(),
-      last_name: joi.string()
-    })
-    .required(),
-  username: joi.string().required(),
-  password: joi.string().required(),
-  contact_details: joi
-    .object({
-      primary_number: joi.number().required(),
-      secondary_number: joi.number(),
-      mobile_number: joi.number(),
-      email: joi
-        .string()
-        .email()
-        .required(),
-      address: joi
-        .object({
-          full: joi.string().required(),
-          city: joi.string().required(),
-          state: joi.string().required(),
-          pincode: joi.number().required(),
-          coordinates: joi.array().items(joi.number())
-        })
-        .required()
-    })
-    .required(),
+  name: joi.required(),
+  username: username.required(),
+  password: password.required(),
+  contact_details: contact_details.required(),
   employeeId: joi.string(),
-  active: joi.boolean(),
+  active: active.required(),
   role: joi.string(),
-  assigned_store: joi.object({ id: joi.string(), name: joi.string() }),
-  documents: joi
-    .array()
-    .items(
-      joi.object({
-        name: String,
-        path: String
-      })
-    )
-    .allow("")
+  assigned_store: assigned_store,
+  documents: documents
 });

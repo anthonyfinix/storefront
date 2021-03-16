@@ -1,5 +1,11 @@
 ### GET ALL
 GET http://localhost:8080/api/productCategory
 
+### GET by name
+GET http://localhost:8080/api/productCategory?name=Nike Cap
+
+### search
+GET http://localhost:8080/api/productCategory?query=Nike
+
 ### GET WITH NAME
 GET http://localhost:8080/api/productCategory?id=6040954a1aec2e0015418c0f

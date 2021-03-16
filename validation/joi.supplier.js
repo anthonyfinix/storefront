@@ -1,31 +1,24 @@
 const joi = require("joi");
+const contact_details = require("./joi.contact_details");
+const name = require("./joi.name");
+
+let company_name = joi.string();
+let created_by = joi.string();
+let created_on = joi.number();
+let total_purchase = joi.number();
+
+exports.supplier_company_name = company_name;
+exports.supplier_created_by = created_by;
+exports.supplier_created_on = created_on;
+exports.supplier_total_purchase = total_purchase;
+exports.supplier_contact_details = contact_details;
 
 module.exports = joi.object({
-  company_name: joi.string().required(),
-  name: joi.object({
-    first_name: joi.string().required(),
-    middle_name: joi.string(),
-    last_name: joi.string().required()
-  }),
-  contact_details: joi
-    .object({
-      primary_number: joi.number().required(),
-      secondary_number: joi.number(),
-      mobile_number: joi.number(),
-      email: joi
-        .string()
-        .email()
-        .required(),
-      address: joi.object({
-        full: joi.string(),
-        city: joi.string().required(),
-        state: joi.string().required(),
-        coordinates: joi.array().items(joi.number())
-      }).required(),
-    })
-    .required(),
+  company_name: company_name.required(),
+  name: name.required(),
+  contact_details: contact_details.required(),
   active: joi.boolean(),
-  created_by: joi.string(),
-  created_on: joi.number(),
-  total_purchase: joi.number()
+  created_by: created_by,
+  created_on: created_on,
+  total_purchase: total_purchase
 });

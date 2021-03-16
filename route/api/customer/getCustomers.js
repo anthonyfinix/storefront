@@ -1,5 +1,7 @@
 const Customer = require("./modal");
+const validation = require("../../../validation/joi.customer");
 const getCustomer = async ({
+  id,
   name,
   contact_details,
   total_purchase,
@@ -9,7 +11,8 @@ const getCustomer = async ({
   created_at
 }) => {
   let params = {};
-  if (name) params.name = name;
+  if (id) param._id = id;
+  if (name) params["name.first_name"] = name;
   if (contact_details) params.contact_details = contact_details;
   if (total_purchase) params.total_purchase = total_purchase;
   if (last_visit) params.last_visit = last_visit;

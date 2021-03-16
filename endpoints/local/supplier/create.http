@@ -1,21 +1,19 @@
-POST http://localhost:80/api/supplier
+POST http://localhost:8080/api/supplier
 Content-Type: application/json
 
 {
-    "company_name":"Sjjsd",
+    "company_name":"Client",
     "name":{
-        "first_name":"jhssdsdsfsksjfd",
-        "last_name":"sljdsdfdsf"
+        "first_name":"Anthony Finix"
     },
     "contact_details":{
-        "primary_number":1212313,
-        "secondary_number":1212313,
-        "email":"anthonyfinxi@gmail.com",
+        "primary_number":3432342345,
+        "email":"dilvrey@gmail.com",
         "address":{
-            "city":"faridabad",
-            "state":"Haryana"
+        "full":"2190/7 Faridabad, Haryana",
+            "city":"Okhla",
+            "state":"Delhi",
+            "pincode":"121006"
         }
-    },
-    "active":true,
-    "total_purchase":3432
+    }
 }

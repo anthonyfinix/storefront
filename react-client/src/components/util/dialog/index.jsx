@@ -1,11 +1,11 @@
 import './dialog.css';
 import React from 'react';
-const Dialog = ({ title = "Dialog Title", toggleDialog, show, ...props }) => {
+const Dialog = ({ toggleDialog, show, ...props }) => {
+    console.log(props)
     let display = show ? "flex" : "none";
     const handleDialogWrapper = (e) => {
         let target = e.target;
         let firstClass = target.getAttribute('id');
-        console.log(target)
         if (firstClass && firstClass === "dialog-wrapper") toggleDialog();
     }
     return (

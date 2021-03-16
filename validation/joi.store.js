@@ -1,33 +1,23 @@
 const joi = require("joi");
 
+const contact_details = require("./joi.contact_details");
+const name = joi.string();
+const roles = joi
+  .array()
+  .items(joi.string())
+  .min(1);
+const gmt = joi.string();
+const currency = joi.string();
+
+exports.store_name = name;
+exports.store_roles = roles;
+exports.store_gmt = gmt;
+exports.store_currency = currency;
 module.exports = joi.object({
-  name: joi.string().required(),
-  contact_details: joi
-    .object({
-      primary_number: joi.number().required(),
-      secondary_number: joi.number(),
-      mobile_number: joi.number(),
-      email: joi
-        .string()
-        .email()
-        .required(),
-      address: joi
-        .object({
-          full: joi.string().required(),
-          city: joi.string().required(),
-          state: joi.string().required(),
-          coordinates: joi.array().items(joi.number()),
-          pincode: joi.number().required()
-        })
-        .required()
-    })
-    .required(),
+  name: name.required(),
+  contact_details: contact_details.required(),
   active: joi.boolean(),
-  roles: joi
-    .array()
-    .items(joi.string())
-    .min(1)
-    .required(),
-  gmt: joi.string().required(),
-  currency: joi.string()
+  roles: roles.required(),
+  gmt: gmt.required(),
+  currency: currency
 });

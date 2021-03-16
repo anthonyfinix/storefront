@@ -3,7 +3,7 @@ const schema = new mongoose.Schema(
   {
     company_name: { type: String, required: true },
     name: {
-      first_name: String,
+      first_name: { type: String, required: true },
       secondary_name: String,
       last_name: String
     },

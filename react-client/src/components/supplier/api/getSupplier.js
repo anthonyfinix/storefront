@@ -1,5 +1,3 @@
-import axios from '../../../axios';
+import axios from "../../../axios";
 
-export default async ()=>{
-   return  axios.get('api/supplier');
-}
+export default async () => axios.get("api/supplier");

@@ -1,40 +1,25 @@
 const joi = require("joi");
+const name = require("./joi.name");
+const contact_details = require("./joi.contact_details");
+const store_visited = joi.array().items({
+  id: joi.string().required(),
+  name: joi.string().required()
+});
+const total_purchase = joi.object({
+  amount: joi.number().required()
+});
+const active = joi.boolean();
+
+exports.customer_name = name;
+exports.customer_contact_details = contact_details;
+exports.customer_store_visited = store_visited;
+exports.customer_total_purchase = total_purchase;
+exports.customer_active = active;
 
 module.exports = joi.object({
-  name: joi
-    .object({
-      first_name: joi.string(),
-      middle_name: joi.string(),
-      last_name: joi.string()
-    })
-    .required(),
-  store_visited: joi
-    .array()
-    .items({
-      id: joi.string().required(),
-      name: joi.string().required()
-    })
-    .required(),
-  total_purchase: { amount: joi.number().required() },
-  contact_details: joi
-    .object({
-      primary_number: joi.number().required(),
-      secondary_number: joi.number(),
-      mobile_number: joi.number(),
-      email: joi
-        .string()
-        .email()
-        .required(),
-      address: joi
-        .object({
-          full: joi.string().required(),
-          city: joi.string().required(),
-          state: joi.string().required(),
-          pincode: joi.number().required(),
-          coordinates: joi.array().items(joi.number())
-        })
-        .required()
-    })
-    .required(),
-  active: joi.boolean()
+  name: name.required(),
+  store_visited: store_visited.required(),
+  total_purchase: total_purchase.required(),
+  contact_details: contact_details.required(),
+  active: active.required()
 });

@@ -1,23 +1,36 @@
 import './product.css';
-import React, { useState } from 'react';
+import React from 'react';
 import Table from './table';
 import Sidebar from './sidebar';
 import { ContentContext } from '../contentProvider';
-import Dialog from '../util/dialog';
+import AddNewProduct from './addNewProduct';
 const Product = () => {
     let [showDialog, setShowDialog] = React.useState(false);
-    let { products } = React.useContext(ContentContext);
-    let [productSuppliers, setProductSuppliers] = useState([]);
-    let [isSidebarOpen, setSidebarOpen] = useState(false);
+    let { products, suppliers, productCategory } = React.useContext(ContentContext);
+    let [productSuppliers, setProductSuppliers] = React.useState([]);
+    let [isSidebarOpen, setSidebarOpen] = React.useState(false);
+    let [newProduct, setNewProduct] = React.useState({
+        productName: "",
+        productSKU: "",
+        productManufacturer: "",
+        productBrand: "",
+        productSalePrice: "",
+        productCurrentPrice: "",
+        productBuyingPrice: "",
+    });
+    const addNewProduct = () => { }
+    const handleNewProductInputChange = (e) => {
+        let updatedProductDetails = newProduct;
+        updatedProductDetails[e.currentTarget.getAttribute('name')] = e.currentTarget.value;
+        setNewProduct({ ...updatedProductDetails })
+        console.log('updated');
+    }
     const toggleSidebar = () => setSidebarOpen(!isSidebarOpen);
     const handleShowSupplier = (suppliers) => {
         toggleSidebar();
         let supplierDetailsPromise = suppliers.map(supplier => console.log(supplier))
     }
-    const toggleDialog = () => {
-        console.log('toggle')
-        setShowDialog(!showDialog);
-    }
+    const toggleDialog = () => setShowDialog(!showDialog);
     return (
         <article id="product-wrapper">
             <div id="product-header">
@@ -28,41 +41,16 @@ const Product = () => {
                 <div id="table-wrapper">
                     <Table data={products} toggleSidebar={handleShowSupplier} />
                 </div>
-                {console.log(products)}
                 <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} items={products} />
-                <Dialog toggleDialog={toggleDialog} show={showDialog}>
-                    <h3 className="mt-0">Add Product</h3>
-                    <div>
-                        <div className="input-wrapper">
-                            <label>Name</label>
-                            <input type="text" name="name" />
-                        </div>
-                        <div className="input-wrapper">
-                            <label>SKU</label>
-                            <input type="text" name="sku" />
-                        </div>
-                        <div className="input-wrapper">
-                            <label>Manufacturer</label>
-                            <input type="text" name="manufacturer" />
-                        </div>
-                        <div className="input-wrapper">
-                            <label>Brand</label>
-                            <input type="text" name="brand" />
-                        </div>
-                        <div className="input-wrapper">
-                            <label>Sale Price</label>
-                            <input type="text" name="sale_price" />
-                        </div>
-                        <div className="input-wrapper">
-                            <label>Current Price</label>    
-                            <input type="text" name="current_price" />
-                        </div>
-                        <div className="input-wrapper">
-                            <label>Buying Price</label>
-                            <input type="text" name="buying_price" />
-                        </div>
-                    </div>
-                </Dialog>
+                <AddNewProduct
+                    show={showDialog}
+                    handleNewProductInputChange={handleNewProductInputChange}
+                    newProduct={newProduct}
+                    toggleDialog={toggleDialog}
+                    items={products}
+                    addNewProduct={addNewProduct}
+                    
+                />
             </div>
         </article>
     )

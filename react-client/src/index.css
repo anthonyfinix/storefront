@@ -1,3 +1,6 @@
+*{
+  box-sizing: border-box;
+}
 @font-face {
   font-family: "Yantramanav";
   src: url("./assets/fonts/Yantramanav/Yantramanav-Black.ttf");
