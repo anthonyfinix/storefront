@@ -3,6 +3,7 @@ module.exports = {
   salt_round: 10,
   api_baseUrl:'http://localhost:8080/api',
   default_user_role: "employee",
+  default_product_state: true,
   default_purchase_state: true,
   default_supplier_state: true,
   default_customer_state: true,

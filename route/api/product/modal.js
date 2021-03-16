@@ -1,12 +1,7 @@
 const mongoose = require("mongoose");
 const schema = new mongoose.Schema(
   {
-    company_name: { type: String, required: true },
-    name: {
-      first_name: { type: String, required: true },
-      middle_name: { type: String, required: true },
-      last_name: { type: String, required: true }
-    },
+    name: { type: String, required: true },
     sku: { type: String, required: true },
     media: [
       {

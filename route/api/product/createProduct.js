@@ -13,7 +13,8 @@ module.exports = async ({
   stores,
   supplier,
   created_at,
-  created_by
+  created_by,
+  active
 }) => {
   try {
     let newProduct = await Product({
@@ -30,10 +31,11 @@ module.exports = async ({
       stores,
       supplier,
       created_at,
-      created_by
+      created_by,
+      active
     }).save();
     return { result: newProduct };
   } catch (e) {
-    return { errors: e.message };
+    return { error: e.message };
   }
 };

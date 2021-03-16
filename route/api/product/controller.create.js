@@ -4,6 +4,7 @@ const checkNameExist = require("../product/checkNameExist");
 const checkSKUExist = require("../product/checkSKUExist");
 const updateProduct = require("./updateProduct");
 const createProduct = require("./createProduct");
+const config = require("../../../config");
 module.exports = async (req, res) => {
   let { user } = req;
   let {
@@ -19,8 +20,10 @@ module.exports = async (req, res) => {
     current_price,
     buying_price,
     stores,
-    suppliers
+    suppliers,
+    active
   } = req.body;
+  if (!active) active = config.default_product_state;
   if (id) {
     let { error: updationError, result } = await updateProduct({
       name,
@@ -34,12 +37,12 @@ module.exports = async (req, res) => {
       current_price,
       buying_price,
       stores,
-      suppliers
+      suppliers,
+      active
     });
     if (updationError) return res.json({ error: updationError });
     return res.json({ message: "success", result });
   }
-  console.log('test');
   let { error } = validation.validate({
     name,
     sku,
@@ -52,9 +55,10 @@ module.exports = async (req, res) => {
     current_price,
     buying_price,
     stores,
-    suppliers
+    suppliers,
+    active
   });
-  if (error) return res.json({ error:error.details });
+  if (error) return res.json({ error: error.details });
   let productNameExist = await checkNameExist(name);
   if (productNameExist) return res.json({ error: "Name already exists" });
   let productSKUExist = await checkSKUExist(sku);
@@ -71,8 +75,11 @@ module.exports = async (req, res) => {
     dimension,
     category,
     created_at: Date.now(),
-    created_by
+    created_by,
+    active,
+    suppliers,
+    stores
   });
-  if (error) return res.json({ error: creationError });
+  if (creationError) return res.json({ error: creationError });
   return res.json({ message: "success", result });
 };
