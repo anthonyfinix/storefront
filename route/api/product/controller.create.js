@@ -5,6 +5,8 @@ const checkSKUExist = require("../product/checkSKUExist");
 const updateProduct = require("./updateProduct");
 const createProduct = require("./createProduct");
 const config = require("../../../config");
+const getSingleProductCategory = require("../productCategory/getSingleProductCategory");
+const getSingleStore = require("../store/getSingleStore");
 module.exports = async (req, res) => {
   let { user } = req;
   let {
@@ -63,23 +65,34 @@ module.exports = async (req, res) => {
   if (productNameExist) return res.json({ error: "Name already exists" });
   let productSKUExist = await checkSKUExist(sku);
   if (productSKUExist) return res.json({ error: "SKU already exists" });
-  let created_by = user._id;
-  let { error: creationError, result } = await createProduct({
-    name,
-    sku,
-    manufacturer,
-    brand,
-    sale_price,
-    current_price,
-    buying_price,
-    dimension,
-    category,
-    created_at: Date.now(),
-    created_by,
-    active,
-    suppliers,
-    stores
+  let singleProductResult = await getSingleProductCategory({
+    name: category.name,
+    id: category.id
   });
-  if (creationError) return res.json({ error: creationError });
-  return res.json({ message: "success", result });
+  if (singleProductResult.error)
+    return res.json({ error: "error finding category" });
+  if (!singleProductResult.result)
+    return res.json({ error: "category does not exist" });
+  let storeValidationResults = await getMultipleStore(stores.map(store => ({ _id: store.id, name: store.name })));
+  res.send(storeValidationResults);
+  let created_by = user._id;
+  // let { error: creationError, result } = await createProduct({
+  //   name,
+  //   sku,
+  //   manufacturer,
+  //   brand,
+  //   sale_price,
+  //   current_price,
+  //   buying_price,
+  //   dimension,
+  //   category,
+  //   created_at: Date.now(),
+  //   created_by,
+  //   active,
+  //   suppliers,
+  //   stores
+  // });
+  // if (creationError) return res.json({ error: creationError });
+  // return res.json({ message: "success", result });
+  res.send("hojayega");
 };

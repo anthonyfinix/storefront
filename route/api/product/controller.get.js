@@ -11,7 +11,6 @@ module.exports = async (req, res) => {
       return res.json({ message: "no products found", results });
     return res.json({ message: "success", results });
   }
-  let params = {};
   let { result, error } = await getProduct({ name, id });
   if (error) return res.json({ error });
   if (!result.length)
