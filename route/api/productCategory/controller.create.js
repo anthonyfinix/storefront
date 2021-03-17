@@ -4,7 +4,7 @@ const updateProduct = require("./updateProductCategory");
 const validation = require("../../../validation/joi.productCategory");
 module.exports = async (req, res) => {
   let { name, id } = req.body;
-  let { error } = validation.validate({ name, created_at });
+  let { error } = validation.validate({ name });
   if (error) return res.json({ error: error.details });
   if (id) {
     let { e, message, ...data } = await updateProduct({ id });
@@ -21,6 +21,6 @@ module.exports = async (req, res) => {
       created_by
     });
     if (e) return res.json({ error: e.message });
-    return res.json({ message, data });
+    return res.json({ message, ...data });
   }
 };

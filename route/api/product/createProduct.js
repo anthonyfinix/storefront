@@ -11,7 +11,7 @@ module.exports = async ({
   current_price,
   buying_price,
   stores,
-  supplier,
+  suppliers,
   created_at,
   created_by,
   active
@@ -29,7 +29,7 @@ module.exports = async ({
       current_price,
       buying_price,
       stores,
-      supplier,
+      suppliers,
       created_at,
       created_by,
       active
