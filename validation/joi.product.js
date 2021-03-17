@@ -31,7 +31,7 @@ const stores = joi.array().items(
       closingStock: joi.number().required()
     }
   })
-).required();
+).min(1).required();
 const supplier = joi
   .array()
   .items({

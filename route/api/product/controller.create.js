@@ -7,6 +7,7 @@ const createProduct = require("./createProduct");
 const config = require("../../../config");
 const getSingleProductCategory = require("../productCategory/getSingleProductCategory");
 const getSingleStore = require("../store/getSingleStore");
+const getMultipleStore = require("../store/getManyStore");
 module.exports = async (req, res) => {
   let { user } = req;
   let {
@@ -73,8 +74,15 @@ module.exports = async (req, res) => {
     return res.json({ error: "error finding category" });
   if (!singleProductResult.result)
     return res.json({ error: "category does not exist" });
-  let storeValidationResults = await getMultipleStore(stores.map(store => ({ _id: store.id, name: store.name })));
-  res.send(storeValidationResults);
+  let storeValidationResults = await getMultipleStore(
+    console.log(
+      stores.map(store => {
+        console.log("{ _id: store.id, name: store.name }")
+        return { _id: store.id, name: store.name };
+      })
+    )
+  );
+  return res.send(storeValidationResults);
   let created_by = user._id;
   // let { error: creationError, result } = await createProduct({
   //   name,
