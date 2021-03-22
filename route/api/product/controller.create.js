@@ -6,8 +6,10 @@ const updateProduct = require("./updateProduct");
 const createProduct = require("./createProduct");
 const config = require("../../../config");
 const getSingleProductCategory = require("../productCategory/getSingleProductCategory");
-const getSingleStore = require("../store/getSingleStore");
-const getMultipleStore = require("../store/getManyStore");
+const getManyStore = require("../store/getManyStore");
+const getManySupplier = require("../supplier/getManySupplier");
+const mergeStoreWithDBStore = require("./mergeStoreWithDBStore");
+const mergeSupplierWithDBSupplier = require('./mergeSupplierWithDBSupplier');
 module.exports = async (req, res) => {
   let { user } = req;
   let {
@@ -67,40 +69,48 @@ module.exports = async (req, res) => {
   let productSKUExist = await checkSKUExist(sku);
   if (productSKUExist) return res.json({ error: "SKU already exists" });
   let singleProductResult = await getSingleProductCategory({
-    name: category.name,
     id: category.id
   });
   if (singleProductResult.error)
     return res.json({ error: "error finding category" });
   if (!singleProductResult.result)
     return res.json({ error: "category does not exist" });
-  let storeValidationResults = await getMultipleStore(
-    console.log(
-      stores.map(store => {
-        console.log("{ _id: store.id, name: store.name }")
-        return { _id: store.id, name: store.name };
-      })
-    )
+  category.name = singleProductResult.result.name;
+
+  // handle supplier details
+  let dbStores = await getManyStore(stores.map(store => ({ _id: store.id })));
+  if (dbStores.error)
+    return res.json({ error: "there was an error fetching store details" });
+  if (dbStores.result && dbStores.result < 0)
+    return res.json({ error: "no stores found" });
+  stores = mergeStoreWithDBStore(dbStores.result, stores);
+  // handle supplier details
+  let dbSuppliers = await getManySupplier(
+    suppliers.map(supplier => ({ _id: supplier.id }))
   );
-  return res.send(storeValidationResults);
+  if (dbSuppliers.error)
+    return res.json({ error: "there was an error fetching supplier details" });
+  if (dbSuppliers.result && dbSuppliers.result < 0)
+    return res.json({ error: "no supplier found" });
+  suppliers = mergeSupplierWithDBSupplier(dbSuppliers.result, suppliers);
+
   let created_by = user._id;
-  // let { error: creationError, result } = await createProduct({
-  //   name,
-  //   sku,
-  //   manufacturer,
-  //   brand,
-  //   sale_price,
-  //   current_price,
-  //   buying_price,
-  //   dimension,
-  //   category,
-  //   created_at: Date.now(),
-  //   created_by,
-  //   active,
-  //   suppliers,
-  //   stores
-  // });
-  // if (creationError) return res.json({ error: creationError });
-  // return res.json({ message: "success", result });
-  res.send("hojayega");
+  let { error: creationError, result } = await createProduct({
+    name,
+    sku,
+    manufacturer,
+    brand,
+    sale_price,
+    current_price,
+    buying_price,
+    dimension,
+    category,
+    created_at: Date.now(),
+    created_by,
+    active,
+    suppliers,
+    stores
+  });
+  if (creationError) return res.json({ error: creationError });
+  return res.json({ message: "success", result });
 };

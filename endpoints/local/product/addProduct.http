@@ -6,8 +6,7 @@ Content-Type: application/json
     "name":"Resdas s1 Chiefs Chief Shoes",
     "sku":"lkssdssdsads",
     "category":{
-        "id":"604089641aec2e0015418be2",
-        "name":"Nike Cap"
+        "id":"604089641aec2e0015418be2"
     },
     "dimension":{
         "weight":20,
@@ -17,12 +16,18 @@ Content-Type: application/json
     },
     "suppliers":[
         {
-            "name":"nike ads",
             "id":"6041d82456eb0500150c8181"
         }
     ],
     "stores":[
-        
+        {
+            "id":"6040c1cd5c8das00015536bdf",
+            "stock":{
+                "currentStock":3000,
+                "openingStock":4000,
+                "closingStock":5000
+            }
+        }
     ],
     "manufacturer":"manufacturer",
     "brand":"brand",

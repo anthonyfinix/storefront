@@ -7,7 +7,6 @@ const media = joi.array().items({
   src: joi.string().required()
 });
 const category = joi.object({
-  name: joi.string().required(),
   id: joi.string().required()
 });
 const dimension = joi.object({
@@ -23,7 +22,6 @@ const buying_price = joi.number();
 const current_price = joi.number();
 const stores = joi.array().items(
   joi.object({
-    name: joi.string().required(),
     id: joi.string().required(),
     stock: {
       currentStock: joi.number().required(),
@@ -35,7 +33,6 @@ const stores = joi.array().items(
 const supplier = joi
   .array()
   .items({
-    name: joi.string().required(),
     id: joi.string().required()
   })
   .min(1);

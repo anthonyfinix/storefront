@@ -16,29 +16,28 @@ const headers = require("./middleware/headers");
       useNewUrlParser: true,
       useUnifiedTopology: true
     });
+    app.use(headers);
+    app.use(cors({ origin: "http://localhost:3000" }));
+    app.use(
+      session({
+        secret: config.cookie_secret,
+        resave: false,
+        saveUninitialized: true,
+        cookie: {
+          maxAge: config.cookie_maxAge,
+          httpOnly: config.httpOnly,
+          secure: false
+        },
+        store: new MongoStore({ mongooseConnection: mongoose.connection })
+      })
+    );
+    app.use(express.urlencoded({ extended: true }));
+    app.use(express.json());
+    app.use(attachUserObject);
+    app.use(routes);
   } catch (e) {
     console.log(e.message);
+    app.use("*", (req, res) => res.send("server under maintainance"));
   }
-  app.use(headers);
-  app.use(cors({ origin: "http://localhost:3000" }));
-  app.use(
-    session({
-      secret: config.cookie_secret,
-      resave: false,
-      saveUninitialized: true,
-      cookie: {
-        maxAge: config.cookie_maxAge,
-        httpOnly: config.httpOnly,
-        secure: false
-      },
-      store: new MongoStore({ mongooseConnection: mongoose.connection })
-    })
-  );
-  app.use(express.urlencoded({ extended: true }));
-  app.use(express.json());
-  app.use(attachUserObject);
-  app.use(routes);
-  app.listen(port, () => {
-    console.log("Listening to " + port);
-  });
+  app.listen(port, () => console.log("Listening to " + port));
 })();
