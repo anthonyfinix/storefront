@@ -1,5 +1,5 @@
 const Product = require("./modal");
-const { product_productName,product_id } = require("./joi.product");
+const { product_productName, product_id } = require("./joi.product");
 module.exports = async ({
   id,
   name,
@@ -19,7 +19,7 @@ module.exports = async ({
 }) => {
   let params = {};
   // validate id
-  let id_valid = product_id.validate(id)
+  let id_valid = product_id.validate(id);
   if (id_valid.error) return id_valid.error;
   // validate name
   let name_valid = product_productName.validate(name);
