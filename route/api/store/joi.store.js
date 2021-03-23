@@ -1,6 +1,6 @@
 const joi = require("joi");
 
-const contact_details = require("./joi.contact_details");
+const contact_details = require("../../../validation/joi.contact_details");
 const name = joi.string();
 const roles = joi
   .array()
@@ -13,7 +13,7 @@ exports.store_name = name;
 exports.store_roles = roles;
 exports.store_gmt = gmt;
 exports.store_currency = currency;
-module.exports = joi.object({
+module.exports.store = joi.object({
   name: name.required(),
   contact_details: contact_details.required(),
   active: joi.boolean(),

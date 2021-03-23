@@ -1,4 +1,4 @@
-const validation = require("../../../validation/joi.store");
+const validation = require("./joi.store");
 const checkNameExist = require("./checkNameExist");
 const createStore = require("./createStore");
 module.exports = async (req, res) => {

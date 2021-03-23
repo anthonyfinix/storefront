@@ -1,4 +1,4 @@
-const validation = require("../../../validation/joi.store");
+const validation = require("./joi.store");
 const getStore = require("./updateStore");
 module.exports = async (req, res) => {
   let { id } = req.query;
