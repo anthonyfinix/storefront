@@ -5,11 +5,11 @@ const getSupplier = require("./getSupplier");
 module.exports = async (req, res) => {
   let { query, company_name, id } = req.query;
   if (query) {
-    let { error, results } = await getNamePartialSearch(query);
+    let { error, result, message, count } = await getNamePartialSearch(query);
     if (error) res.json({ error: error });
-    return res.json({ results });
+    return res.json({ result, message, count });
   }
-  let { error, results } = await getSupplier({ company_name, id });
-  if (!results.length) return res.json({ error: "No supplier found", results });
-  return res.json({ message: "success", results });
+  let { error, result, message, count } = await getSupplier({ company_name, id });
+  if (error) res.json({ error });
+  return res.json({ message,count, result });
 };

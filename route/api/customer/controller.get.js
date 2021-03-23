@@ -14,11 +14,11 @@ module.exports = async (req, res) => {
     created_at
   } = req.query;
   if (query) {
-    let { error, message, result } = await getNamePartialSearch(query);
+    let { error, message, result, count } = await getNamePartialSearch(query);
     if (error) return res.json({ error });
     if (!result.length)
-      return res.json({ message: "No Customer Found", result });
-    return res.json({ message, result });
+      return res.json({ message: "No Customer Found", result, count });
+    return res.json({ message, result, count });
   }
   let params = {};
   if (id) params.id = id;
@@ -30,8 +30,7 @@ module.exports = async (req, res) => {
   if (total_purchase) params.total_purchase = total_purchase;
   if (contact_details) params.contact_details = contact_details;
 
-  let { error, message, result } = await getCustomer(params);
+  let { error, message, result, count } = await getCustomer(params);
   if (error) return res.json({ error });
-  if (!result.length) return res.json({ message: "No Customer Found", result });
-  return res.json({ message, result });
+  return res.json({ message, result, count });
 };

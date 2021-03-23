@@ -1,4 +1,5 @@
 const Product = require("./modal");
+const validation = require("../../../validation");
 module.exports = async ({
   id,
   name,
@@ -33,7 +34,10 @@ module.exports = async ({
   }
   try {
     let products = await Product.find(params);
-    return { result: products };
+    let count = products.length;
+    let message = "success";
+    if (count < 0) message = "no products";
+    return { result: products, count, message };
   } catch (e) {
     return { error: e.message };
   }

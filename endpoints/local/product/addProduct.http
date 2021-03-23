@@ -21,7 +21,7 @@ Content-Type: application/json
     ],
     "stores":[
         {
-            "id":"6040c1cd5c8das00015536bdf",
+            "id":"6040c1cd5c8da00015536bdf",
             "stock":{
                 "currentStock":3000,
                 "openingStock":4000,

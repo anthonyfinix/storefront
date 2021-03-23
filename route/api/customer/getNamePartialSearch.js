@@ -4,10 +4,12 @@ const getNamePartialSearch = async query => {
   try {
     let firstName = query.split(" ")[0];
     let expression = `\\w*${firstName}\\w*`;
-    let results = await Customer.find({
+    let result = await Customer.find({
       "name.first_name": { $regex: new RegExp(expression, "g") }
     });
-    return { results };
+    let count = result.length;
+    let message = "success";
+    return { result, count, message };
   } catch (e) {
     return { error: e.message };
   }

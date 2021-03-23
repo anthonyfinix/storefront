@@ -21,7 +21,9 @@ const getCustomer = async ({
   if (created_by) params.created_by = created_by;
   try {
     let result = await Customer.find(params);
-    return { message: "success", result };
+    let count = result.length;
+    if (count <= 0) return { message: "no product found", result, count };
+    return { message: "success", result, count };
   } catch (e) {
     return { error: e.message };
   }

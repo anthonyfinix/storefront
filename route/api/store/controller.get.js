@@ -9,7 +9,7 @@ module.exports = async (req, res) => {
   if (gmt) params.gmt = gmt;
   if (currency) params.currency = currency;
   if (created_at) params.created_at = created_at;
-  let { error, result, message } = await getStore(params);
+  let { error, result, message, count } = await getStore(params);
   if (error) return res.json({ error });
-  return res.json({ message, result });
+  return res.json({ message, result, count });
 };

@@ -5,8 +5,9 @@ module.exports = async ({ company_name, id }) => {
   if (id) params._id = id;
   try {
     let suppliers = await Supplier.find(params);
-    if (suppliers)
-      return { results: suppliers };
+    let count = suppliers.length;
+    let message = count < 0 ? "no product found" : "success";
+    return { result: suppliers, count, message };
   } catch (e) {
     return { error: e.message };
   }

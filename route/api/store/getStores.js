@@ -16,11 +16,10 @@ module.exports = async ({
   if (currency) params.currency = currency;
   if (created_at) params.created_at = created_at;
   try {
-    let stores = await Store.find(params);
-    if (stores && !(stores.length > 0)) {
-      return { message: "No result found", result: stores };
-    }
-    return { message: "success", result: stores };
+    let result = await Store.find(params);
+    let count = result.length;
+    let message = count < 0 ? "no stores found" : "success";
+    return { message, result, count };
   } catch (e) {
     return { error: e.message };
   }

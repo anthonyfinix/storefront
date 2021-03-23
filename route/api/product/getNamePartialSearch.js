@@ -3,10 +3,12 @@ const Product = require("./modal");
 const getNamePartialSearch = async query => {
   try {
     let expression = `\\w*${query}\\w*`;
-    let results = await Product.find({
+    let result = await Product.find({
       name: { $regex: new RegExp(expression, "g") }
     });
-    return { results };
+    let message = "success";
+    let count = results.length;
+    return { result, count, message };
   } catch (e) {
     return { error: e.message };
   }
