@@ -1,6 +1,7 @@
 const Product = require("./modal");
 
 const getNamePartialSearch = async query => {
+  if (query == "") return { error: "query empty" };
   try {
     let expression = `\\w*${query}\\w*`;
     let result = await Product.find({

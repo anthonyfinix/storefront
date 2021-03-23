@@ -1,5 +1,6 @@
 const joi = require("joi");
 
+const product_id = joi.string();
 const productName = joi.string();
 const sku = joi.string();
 const media = joi.array().items({
@@ -20,16 +21,20 @@ const brand = joi.string();
 const sale_price = joi.number();
 const buying_price = joi.number();
 const current_price = joi.number();
-const stores = joi.array().items(
-  joi.object({
-    id: joi.string().required(),
-    stock: {
-      currentStock: joi.number().required(),
-      openingStock: joi.number().required(),
-      closingStock: joi.number().required()
-    }
-  })
-).min(1).required();
+const stores = joi
+  .array()
+  .items(
+    joi.object({
+      id: joi.string().required(),
+      stock: {
+        currentStock: joi.number().required(),
+        openingStock: joi.number().required(),
+        closingStock: joi.number().required()
+      }
+    })
+  )
+  .min(1)
+  .required();
 const supplier = joi
   .array()
   .items({
@@ -38,6 +43,7 @@ const supplier = joi
   .min(1);
 const active = joi.bool();
 
+exports.product_id = product_id;
 exports.product_productName = productName;
 exports.product_sku = sku;
 exports.product_media = media;
@@ -63,5 +69,5 @@ module.exports = joi.object({
   buying_price: buying_price.required(),
   stores: stores,
   suppliers: supplier.required(),
-  active:active.required()
+  active: active.required()
 });

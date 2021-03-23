@@ -1,5 +1,3 @@
-const Product = require("./modal");
-const validation = require("../../../validation/joi.product");
 const checkNameExist = require("../product/checkNameExist");
 const checkSKUExist = require("../product/checkSKUExist");
 const updateProduct = require("./updateProduct");
