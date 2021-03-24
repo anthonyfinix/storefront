@@ -7,7 +7,7 @@ import Customer from '../customer';
 import Supplier from '../supplier';
 import Dashboard from '../dashboard';
 import Purchase from '../purchase';
-import ProductCategory from '../purchaseCategory';
+import ProductCategory from '../productCategory';
 import ContentProvider from '../contentProvider';
 
 const Content = () => {

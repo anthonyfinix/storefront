@@ -1,5 +1,5 @@
 const GetProducts = ({ rows }) => {
-    return (<tr>{rows.map(row => <td>{row.name}</td>)}</tr>)
+    return rows.map(row => <tr><td>{row.name}</td></tr>)
 }
 
 export default GetProducts;

@@ -8,7 +8,6 @@ const useProduct = () => {
     let response = await getProduct();
     if (response.status === 200) {
       let { message, result, error } = response.data;
-      console.log(response.data)
       if (error) return error;
       return result;
     }

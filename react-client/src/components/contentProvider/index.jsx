@@ -1,7 +1,7 @@
 import React from 'react';
 import useSupplier from '../supplier/useSupplier';
 import useProduct from '../product/useProduct';
-import useProductCategory from '../productCategory';
+import useProductCategory from '../productCategory/useProductCategory';
 
 
 export const ContentContext = React.createContext();
