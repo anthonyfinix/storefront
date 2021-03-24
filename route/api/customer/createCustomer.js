@@ -5,12 +5,14 @@ module.exports = async ({
   store_visited,
   total_purchase,
   active,
+  last_visit,
   created_at,
   created_by
 }) => {
   let customer = new Customer({
     name,
     contact_details,
+    last_visit,
     store_visited,
     total_purchase,
     active,

@@ -1,2 +1,4 @@
 ### GET ALL
-GET http://localhost:8080/api/store?name=hello
+GET http://localhost:8080/api/store
+### GET ALL
+GET http://localhost:8080/api/store

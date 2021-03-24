@@ -3,6 +3,7 @@ const getStoreNameSearch = require("./getNamePartialSearch");
 const getStore = require("./getStores");
 module.exports = async (req, res) => {
   let {
+    id,
     name,
     contact_details,
     roles,
@@ -23,6 +24,7 @@ module.exports = async (req, res) => {
   }
   let params = {};
   if (name) params.name = name;
+  if(id) params.id = id
   // if (contact_details) params.contact_details = contact_details;
   // if (roles) params.roles = roles;
   // if (gmt) params.gmt = gmt;

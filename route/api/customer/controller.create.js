@@ -21,7 +21,7 @@ module.exports = async (req, res) => {
   if (error) return res.json({ error: error.details });
   if ((await nameExists(name)).exist)
     return res.json({ error: "name already exist" });
-  let created_at = Date.now();
+  let last_visit = Date.now();
   let created_by = req.user._id;
   if (!active) active = config.default_customer_state;
   let { e, message, ...data } = await createCustomer({
@@ -30,6 +30,7 @@ module.exports = async (req, res) => {
     store_visited,
     total_purchase,
     active,
+    last_visit,
     created_at,
     created_by
   });

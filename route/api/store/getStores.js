@@ -2,6 +2,7 @@ const Store = require("./modal");
 const { store_name } = require("./joi.store");
 
 module.exports = async ({
+  id,
   name,
   contact_details,
   roles,
@@ -10,6 +11,7 @@ module.exports = async ({
   created_at,
 }) => {
   let params = {};
+  if(id) params._id = id;
   if(name){
     let store_name_valid = store_name.validate(name);
     if (store_name_valid.error) return { error: store_name_valid.error };
