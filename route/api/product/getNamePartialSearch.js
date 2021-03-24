@@ -8,7 +8,7 @@ const getNamePartialSearch = async query => {
       name: { $regex: new RegExp(expression, "g") }
     });
     let message = "success";
-    let count = results.length;
+    let count = result.length;
     return { result, count, message };
   } catch (e) {
     return { error: e.message };

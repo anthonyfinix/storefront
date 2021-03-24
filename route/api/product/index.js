@@ -8,7 +8,7 @@ const count = require("./count");
 
 router.get("/", rejectIfNotLoggedIn, get);
 router.post("/", rejectIfNotLoggedIn, create);
-router.post("/count",count)
+router.post("/count", rejectIfNotLoggedIn, count)
 router.post("/:id", rejectIfNotLoggedIn, updateProduct);
 router.delete("/", rejectIfNotLoggedIn, deleteProduct);
 module.exports = router;
