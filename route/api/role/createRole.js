@@ -26,6 +26,7 @@ module.exports = async ({
       created_at,
       created_by
     });
+    newRole.save();
     return {
       message: "success",
       result: newRole
