@@ -11,9 +11,9 @@ Content-Type: application/json
         "id":"6039d78c62c0570a18de58ca",
         "name":"Store 2"
     }],
-    "total_purchase":{
-        "amount":12343
-    },
+                    "total_purchase":{
+                        "amount":12343
+                    },
     "contact_details":{
         "primary_number":123123123,
         "email":"nitinverma@gmail.com",

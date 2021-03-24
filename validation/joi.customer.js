@@ -3,7 +3,6 @@ const name = require("./joi.name");
 const contact_details = require("./joi.contact_details");
 const store_visited = joi.array().items({
   id: joi.string().required(),
-  name: joi.string().required()
 });
 const total_purchase = joi.object({
   amount: joi.number().required()
