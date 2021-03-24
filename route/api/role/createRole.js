@@ -14,7 +14,7 @@ module.exports = async ({
   created_by
 }) => {
   try {
-    let newRole = await new Role({
+    let newRole = new Role({
       name,
       product,
       store,
@@ -26,7 +26,8 @@ module.exports = async ({
       created_at,
       created_by
     });
-    newRole.save();
+    await newRole.save();
+    console.log(newRole)
     return {
       message: "success",
       result: newRole

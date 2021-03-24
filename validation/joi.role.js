@@ -1,47 +1,47 @@
 const joi = require("joi");
 
-const name = joi.string();
+const name = joi.string().required();
 const product = joi.object({
-  read: joi.boolean().required(),
-  write: joi.boolean().required(),
-  update: joi.boolean().required(),
-  delete: joi.boolean().required()
+  read: joi.boolean(),
+  write: joi.boolean(),
+  update: joi.boolean(),
+  delete: joi.boolean()
 });
 const store = joi.object({
-  read: joi.boolean().required(),
-  write: joi.boolean().required(),
-  update: joi.boolean().required(),
-  delete: joi.boolean().required()
+  read: joi.boolean(),
+  write: joi.boolean(),
+  update: joi.boolean(),
+  delete: joi.boolean()
 });
 const user = joi.object({
-  read: joi.boolean().required(),
-  write: joi.boolean().required(),
-  update: joi.boolean().required(),
-  delete: joi.boolean().required()
+  read: joi.boolean(),
+  write: joi.boolean(),
+  update: joi.boolean(),
+  delete: joi.boolean()
 });
 const customer = joi.object({
-  read: joi.boolean().required(),
-  write: joi.boolean().required(),
-  update: joi.boolean().required(),
-  delete: joi.boolean().required()
+  read: joi.boolean(),
+  write: joi.boolean(),
+  update: joi.boolean(),
+  delete: joi.boolean()
 });
 const productCategory = joi.object({
-  read: joi.boolean().required(),
-  write: joi.boolean().required(),
-  update: joi.boolean().required(),
-  delete: joi.boolean().required()
+  read: joi.boolean(),
+  write: joi.boolean(),
+  update: joi.boolean(),
+  delete: joi.boolean()
 });
 const supplier = joi.object({
-  read: joi.boolean().required(),
-  write: joi.boolean().required(),
-  update: joi.boolean().required(),
-  delete: joi.boolean().required()
+  read: joi.boolean(),
+  write: joi.boolean(),
+  update: joi.boolean(),
+  delete: joi.boolean()
 });
 const role = joi.object({
-  read: joi.boolean().required(),
-  write: joi.boolean().required(),
-  update: joi.boolean().required(),
-  delete: joi.boolean().required()
+  read: joi.boolean(),
+  write: joi.boolean(),
+  update: joi.boolean(),
+  delete: joi.boolean()
 });
 
 exports.role_name = name;
@@ -55,12 +55,12 @@ exports.role_store = store;
 
 module.exports = joi.object({
   name: name.required(),
-  product: product.required(),
-  store: store.required(),
-  user: user.required(),
-  customer: customer.required(),
-  product: product.required(),
-  productCategory: productCategory.required(),
-  supplier: supplier.required(),
-  role: role.required()
+  product,
+  store,
+  user,
+  customer,
+  product,
+  productCategory,
+  supplier,
+  role
 });
