@@ -23,6 +23,7 @@ module.exports = async (req, res) => {
     return res.json({ error: "name already exist" });
   let last_visit = Date.now();
   let created_by = req.user._id;
+  let created_at = Date.now();
   if (!active) active = config.default_customer_state;
   let { e, message, ...data } = await createCustomer({
     name,
