@@ -1,10 +1,10 @@
-const ProductCategory = require("./modal");
+const Store = require("./modal");
 
 const getNamePartialSearch = async query => {
-  if (query == "") return { error: "query empty" };
   try {
+    if(query === "") return {error:"empty search query"}
     let expression = `\\w*${query}\\w*`;
-    let result = await ProductCategory.find({
+    let result = await Store.find({
       name: { $regex: new RegExp(expression, "g") }
     });
     let message = "success";

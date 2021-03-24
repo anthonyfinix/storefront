@@ -15,15 +15,21 @@ module.exports = async ({
   stores,
   supplier,
   created_at,
-  created_by
+  created_by,
 }) => {
   let params = {};
   // validate id
-  let id_valid = product_id.validate(id);
-  if (id_valid.error) return id_valid.error;
+  if (id) {
+    let id_valid = product_id.validate(id);
+    if (id_valid.error) return id_valid.error;
+    params.id = id;
+  }
   // validate name
-  let name_valid = product_productName.validate(name);
-  if (name_valid.error) return name_valid.error;
+  if (name) {
+    let name_valid = product_productName.validate(name);
+    if (name_valid.error) return name_valid.error;
+    params.name = name;
+  }
   // if (sku && sku != "") params.sku = sku;
   // if (category) {
   //   let { name: categoryName, id: categoryId } = category;
