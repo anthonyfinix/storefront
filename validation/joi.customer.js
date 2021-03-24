@@ -21,5 +21,5 @@ module.exports = joi.object({
   store_visited: store_visited.required(),
   total_purchase: total_purchase.required(),
   contact_details: contact_details.required(),
-  active: active.required()
+  active: active
 });

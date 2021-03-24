@@ -1,5 +1,5 @@
 ### POST ALL
-POST http://localhost:80/api/customer
+POST http://localhost:8080/api/customer
 Content-Type: application/json
 
 {
