@@ -8,4 +8,4 @@ GET http://localhost:8080/api/productCategory?name=Nike Cap
 GET http://localhost:8080/api/productCategory?query=Nike
 
 ### GET WITH NAME
-GET http://localhost:8080/api/productCategory?id=6040954a1aec2e0015418c0f
+GET http://localhost:8080/api/productCategory?id=604089641aec2e0015418be2
