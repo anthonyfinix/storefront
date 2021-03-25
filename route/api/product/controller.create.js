@@ -87,6 +87,7 @@ module.exports = async (req, res) => {
   let dbSuppliers = await getManySupplier(
     suppliers.map(supplier => ({ _id: supplier.id }))
   );
+  console.log(dbSuppliers);
   if (dbSuppliers.error)
     return res.json({ error: "there was an error fetching supplier details" });
   if (dbSuppliers.result && dbSuppliers.result < 0)

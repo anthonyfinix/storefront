@@ -42,7 +42,7 @@ const schema = new mongoose.Schema(
     ],
     suppliers: [
       {
-        name: { type: String, required: true },
+        company_name: { type: String, required: true },
         id: { type: String, required: true }
       }
     ],

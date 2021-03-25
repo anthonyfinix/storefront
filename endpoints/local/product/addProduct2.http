@@ -3,8 +3,8 @@ POST http://localhost:8080/api/product
 Content-Type: application/json
 
 {
-    "name":"Samsung Galaxy A523",
-    "sku":"sgt233103",
+    "name":"Samsung Galaxy A5246",
+    "sku":"sgt2s93103",
     "category":{
         "id":"604089641aec2e0015418be2"
     },

@@ -1,9 +1,9 @@
 ### CREATE
-POST http://localhost:80/api/store
+POST http://localhost:8080/api/store
 Content-Type: application/json
 
 {
-    "name":"Store 1",
+    "name":"Store 2",
     "contact_details":{
         "primary_number":9818031042,
         "email":"anthonyfinix@gmail.com",

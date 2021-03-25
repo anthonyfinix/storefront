@@ -1,9 +1,9 @@
-const validation = require("./joi.store");
+const {store} = require("./joi.store");
 const checkNameExist = require("./checkNameExist");
 const createStore = require("./createStore");
 module.exports = async (req, res) => {
   let { name, contact_details, roles, gmt, currency, active } = req.body;
-  let { error } = validation.validate({
+  let { error } = store.validate({
     name,
     contact_details,
     roles,
