@@ -26,11 +26,10 @@ const stores = joi
   .items(
     joi.object({
       id: joi.string().required(),
-      stock: {
+      stock: joi.object({
         currentStock: joi.number().required(),
         openingStock: joi.number().required(),
-        closingStock: joi.number().required(),
-      },
+      }).required(),
     })
   )
   .min(1)

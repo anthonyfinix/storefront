@@ -4,7 +4,7 @@ module.exports = (dbSuppliers, requestSuppliers) => {
       if (requestSuppliers[i]["id"] == dbSuppliers[i]["_id"]) {
         mergedStore.push({
           id: requestSuppliers[i]["id"],
-          name: dbSuppliers[i]["name"],
+          company_name: dbSuppliers[i]["company_name"],
           stock: {
             ...requestSuppliers[i]["stock"]
           }

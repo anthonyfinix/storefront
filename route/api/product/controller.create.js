@@ -1,5 +1,4 @@
-const Product = require("./modal");
-const validation = require("./joi.product");
+const { product } = require("./joi.product");
 const checkNameExist = require("../product/checkNameExist");
 const checkSKUExist = require("../product/checkSKUExist");
 const updateProduct = require("./updateProduct");
@@ -9,7 +8,7 @@ const getSingleProductCategory = require("../productCategory/getSingleProductCat
 const getManyStore = require("../store/getManyStore");
 const getManySupplier = require("../supplier/getManySupplier");
 const mergeStoreWithDBStore = require("./mergeStoreWithDBStore");
-const mergeSupplierWithDBSupplier = require('./mergeSupplierWithDBSupplier');
+const mergeSupplierWithDBSupplier = require("./mergeSupplierWithDBSupplier");
 module.exports = async (req, res) => {
   let { user } = req;
   let {
@@ -48,7 +47,7 @@ module.exports = async (req, res) => {
     if (updationError) return res.json({ error: updationError });
     return res.json({ message: "success", result });
   }
-  let { error } = validation.validate({
+  let { error } = product.validate({
     name,
     sku,
     media,
