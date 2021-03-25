@@ -1,12 +1,8 @@
-const Role = require("./modal");
+const deleteRole = require("./deleteRole");
 
 module.exports = async (req, res) => {
   let { id } = req.query;
-  if (!id) return res.json({ error: "Provide delete ID" });
-  try {
-    let role = await Role.deleteOne({ _id: id });
-    return res.json({ message: "success", role });
-  } catch (e) {
-    return res.json({ error: e });
-  }
+  let { error, message, result } = await deleteRole(id);
+  if (error) return res.json({ error });
+  return res.json({ message, result });
 };

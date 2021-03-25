@@ -1,0 +1,2 @@
+### GET ALL
+DELETE http://localhost:8080/api/role?id=605c3f3ece2d370015b0f3dd

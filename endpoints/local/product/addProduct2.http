@@ -3,8 +3,8 @@ POST http://localhost:8080/api/product
 Content-Type: application/json
 
 {
-    "name":"Samsung Galaxy A5246",
-    "sku":"sgt2s93103",
+    "name":"Samsung Galaxy S4ass2",
+    "sku":"sgt3d10",
     "category":{
         "id":"604089641aec2e0015418be2"
     },
@@ -16,22 +16,11 @@ Content-Type: application/json
         "length":240,
         "width":200
     },
-    "stores":[
-        {
-            "id":"6040c1cd5c8da00015536bdf",
-            "stock":{
-                "currentStock":20,
-                "openingStock":20
-            }
-        }
-    ],
     "sale_price":3200,
     "current_price":3200,
     "buying_price":3200,
+    
     "suppliers":[
-        {
-        "id":"6041d82456eb0500150c8181"
-        },
         {
         "id":"604caf8d256d2600156fb68a"
         },
@@ -39,22 +28,72 @@ Content-Type: application/json
         "id":"604cb113256d2600156fb691"
         },
         {
-        "id":"604cb21b256d2600156fb694"
+            "id" : "604caf8d256d2600156fb68a"
+                    },
+        {
+        "id" : "604cb113256d2600156fb691"
         },
         {
-        "id":"60509c926604ad3fccb1f652"
-        },
-        {
-        "id":"605876bdc011550015c41c52"
-        },
-        {
-        "id":"6058788ec011550015c41c57"
-        },
-        {
-        "id":"6058793fc011550015c41c5c"
-        },
-        {
-        "id":"605879d7c011550015c41c61"
+            "id" : "604cb21b256d2600156fb694"
         }
     ]
 }
+
+
+### ADD / EDIT
+POST http://localhost:8080/api/product
+Content-Type: application/json
+
+{
+    "name":"Samsung Galaxy m42",
+    "sku":"frt134",
+    "category":{
+        "id":"604089641aec2e0015418be2"
+    },
+    "manufacturer":"Samsung",
+    "brand":"Samsung",
+    "dimension":{
+        "weight":230,
+        "height":290,
+        "length":240,
+        "width":200
+    },
+    "sale_price":3200,
+    "current_price":3200,
+    "buying_price":3200,
+    "suppliers":[
+        {
+        "id":"604caf8d256d2600156fb68a"
+        },
+        {
+        "id":"604cb113256d2600156fb691"
+        },
+        {
+        "id" : "604cb21b256d2600156fb694"
+        }
+    ],
+    "stores":[
+        {
+            "id": "6040c1cd5c8da00015536bdf",
+            "stock" : {
+               "currentStock" : 6422,
+               "openingStock" : 9876
+            }
+        }
+    ]
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
