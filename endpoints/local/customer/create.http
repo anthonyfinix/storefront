@@ -4,8 +4,8 @@ Content-Type: application/json
 
 {
     "name":{
-        "first_name":"Aditya",
-        "last_name":"Sharma"
+        "first_name":"Nitin",
+        "last_name":"Verma"
     },
     "store_visited":[{
         "id":"6039d78c62c0570a18de58ca"

@@ -8,9 +8,9 @@ const menu = {
         role:{
             name:"Role"
         },
-        purchase:{
-            name:"Purchase"
-        },
+        // purchase:{
+        //     name:"Purchase"
+        // },
         productCategory:{
             name:"Product Category"
         },

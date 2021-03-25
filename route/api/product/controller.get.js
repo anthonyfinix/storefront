@@ -10,7 +10,6 @@ module.exports = async (req, res) => {
     return res.json({ message, result, count });
   }
   let { result, error, count, message } = await getProduct({ name, id });
-  console.log(result)
   if (error) return res.json({ error });
   return res.json({ message, result, count });
 };

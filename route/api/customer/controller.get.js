@@ -21,7 +21,6 @@ module.exports = async (req, res) => {
       return res.json({ message: "No Customer Found", result, count });
     return res.json({ message, result, count });
   }
-  console.log(store_visited);
   let params = {};
   if (id) params.id = id;
   if (name) params.name = name;

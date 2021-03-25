@@ -27,7 +27,6 @@ module.exports = async ({
       created_by
     });
     await newRole.save();
-    console.log(newRole)
     return {
       message: "success",
       result: newRole
