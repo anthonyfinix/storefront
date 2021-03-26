@@ -19,5 +19,5 @@ module.exports.store = joi.object({
   active: joi.boolean(),
   roles: roles.required(),
   gmt: gmt.required(),
-  currency: currency
+  currency: currency. required()
 });

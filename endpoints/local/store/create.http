@@ -3,7 +3,7 @@ POST http://localhost:8080/api/store
 Content-Type: application/json
 
 {
-    "name":"Store 2",
+    "name":"Store 3",
     "contact_details":{
         "primary_number":9818031042,
         "email":"anthonyfinix@gmail.com",
@@ -16,7 +16,8 @@ Content-Type: application/json
     },
     "active":true,
     "roles":[
-        "605b52906fdd28134809dca8"
+            "605b52906fdd28134809dca8"
     ],
+    "currency":"USD",
     "gmt":"+5:30"
 }
