@@ -1,0 +1,3 @@
+### GET ALL
+DELETE http://localhost:8080/api/productCategory?id=604089641aec2e0015418be2
+Content-Type: application/json
