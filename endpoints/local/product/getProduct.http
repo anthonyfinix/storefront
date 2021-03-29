@@ -6,4 +6,5 @@ GET http://localhost:8080/api/product?id=6040a4bf5c8da00015536b73
 GET http://localhost:8080/api/product?name=addidas Cap
 ### GET Partial Search
 GET http://localhost:8080/api/product?query=Red
-
+### PAGINATION
+GET http://localhost:8080/api/product?fields=name&page=1

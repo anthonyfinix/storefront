@@ -1,6 +1,8 @@
 const Product = require("./modal");
 const { product_productName, product_id } = require("./joi.product");
 module.exports = async ({
+  limit,
+  skip,
   query,
   id,
   name,
@@ -18,6 +20,8 @@ module.exports = async ({
   created_at,
   created_by,
 }) => {
+  if (!skip) skip = 0;
+  if (!limit) limit = 5;
   let params = {};
   // validate id
   if (id) {
@@ -46,7 +50,7 @@ module.exports = async ({
   // }
 
   try {
-    let products = await Product.find(params);
+    let products = await Product.find(params).limit(limit).skip(skip);
     let count = products.length;
     let message = "success";
     if (count < 0) message = "no products";
