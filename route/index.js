@@ -5,9 +5,12 @@ const errorHandle = require("./util/errorHandleRoute");
 const login = require("./api/user/login");
 const logout = require("./api/user/logout");
 const register = require("./api/user/controller.create");
+const handlePagination = require("../middleware/handlePagination");
 
-router.get("/", (req, res) => res.send("store front root (PROVIDE CLIENT UI) "));
-router.use("/api", api);
+router.get("/", (req, res) =>
+  res.send("store front root (PROVIDE CLIENT UI) ")
+);
+router.use("/api", [handlePagination], api);
 router.post("/login", login);
 router.get("/logout", logout);
 router.post("/register", register);
