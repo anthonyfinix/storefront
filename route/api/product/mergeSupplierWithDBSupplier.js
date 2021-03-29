@@ -1,16 +1,14 @@
 module.exports = (dbSuppliers, requestSuppliers) => {
-    let mergedStore = [];
-    requestSuppliers.forEach((element, i) => {
-      if (requestSuppliers[i]["id"] == dbSuppliers[i]["_id"]) {
-        mergedStore.push({
-          id: requestSuppliers[i]["id"],
-          company_name: dbSuppliers[i]["company_name"],
-          stock: {
-            ...requestSuppliers[i]["stock"]
-          }
-        });
-      }
-    });
-    return mergedStore;
-  };
+  let mergedStore = [];
+
+  dbSuppliers.forEach((element, i) => {
+    if (element._id === requestSuppliers[i].id) {
+      mergedStore.push({
+        id: element._id,
+        company_name: element.company_name,
+      });
+    }
+  });
+  return mergedStore;
   
+};
