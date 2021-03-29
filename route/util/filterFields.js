@@ -1,8 +1,8 @@
-module.exports = ({ products, fields }) => {
+module.exports = ({ entity, fields }) => {
   if (typeof fields != "array" && typeof fields === "string") {
     fields = fields.split(",");
   }
-  return products.map((product) => {
+  return entity.map((product) => {
     let filteredProduct = {};
     for (let i = 0; i <= fields.length; i++) {
       if (product[fields[i]]) {

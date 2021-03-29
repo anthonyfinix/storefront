@@ -1,6 +1,7 @@
 const joi = require("joi");
+const joi_id = require('../../../validation/joi._id');
 
-const product_id = joi.string();
+const product_id = joi_id;
 const productName = joi.string();
 const sku = joi.string();
 const media = joi.array().items({

@@ -1,5 +1,5 @@
 const getProduct = require("./getProduct");
-const filterProducts = require("./filterProducts");
+const filterProducts = require("../../util/filterFields");
 const joi_query = require("../../../validation/joi.query");
 
 module.exports = async (req, res) => {
