@@ -1,4 +1,5 @@
 const createRole = require("./createRole");
+const updateRole = require("./updateRole");
 const { joi_role } = require("../../../validation/joi.role");
 module.exports = async (req, res) => {
   let {
@@ -10,10 +11,10 @@ module.exports = async (req, res) => {
     customer,
     productCategory,
     supplier,
-    role,
+    role
   } = req.body;
   if (id) {
-    let { error, result, message } = updateRole({
+    let { error, result, message } = await updateRole({
       id,
       name,
       product,
@@ -22,8 +23,10 @@ module.exports = async (req, res) => {
       customer,
       productCategory,
       supplier,
-      role,
+      role
     });
+    if (error) return res.json({ error: error });
+    return res.json({ message, result });
   }
   let { error } = joi_role.validate({
     name,
@@ -33,7 +36,7 @@ module.exports = async (req, res) => {
     customer,
     productCategory,
     supplier,
-    role,
+    role
   });
   if (error) return res.json({ error: error.details });
   let created_by = req.user._id;
@@ -48,7 +51,7 @@ module.exports = async (req, res) => {
     supplier,
     role,
     created_at,
-    created_by,
+    created_by
   });
   if (error) return res.json({ error: e.message });
   if (message == "success") return res.json({ message, ...data });

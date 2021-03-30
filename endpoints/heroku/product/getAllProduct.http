@@ -1,2 +1,4 @@
 ### GET ALL
 GET https://storefrnt.herokuapp.com/api/product
+###
+GET https://storefrnt.herokuapp.com/api/product?fields=name,sku

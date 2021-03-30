@@ -1,2 +1,2 @@
 ### GET ALL
-GET http://localhost:8080/api/role
+GET http://localhost:8080/api/role?fields=_id,name

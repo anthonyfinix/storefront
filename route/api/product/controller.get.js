@@ -7,7 +7,7 @@ module.exports = async (req, res) => {
   if (query) {
     let joi_query_validation = joi_query.validate(query);
     if (joi_query_validation.error)
-      res.json({ error: joi_query_validation.error.details });
+      return res.json({ error: joi_query_validation.error.details });
     let { result, error, count, message } = await getProduct({
       query,
       limit,
@@ -28,7 +28,7 @@ module.exports = async (req, res) => {
   });
   if (error) return res.json({ error });
   if (fields) {
-    result = filterProducts({ products: result, fields });
+    result = filterProducts({ entity: result, fields });
   }
   return res.json({ message, result, count, page });
 };
