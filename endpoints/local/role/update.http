@@ -4,8 +4,5 @@ Content-Type: application/json
 
 {
     "id":"605b52906fdd28134809dca8",
-    "name":"Employeee",
-    "product":{
-        "delete":false
-    }
+    "name":"Employeee"
 }

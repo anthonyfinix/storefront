@@ -2,14 +2,14 @@ const filterFields = require("../../util/filterFields");
 const getRole = require("./getRole");
 const Role = require("./modal");
 module.exports = async (req, res) => {
-  let params = {};
   let { name, id, query, limit, skip, page, fields } = req.query;
+  let params = {};
   if (query) {
     let { error, result, count, message } = await getRole({
       query,
       limit,
       skip,
-      page,
+      page
     });
     if (error) return res.json({ error });
     return res.json({ message, result, count });
@@ -23,10 +23,10 @@ module.exports = async (req, res) => {
     params.name = name;
   }
   let { error, message, result, count } = await getRole({
-    params,
+    ...params,
     limit,
     skip,
-    page,
+    page
   });
   if (error) return res.json({ error });
   if (fields) result = filterFields({ entity: result, fields });

@@ -1,2 +1,6 @@
 ### GET ALL
 GET http://localhost:8080/api/role?fields=_id,name
+### GET NAME
+GET http://localhost:8080/api/role?name=industry
+### GET
+GET http://localhost:8080/api/role

@@ -22,12 +22,12 @@ module.exports = async (req, res) => {
     params.name = name;
   }
   let { error, message, result, count } = await getProductCategory({
-    params,
+    ...params,
     limit,
     skip,
-    page,
+    page
   });
   if (error) return res.json({ error });
   if (fields) result = filterFields({ entity: result, fields });
-  return res.json({ message, result, count });
+  return res.json({ message, result, count, page });
 };

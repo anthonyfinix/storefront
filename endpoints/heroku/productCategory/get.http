@@ -2,7 +2,7 @@
 GET http://localhost:8080/api/productCategory
 
 ### GET by name
-GET http://localhost:8080/api/productCategory?name=abcde
+GET https://storefrnt.herokuapp.com/api/productCategory?name=abcde
 
 ### search
 GET http://localhost:8080/api/productCategory?query=a
