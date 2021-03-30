@@ -1,59 +1,61 @@
 const joi = require("joi");
 
+const _id = require("../validation/joi._id");
 const name = joi.string().required();
 const product = joi.object({
   read: joi.boolean(),
   write: joi.boolean(),
   update: joi.boolean(),
-  delete: joi.boolean()
+  delete: joi.boolean(),
 });
 const store = joi.object({
   read: joi.boolean(),
   write: joi.boolean(),
   update: joi.boolean(),
-  delete: joi.boolean()
+  delete: joi.boolean(),
 });
 const user = joi.object({
   read: joi.boolean(),
   write: joi.boolean(),
   update: joi.boolean(),
-  delete: joi.boolean()
+  delete: joi.boolean(),
 });
 const customer = joi.object({
   read: joi.boolean(),
   write: joi.boolean(),
   update: joi.boolean(),
-  delete: joi.boolean()
+  delete: joi.boolean(),
 });
 const productCategory = joi.object({
   read: joi.boolean(),
   write: joi.boolean(),
   update: joi.boolean(),
-  delete: joi.boolean()
+  delete: joi.boolean(),
 });
 const supplier = joi.object({
   read: joi.boolean(),
   write: joi.boolean(),
   update: joi.boolean(),
-  delete: joi.boolean()
+  delete: joi.boolean(),
 });
 const role = joi.object({
   read: joi.boolean(),
   write: joi.boolean(),
   update: joi.boolean(),
-  delete: joi.boolean()
+  delete: joi.boolean(),
 });
 
-exports.role_name = name;
-exports.role_role = role;
-exports.role_productCategory = productCategory;
-exports.role_product = product;
-exports.role_supplier = supplier;
-exports.role_customer = customer;
-exports.role_user = user;
-exports.role_store = store;
+exports.joi_role_id = _id;
+exports.joi_role_name = name;
+exports.joi_role_role = role;
+exports.joi_role_productCategory = productCategory;
+exports.joi_role_product = product;
+exports.joi_role_supplier = supplier;
+exports.joi_role_customer = customer;
+exports.joi_role_user = user;
+exports.joi_role_store = store;
 
-module.exports = joi.object({
+module.exports.joi_role = joi.object({
   name: name.required(),
   product,
   store,
@@ -62,5 +64,5 @@ module.exports = joi.object({
   product,
   productCategory,
   supplier,
-  role
+  role,
 });

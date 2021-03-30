@@ -1,16 +1,15 @@
 const getProductCategory = require("./getProductCategory");
-const getNamePartialSearch = require("./getNamePartialSearch");
 const filterFields = require("../../util/filterFields");
 module.exports = async (req, res) => {
   let params = {};
   let { name, id, query, limit, skip, page, fields } = req.query;
   if (query) {
-    let { error, result, count, message } = await getProductCategory(
+    let { error, result, count, message } = await getProductCategory({
       query,
       limit,
       skip,
       page
-    );
+    });
     if (error) return res.json({ error });
     return res.json({ message, result, count });
   }
