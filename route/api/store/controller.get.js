@@ -10,7 +10,9 @@ module.exports = async (req, res) => {
     gmt,
     currency,
     created_at,
-    query
+    query,
+    limit,
+    skip
   } = req.query;
   if (query) {
     let nameSearchResult = await getStoreNameSearch(query);
@@ -22,9 +24,9 @@ module.exports = async (req, res) => {
       count: nameSearchResult.count
     });
   }
-  let params = {};
+  let params = {limit,skip};
   if (name) params.name = name;
-  if(id) params.id = id
+  if (id) params.id = id;
   // if (contact_details) params.contact_details = contact_details;
   // if (roles) params.roles = roles;
   // if (gmt) params.gmt = gmt;
