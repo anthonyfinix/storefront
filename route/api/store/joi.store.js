@@ -1,5 +1,5 @@
 const joi = require("joi");
-
+const _id = require("../../../validation/joi._id");
 const contact_details = require("../../../validation/joi.contact_details");
 const name = joi.string();
 const roles = joi
@@ -8,7 +8,7 @@ const roles = joi
   .min(1);
 const gmt = joi.string();
 const currency = joi.string();
-
+exports.store_id = _id;
 exports.store_name = name;
 exports.store_roles = roles;
 exports.store_gmt = gmt;
@@ -19,5 +19,5 @@ module.exports.store = joi.object({
   active: joi.boolean(),
   roles: roles.required(),
   gmt: gmt.required(),
-  currency: currency. required()
+  currency: currency.required()
 });

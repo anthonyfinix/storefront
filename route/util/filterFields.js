@@ -1,4 +1,4 @@
-module.exports = ({ entity, fields }) => {
+const filterFields = ({ entity, fields }) => {
   if (typeof fields != "array" && typeof fields === "string") {
     fields = fields.split(",");
   }
@@ -13,3 +13,5 @@ module.exports = ({ entity, fields }) => {
     return filteredProduct;
   });
 };
+
+module.exports = filterFields;
