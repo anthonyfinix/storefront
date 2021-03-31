@@ -1,4 +1,5 @@
 const Customer = require("./modal");
+const { joi_first_name } = require("../../../validation/joi.name");
 const {
   joi_customer_id,
   joi_customer_name
@@ -25,9 +26,9 @@ const getCustomer = async ({
     param._id = id;
   }
   if (name) {
-    const joi_customer_name_validation = joi_customer_name.validate(name);
-    if (joi_customer_name_validation.error)
-      return joi_customer_name_validation.error.details;
+    const joi_first_name_validation = joi_first_name.validate(name);
+    if (joi_first_name_validation.error)
+      return joi_first_name_validation.error.details;
     if (name) params["name.first_name"] = name;
   }
   // if (contact_details) params.contact_details = contact_details;

@@ -9,6 +9,6 @@ const name = joi.object({
 });
 
 module.exports.name = joi.name = name;
-exports.first_name = first_name
-exports.middle_name = middle_name
-exports.last_name = last_name
+exports.joi_first_name = first_name
+exports.joi_middle_name = middle_name
+exports.joi_last_name = last_name
