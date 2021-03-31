@@ -1,4 +1,4 @@
 ### GET ALL
 GET http://localhost:8080/api/customer
 ### Limit
-GET http://localhost:8080/api/customer?name=ram
+GET http://localhost:8080/api/customer?fields=name

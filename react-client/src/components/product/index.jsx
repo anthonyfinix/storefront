@@ -4,6 +4,7 @@ import Table from './table';
 import Sidebar from './sidebar';
 import { ContentContext } from '../contentProvider';
 import AddNewProduct from './addNewProduct';
+import Dialog from '../util/dialog';
 const Product = () => {
     let [showDialog, setShowDialog] = React.useState(false);
     let { products, suppliers, productCategory } = React.useContext(ContentContext);
@@ -42,15 +43,13 @@ const Product = () => {
                     <Table data={products} toggleSidebar={handleShowSupplier} />
                 </div>
                 <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} items={products} />
-                <AddNewProduct
-                    show={showDialog}
-                    handleNewProductInputChange={handleNewProductInputChange}
-                    newProduct={newProduct}
-                    toggleDialog={toggleDialog}
-                    items={products}
-                    addNewProduct={addNewProduct}
-                    
-                />
+                <Dialog toggleDialog={toggleDialog} show={showDialog}>
+                    <AddNewProduct
+                        handleNewProductInputChange={handleNewProductInputChange}
+                        newProduct={newProduct}
+                        addNewProduct={addNewProduct}
+                    />
+                </Dialog>
             </div>
         </article>
     )

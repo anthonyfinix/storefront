@@ -3,5 +3,5 @@ POST http://localhost:8080/api/productCategory
 Content-Type: application/json
 
 {
-    "name":"Mobile"
+    "name":""
 }
