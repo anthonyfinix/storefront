@@ -1,10 +1,10 @@
 const createProductCategory = require("./createProductCategory");
 const checkNameExist = require("./checkNameExist");
 const updateProduct = require("./updateProductCategory");
-const validation = require("../../../validation/joi.productCategory");
+const {joi_productCategory} = require("../../../validation/joi.productCategory");
 module.exports = async (req, res) => {
   let { name, id } = req.body;
-  let { error } = validation.validate({ name });
+  let { error } = joi_productCategory.validate({ name });
   if (error) return res.json({ error: error.details });
   if (id) {
     let { e, message, ...data } = await updateProduct({ id });
