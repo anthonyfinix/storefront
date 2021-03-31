@@ -11,7 +11,7 @@ module.exports = (req, res, next) => {
       return res.json({ error: joi_page_validation.error });
     req.query.page = parseInt(page);
   } else {
-    page = 1;
+    req.query.page = 1;
   }
   // validate limit
   if (limit) {
@@ -20,16 +20,16 @@ module.exports = (req, res, next) => {
       return res.json({ error: joi_limit_validation.error });
     req.query.limit = parseInt(limit);
   } else {
-    limit = 5;
+    req.query.limit = 5;
   }
   // validate skip
   if (skip) {
     let joi_skip_validation = joi_skip.validate(skip);
     if (joi_skip_validation.error)
       return res.json({ error: joi_skip_validation.error });
-    req.query.skip = parseInt(skip);
+    req.query.skip = parseInt(req.query.skip);
   } else {
-    req.query.skip = (page - 1) * limit;
+    req.query.skip = parseInt(req.query.limit) * (parseInt(req.query.page) - 1);
   }
   next();
 };
