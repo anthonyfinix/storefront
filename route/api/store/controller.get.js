@@ -17,14 +17,10 @@ module.exports = async (req, res) => {
     fields
   } = req.query;
   if (query) {
-    let nameSearchResult = await getStoreNameSearch(query);
-    if (nameSearchResult.error)
-      return res.json({ error: nameSearchResult.error });
-    return res.json({
-      message: nameSearchResult.message,
-      result: nameSearchResult.result,
-      count: nameSearchResult.count
-    });
+    let { error, result, message, count } = await getStore({ query });
+    if (error) return res.json({ error });
+    if (fields) result = filterFields({ entity: result, fields });
+    return res.json({ message, result, count });
   }
   let params = { limit, skip };
   if (id) params.id = id;
@@ -35,7 +31,7 @@ module.exports = async (req, res) => {
   // if (currency) params.currency = currency;
   // if (created_at) params.created_at = created_at;
   let { error, result, message, count } = await getStore(params);
-  if (fields) result = filterFields({ entity: result, fields });
   if (error) return res.json({ error });
+  if (fields) result = filterFields({ entity: result, fields });
   return res.json({ message, result, count });
 };

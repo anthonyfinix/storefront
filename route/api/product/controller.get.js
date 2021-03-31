@@ -11,7 +11,7 @@ module.exports = async (req, res) => {
     let { result, error, count, message } = await getProduct({
       query,
       limit,
-      skip,
+      skip
     });
     if (error) return res.json({ error });
     return res.json({ message, result, count });
@@ -24,11 +24,9 @@ module.exports = async (req, res) => {
   let { result, error, count, message } = await getProduct({
     name,
     limit,
-    skip,
+    skip
   });
   if (error) return res.json({ error });
-  if (fields) {
-    result = filterProducts({ entity: result, fields });
-  }
+  if (fields) result = filterProducts({ entity: result, fields });
   return res.json({ message, result, count, page });
 };

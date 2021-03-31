@@ -1,7 +1,7 @@
 const joi = require("joi");
 const contact_details = require("./joi.contact_details");
-const name = require("./joi.name");
-let _id = require('./joi._id');
+const { name } = require("./joi.name");
+let _id = require("./joi._id");
 let company_name = joi.string();
 let created_by = joi.string();
 let created_on = joi.number();

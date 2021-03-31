@@ -1,19 +1,21 @@
 const joi = require("joi");
-const name = require("./joi.name");
+const _id = require("./joi._id");
+const { name } = require("./joi.name");
 const contact_details = require("./joi.contact_details");
 const store_visited = joi.array().items({
-  id: joi.string().required(),
+  id: joi.string().required()
 });
 const total_purchase = joi.object({
   amount: joi.number().required()
 });
 const active = joi.boolean();
 
-exports.customer_name = name;
-exports.customer_contact_details = contact_details;
-exports.customer_store_visited = store_visited;
-exports.customer_total_purchase = total_purchase;
-exports.customer_active = active;
+exports.joi_customer_id = _id;
+exports.joi_customer_name = name;
+exports.joi_customer_contact_details = contact_details;
+exports.joi_customer_store_visited = store_visited;
+exports.joi_customer_total_purchase = total_purchase;
+exports.joi_customer_active = active;
 
 module.exports = joi.object({
   name: name.required(),
