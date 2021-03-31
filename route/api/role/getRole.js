@@ -2,7 +2,6 @@ const Role = require("./modal");
 const { joi_role_id, joi_role_name } = require("../../../validation/joi.role");
 const joi_query = require("../../../validation/joi.query");
 module.exports = async ({ name, id, query, limit, skip, page }) => {
-  console.log(name)
   let params = {};
   if (query) {
     let joi_query_validation = joi_query.validate(query);
