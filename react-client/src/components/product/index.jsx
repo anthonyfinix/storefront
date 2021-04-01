@@ -5,9 +5,11 @@ import Sidebar from './sidebar';
 import { ContentContext } from '../contentProvider';
 import AddNewProduct from './addNewProduct';
 import Dialog from '../util/dialog';
+import useProduct from './useProduct';
 const Product = () => {
     let [showDialog, setShowDialog] = React.useState(false);
     let { products, suppliers, productCategory } = React.useContext(ContentContext);
+    let { addPage } = useProduct()
     let [productSuppliers, setProductSuppliers] = React.useState([]);
     let [isSidebarOpen, setSidebarOpen] = React.useState(false);
     let [newProduct, setNewProduct] = React.useState({
@@ -31,6 +33,10 @@ const Product = () => {
         toggleSidebar();
         let supplierDetailsPromise = suppliers.map(supplier => console.log(supplier))
     }
+    const handleListScroll = (e) => {
+        const { scrollTop, clientHeight, scrollHeight } = e.currentTarget;
+        if (scrollHeight - scrollTop === clientHeight) addPage();
+    }
     const toggleDialog = () => setShowDialog(!showDialog);
     return (
         <article id="product-wrapper">
@@ -39,7 +45,7 @@ const Product = () => {
                 <button onClick={toggleDialog}>Add</button>
             </div>
             <div id="product-content">
-                <div id="table-wrapper">
+                <div id="table-wrapper" onScroll={handleListScroll}>
                     <Table data={products} toggleSidebar={handleShowSupplier} />
                 </div>
                 <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} items={products} />
@@ -51,6 +57,7 @@ const Product = () => {
                     />
                 </Dialog>
             </div>
+            <button onClick={addPage}>Load more</button>
         </article>
     )
 }

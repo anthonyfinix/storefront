@@ -3,10 +3,14 @@ import getProduct from "./api/getProduct";
 
 const useProduct = () => {
   const [products, setProducts] = React.useState([]);
+  const [pageNo, setPageNo] = React.useState(1);
 
+  const addPage = () => {
+    setPageNo(pageNo + 1);
+  };
   const get = async () => {
-    let response = await getProduct();
-    if (response.status === 200) {
+    let response = await getProduct({ page: pageNo });
+    if (response.status && response.status === 200) {
       let { message, result, error } = response.data;
       if (error) return error;
       return result;
@@ -14,10 +18,17 @@ const useProduct = () => {
   };
 
   useEffect(() => {
-    get().then(results => setProducts(results));
-  }, []);
+    get().then(results => {
+      console.log("results :")
+      console.log(results)
+      setProducts(products => [...products, ...results]);
+    });
+  }, [pageNo]);
 
-  return products;
+  return {
+    products,
+    addPage
+  };
 };
 
 export default useProduct;

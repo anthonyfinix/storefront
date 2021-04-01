@@ -1,7 +1,6 @@
 import './dialog.css';
 import React from 'react';
 const Dialog = ({ toggleDialog, show, ...props }) => {
-    console.log(props)
     let display = show ? "flex" : "none";
     const handleDialogWrapper = (e) => {
         let target = e.target;
