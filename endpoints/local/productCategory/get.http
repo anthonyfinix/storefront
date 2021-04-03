@@ -7,4 +7,6 @@ GET http://localhost:8080/api/productCategory?name=abcde
 ### search
 GET http://localhost:8080/api/productCategory?query=a
 ### GET WITH NAME
-GET http://localhost:8080/api/productCategory?id=604089641aec2e0015418be2
+GET http://localhost:8080/api/productCategory
+
+

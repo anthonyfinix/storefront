@@ -14,12 +14,12 @@ module.exports = async (req, res) => {
       skip
     });
     if (error) return res.json({ error });
-    return res.json({ message, result, count });
+    return res.json({ message, result, count, page });
   }
   if (id) {
     let { result, error, count, message } = await getProduct({ id });
     if (error) return res.json({ error });
-    return res.json({ message, result, count });
+    return res.json({ message, result, count, page });
   }
   let { result, error, count, message } = await getProduct({
     name,

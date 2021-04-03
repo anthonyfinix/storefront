@@ -11,12 +11,12 @@ module.exports = async (req, res) => {
       page
     });
     if (error) return res.json({ error });
-    return res.json({ message, result, count });
+    return res.json({ message, result, count, page });
   }
   if (id) {
     let { error, result, count, message } = await getProductCategory({ id });
     if (error) return res.json({ error });
-    return res.json({ message, result, count });
+    return res.json({ message, result, count, page });
   }
   if (name) {
     params.name = name;
