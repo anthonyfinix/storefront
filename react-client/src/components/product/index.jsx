@@ -8,7 +8,7 @@ import Dialog from '../util/dialog';
 import useProduct from './useProduct';
 const Product = () => {
     let [showDialog, setShowDialog] = React.useState(false);
-    let { products, suppliers, productCategory,addPage } = React.useContext(ContentContext);
+    let { product: { products, productNextPage }, suppliers, productCategory } = React.useContext(ContentContext);
     let [productSuppliers, setProductSuppliers] = React.useState([]);
     let [isSidebarOpen, setSidebarOpen] = React.useState(false);
     let [newProduct, setNewProduct] = React.useState({
@@ -33,7 +33,7 @@ const Product = () => {
     }
     const handleListScroll = (e) => {
         const { scrollTop, clientHeight, scrollHeight } = e.currentTarget;
-        if (scrollHeight - scrollTop === clientHeight) addPage();
+        if (scrollHeight - scrollTop === clientHeight) productNextPage();
     }
     const toggleDialog = () => setShowDialog(!showDialog);
     return (
@@ -55,7 +55,7 @@ const Product = () => {
                     />
                 </Dialog>
             </div>
-            <button onClick={addPage}>Load more</button>
+            <button onClick={productNextPage}>Load more</button>
         </article>
     )
 }
