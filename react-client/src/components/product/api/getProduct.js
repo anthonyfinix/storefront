@@ -1,5 +1,7 @@
 import axios from "../../../axios";
 
-export default async ({ page = 1 }) => {
-  return await axios.get("api/product", { page });
+export default async ({ page }) => {
+  let params = {};
+  if (page) params.page = page;
+  return await axios.get("api/product", { params });
 };

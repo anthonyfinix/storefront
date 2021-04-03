@@ -3,14 +3,19 @@ import React from 'react';
 import Table from './table';
 import { ContentContext } from '../contentProvider';
 const Role = () => {
-    let { role } = React.useContext(ContentContext);
+    let { role: { roles, roleNextPage }, } = React.useContext(ContentContext);
     return (
-        <article id="product-wrapper">
-            <div id="product-header">
+        <article className="entity-wrapper" id="product-wrapper">
+            <div className="entity-header" id="product-header">
                 <h3>Roles</h3>
                 <button>Add</button>
             </div>
-            <div id="table-wrapper"><Table data={role} /></div>
+            <div className="entity-content" id="table-wrapper">
+                <div className="table-wrapper">
+                    <Table data={roles} />
+                </div>
+            </div>
+            <button onClick={roleNextPage}>Load more</button>
         </article>
     )
 }

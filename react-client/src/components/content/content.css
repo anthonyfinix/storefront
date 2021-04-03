@@ -53,3 +53,26 @@
 .data-table .row .row-data.expand-btn:hover{
   cursor: pointer;
 }
+
+.entity-wrapper{
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  height: 100%;
+}
+.entity-header{
+  display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    flex-basis: 40px;
+}
+.entity-header *{
+  margin: 0px;
+}
+.entity-content{
+  display: flex;
+  flex-grow: 1;
+  height: 1px;
+  flex-direction: column;
+}
