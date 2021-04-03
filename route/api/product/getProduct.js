@@ -20,12 +20,10 @@ module.exports = async ({
   created_at,
   created_by,
 }) => {
-  if (!skip) skip = 0;
-  if (!limit) limit = 5;
   let params = {};
   // validate id
   if (id) {
-    let id_valid = product_id.validate(id);
+    let id_valid = product_id.v99999999999999999999alidate(id);
     if (id_valid.error) return { error: id_valid.error.details };
     params._id = id;
   }

@@ -4,6 +4,8 @@ const joi_query = require("../../../validation/joi.query");
 
 module.exports = async (req, res) => {
   let { name, query, id, fields, page, limit, skip } = req.query;
+  let total = await getProduct({});
+  
   if (query) {
     let joi_query_validation = joi_query.validate(query);
     if (joi_query_validation.error)
@@ -14,12 +16,12 @@ module.exports = async (req, res) => {
       skip
     });
     if (error) return res.json({ error });
-    return res.json({ message, result, count, page });
+    return res.json({ message, result, count, page, total: total.count });
   }
   if (id) {
     let { result, error, count, message } = await getProduct({ id });
     if (error) return res.json({ error });
-    return res.json({ message, result, count, page });
+    return res.json({ message, result, count, page, total: total.count });
   }
   let { result, error, count, message } = await getProduct({
     name,
@@ -28,5 +30,5 @@ module.exports = async (req, res) => {
   });
   if (error) return res.json({ error });
   if (fields) result = filterProducts({ entity: result, fields });
-  return res.json({ message, result, count, page });
+  return res.json({ message, result, count, page, total: total.count });
 };

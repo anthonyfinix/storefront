@@ -4,6 +4,7 @@ const {
   joi_productCategory_name,
 } = require("../../../validation/joi.productCategory");
 const joi_query = require("../../../validation/joi.query");
+
 module.exports = async ({ name, id, query, limit, skip }) => {
   let params = {};
   if (query) {

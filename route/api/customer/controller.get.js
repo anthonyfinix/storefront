@@ -1,6 +1,6 @@
 const getCustomer = require("./getCustomers");
 const getNamePartialSearch = require("./getNamePartialSearch");
-const filterFields = require('../../util/filterFields');
+const filterFields = require("../../util/filterFields");
 module.exports = async (req, res) => {
   let {
     query,
@@ -18,6 +18,7 @@ module.exports = async (req, res) => {
     page,
     fields
   } = req.query;
+  let total = await getCustomer({});
   if (query) {
     let { error, message, result, count } = await getCustomer({
       query,
@@ -27,7 +28,7 @@ module.exports = async (req, res) => {
     if (error) return res.json({ error });
     if (!result.length)
       return res.json({ message: "No Customer Found", result, count, page });
-    return res.json({ message, result, count, page});
+    return res.json({ message, result, count, page, total: total.count });
   }
   let params = { skip, limit };
   if (id) params.id = id;
@@ -42,5 +43,5 @@ module.exports = async (req, res) => {
   let { error, message, result, count } = await getCustomer(params);
   if (error) return res.json({ error });
   if (fields) result = filterFields({ entity: result, fields });
-  return res.json({ message, result, count, page});
+  return res.json({ message, result, count, page, total:total.count });
 };
