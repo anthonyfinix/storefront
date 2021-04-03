@@ -8,8 +8,7 @@ import Dialog from '../util/dialog';
 import useProduct from './useProduct';
 const Product = () => {
     let [showDialog, setShowDialog] = React.useState(false);
-    let { products, suppliers, productCategory } = React.useContext(ContentContext);
-    let { addPage } = useProduct()
+    let { products, suppliers, productCategory,addPage } = React.useContext(ContentContext);
     let [productSuppliers, setProductSuppliers] = React.useState([]);
     let [isSidebarOpen, setSidebarOpen] = React.useState(false);
     let [newProduct, setNewProduct] = React.useState({
@@ -25,8 +24,7 @@ const Product = () => {
     const handleNewProductInputChange = (e) => {
         let updatedProductDetails = newProduct;
         updatedProductDetails[e.currentTarget.getAttribute('name')] = e.currentTarget.value;
-        setNewProduct({ ...updatedProductDetails })
-        console.log('updated');
+        setNewProduct({ ...updatedProductDetails });
     }
     const toggleSidebar = () => setSidebarOpen(!isSidebarOpen);
     const handleShowSupplier = (suppliers) => {
@@ -39,12 +37,12 @@ const Product = () => {
     }
     const toggleDialog = () => setShowDialog(!showDialog);
     return (
-        <article id="product-wrapper">
-            <div id="product-header">
+        <article className="entity-wrapper" id="product-wrapper">
+            <div className="entity-header" id="product-header">
                 <h3>Product</h3>
                 <button onClick={toggleDialog}>Add</button>
             </div>
-            <div id="product-content">
+            <div className="entity-content" id="product-content">
                 <div id="table-wrapper" onScroll={handleListScroll}>
                     <Table data={products} toggleSidebar={handleShowSupplier} />
                 </div>
