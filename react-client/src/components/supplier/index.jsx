@@ -5,14 +5,20 @@ import { ContentContext } from '../contentProvider';
 
 const Supplier = () => {
 
-    let { suppliers } = React.useContext(ContentContext);
+    let { supplier:{
+        suppliers,
+        supplierNextPage
+    } } = React.useContext(ContentContext);
     return (
-        <article id="product-wrapper">
-            <div id="product-header">
+        <article className="entity-wrapper" id="product-wrapper">
+            <div className="entity-header" id="product-header">
                 <h3>Supplier</h3>
                 <button>Add</button>
             </div>
-            <div id="table-wrapper"><Table data={suppliers} /></div>
+            <div className="entity-content" id="table-wrapper">
+                <Table data={suppliers} />
+            </div>
+            <button onClick={supplierNextPage}>Load more</button>
         </article>
     )
 }

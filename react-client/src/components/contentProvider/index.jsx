@@ -9,14 +9,14 @@ import useRole from '../role/useRole'
 export const ContentContext = React.createContext();
 const ContentProvider = ({ children, ...props }) => {
     const product = useProduct();
-    const suppliers = useSupplier();
+    const supplier = useSupplier();
     const customers = useCustomer();
     const productCategories = useProductCategory();
     const role = useRole();
     return (
         <ContentContext.Provider value={{
             product,
-            suppliers,
+            supplier,
             customers,
             productCategories,
             role: role
