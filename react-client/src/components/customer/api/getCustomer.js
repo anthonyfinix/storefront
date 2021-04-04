@@ -1,3 +1,7 @@
 import axios from "../../../axios";
 
-export default async () => axios.get("api/customer");
+export default async ({ page }) => {
+    let params = {};
+    if (page) params.page = page;
+    return await axios.get("api/customer", { params });
+  };
