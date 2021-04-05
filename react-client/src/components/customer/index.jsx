@@ -3,7 +3,7 @@ import './customer.css';
 import Table from './table';
 import { ContentContext } from '../contentProvider';
 const Customer = () => {
-    let { customers: { customer, customerNextPage } } = React.useContext(ContentContext);
+    let { customer: { customers, customerNextPage } } = React.useContext(ContentContext);
     return (
         <article class="entity-wrapper" id="product-wrapper">
             <div class="entity-header" id="product-header">
@@ -11,7 +11,7 @@ const Customer = () => {
                 <button>Add</button>
             </div>
             <div className="entity-content" id="table-wrapper">
-                <Table data={customer} />
+                <Table data={customers} />
             </div>
             <button onClick={customerNextPage}>Load more</button>
         </article>

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import getProductCategory from "./api/getProductCategory";
 
 const useProductCategory = () => {
-  const [productCategory, setProductCategory] = React.useState([]);
+  const [productCategories, setProductCategories] = React.useState([]);
   const [pageNo, setPageNo] = React.useState(1);
   const addPage = () => setPageNo(pageNo + 1);
   const get = async () => {
@@ -17,14 +17,14 @@ const useProductCategory = () => {
 
   useEffect(() => {
     get().then(results => {
-      setProductCategory(productCategories => {
+      setProductCategories(productCategories => {
         return [...productCategories, ...results];
       });
     });
   }, [pageNo]);
 
   return {
-    productCategory,
+    productCategories,
     productCategoriesNextPage: addPage
   };
 };

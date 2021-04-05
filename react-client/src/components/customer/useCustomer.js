@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import getCustomer from "./api/getCustomer";
 
 const useCustomer = () => {
-  const [customer, setCustomer] = React.useState([]);
+  const [customers, setCustomers] = React.useState([]);
   const [pageNo, setPageNo] = React.useState(1);
   const addPage = () => setPageNo(pageNo + 1);
 
@@ -16,13 +16,13 @@ const useCustomer = () => {
   };
 
   useEffect(() => {
-    get().then(results => setCustomer(customers => {
+    get().then(results => setCustomers(customers => {
       return [...customers, ...results];
     }));
   }, []);
 
   return {
-    customer,
+    customers,
     customerNextPage:addPage
   };
 };

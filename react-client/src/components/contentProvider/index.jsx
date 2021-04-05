@@ -10,16 +10,16 @@ export const ContentContext = React.createContext();
 const ContentProvider = ({ children, ...props }) => {
     const product = useProduct();
     const supplier = useSupplier();
-    const customers = useCustomer();
-    const productCategories = useProductCategory();
+    const customer = useCustomer();
+    const productCategory = useProductCategory();
     const role = useRole();
     return (
         <ContentContext.Provider value={{
             product,
             supplier,
-            customers,
-            productCategories,
-            role: role
+            customer,
+            productCategory,
+            role
         }} >
             { children}
         </ContentContext.Provider >
