@@ -76,3 +76,6 @@
   height: 1px;
   flex-direction: column;
 }
+.input-main-wrapper{
+  display: flex;
+}

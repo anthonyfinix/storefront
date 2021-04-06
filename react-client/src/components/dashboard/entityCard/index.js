@@ -4,6 +4,7 @@ function Widget({ entity, name }) {
     <div className="widget-wrapper">
       <div className="widget">
         <h1>{name}</h1>
+        {console.log(entity)}
         <p>{entity.length}</p>
       </div>
     </div>

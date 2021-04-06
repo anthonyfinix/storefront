@@ -8,8 +8,7 @@ import Dialog from '../util/dialog';
 import useProduct from './useProduct';
 const Product = () => {
     let [showDialog, setShowDialog] = React.useState(false);
-    let { product: { products, productNextPage }, suppliers, productCategory } = React.useContext(ContentContext);
-    let [productSuppliers, setProductSuppliers] = React.useState([]);
+    let { product: { products, productNextPage } } = React.useContext(ContentContext);
     let [isSidebarOpen, setSidebarOpen] = React.useState(false);
     let [newProduct, setNewProduct] = React.useState({
         productName: "",
@@ -19,6 +18,8 @@ const Product = () => {
         productSalePrice: "",
         productCurrentPrice: "",
         productBuyingPrice: "",
+        productSupplierId: "",
+        productCategoryId: "",
     });
     const addNewProduct = () => { }
     const handleNewProductInputChange = (e) => {
