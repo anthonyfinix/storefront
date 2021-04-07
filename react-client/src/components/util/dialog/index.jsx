@@ -1,6 +1,6 @@
 import './dialog.css';
 import React from 'react';
-const Dialog = ({ toggleDialog, show, ...props }) => {
+const Dialog = ({ toggleDialog, show, width, height, ...props }) => {
     let display = show ? "flex" : "none";
     const handleDialogWrapper = (e) => {
         let target = e.target;
@@ -9,7 +9,7 @@ const Dialog = ({ toggleDialog, show, ...props }) => {
     }
     return (
         <div id="dialog-wrapper" onClick={handleDialogWrapper} style={{ display }}>
-            <div className="dialog-card">
+            <div className="dialog-card" style={{ width, height }}>
                 {props.children}
             </div>
         </div>

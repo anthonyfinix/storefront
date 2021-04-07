@@ -1,29 +1,29 @@
 import React from 'react';
 import './dropdown.css';
+import { MdClose } from "react-icons/md";
 
-export default ({ el, show, ...props }) => {
-    const [position, setPosition] = React.useState({
-        left: 0,
-        right: 0,
-        display: 'none'
-    });
+export default ({ el, show, close, ...props }) => {
+    let display = show ? 'block' : 'none';
     const dialog = React.useRef(null);
-    React.useEffect(() => {
-        let display = show ? 'block' : 'none';
-        if (!!el) {
-            setPosition({
-                left: el.offsetLeft,
-                right: el.offsetRight,
-                display
-            })
-        }
-    },[]);
-    
+    const handleClose = ()=>{
+        close()
+    }
+    let position = {};
+    if (!el) {
+        display = 'none';
+        position.left = 10;
+        position.top = 10;
+    } else {
+        position.left = el.offsetLeft;
+        position.top = el.offsetTop + 40;
+    }
+
     if (!!show) {
         return (
-                <div className="dropdown-wrapper" style={position} ref={dialog}>
-                    {props.children}
-                </div>
+            <div className="dropdown-wrapper" style={{ ...position, display }} ref={dialog}>
+                <div className="controls"><MdClose onClick={handleClose} /></div>
+                {props.children}
+            </div>
         )
     } else {
         return (<div></div>)

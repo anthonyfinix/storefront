@@ -18,9 +18,14 @@ const Product = () => {
         productSalePrice: "",
         productCurrentPrice: "",
         productBuyingPrice: "",
-        productSupplierId: "",
+        productSupplierId: [],
         productCategoryId: "",
     });
+    const addSupplier = (supplier) => {
+        let product = newProduct;
+        product.productSupplierId.push(supplier)
+        setNewProduct(product);
+    }
     const addNewProduct = () => { }
     const handleNewProductInputChange = (e) => {
         let updatedProductDetails = newProduct;
@@ -50,6 +55,7 @@ const Product = () => {
                 <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} items={products} />
                 <Dialog toggleDialog={toggleDialog} show={showDialog}>
                     <AddNewProduct
+                        addSupplier={addSupplier}
                         handleNewProductInputChange={handleNewProductInputChange}
                         newProduct={newProduct}
                         addNewProduct={addNewProduct}

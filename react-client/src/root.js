@@ -2,6 +2,7 @@ import "./root.css";
 import "./assets/css/spacing.css";
 import "./assets/css/button.css";
 import "./assets/css/input.css";
+// import "./assets/css/bootstrap.css";
 import Header from "./components/header";
 import Login from "./components/login";
 import Register from "./components/register";

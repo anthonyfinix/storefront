@@ -3,7 +3,8 @@ import '../../util/dialog/dialog.css';
 import './addNewProduct.css';
 import getSupplier from '../../supplier/api/getSupplier';
 import Dropdown from '../../util/dropdown';
-const AddNewProduct = ({ handleNewProductInputChange, newProduct, ...props }) => {
+
+const AddNewProduct = ({ handleNewProductInputChange, newProduct, addSupplier, ...props }) => {
     const [suppliers, setSupplier] = React.useState([]);
     const searchQuery = React.useRef();
     const [query, setQuery] = React.useState('');
@@ -15,7 +16,9 @@ const AddNewProduct = ({ handleNewProductInputChange, newProduct, ...props }) =>
         return getSupplier({ query })
             .then(suppliers => setSupplier(suppliers.data.result))
     }, [query]);
-    const handleSupplierCompanyNameClick = () => { }
+    const handleSupplierCompanyNameClick = (supplier) => {
+        addSupplier(supplier)
+    }
     return (<>
         <h3 className="mt-0">Add Product</h3>
         <div className="input-main-wrapper product-input-main-wrapper">
@@ -55,16 +58,12 @@ const AddNewProduct = ({ handleNewProductInputChange, newProduct, ...props }) =>
                     <input
                         onChange={handleSupplierSearch}
                         onFocus={() => showSupplierDropdown()}
-                        onBlur={() => hideSupplierDropdown()}
                         ref={searchQuery}
                         value={query}
                     />
                 </div>
-                <Dropdown el={searchQuery.current} show={supplierDropdown}>
-                    {/* {suppliers.map(supplier => {
-                        <p data-id={supplier._id}>{supplier.company_name}</p>
-                    })} */}
-                    <h5>Dropdown</h5>
+                <Dropdown el={searchQuery.current} close={hideSupplierDropdown} show={supplierDropdown}>
+                    {suppliers.map(supplier => <p data-id={supplier._id} onClick={(e) => handleSupplierCompanyNameClick(supplier)}>{supplier.company_name}</p>)}
                 </Dropdown>
             </div>
         </div>
