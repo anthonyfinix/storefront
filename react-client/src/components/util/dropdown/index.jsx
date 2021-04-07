@@ -7,10 +7,9 @@ export default ({ el, show, ...props }) => {
         right: 0,
         display: 'none'
     });
-
     const dialog = React.useRef(null);
     React.useEffect(() => {
-        let display = show ? 'inline-block' : 'none';
+        let display = show ? 'block' : 'none';
         if (!!el) {
             setPosition({
                 left: el.offsetLeft,

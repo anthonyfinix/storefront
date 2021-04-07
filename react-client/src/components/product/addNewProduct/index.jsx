@@ -7,13 +7,13 @@ const AddNewProduct = ({ handleNewProductInputChange, newProduct, ...props }) =>
     const [suppliers, setSupplier] = React.useState([]);
     const searchQuery = React.useRef();
     const [query, setQuery] = React.useState('');
-    const [supplierDialog,setSupplierDialog] = React.useState(false)
+    const [supplierDropdown, setSupplierDropdown] = React.useState(false)
     const handleSupplierSearch = (e) => setQuery(e.currentTarget.value);
+    const hideSupplierDropdown = () => setSupplierDropdown(false);
+    const showSupplierDropdown = () => setSupplierDropdown(true);
     React.useEffect(() => {
         return getSupplier({ query })
-            .then(suppliers => {
-                setSupplier(suppliers.data.result);
-            })
+            .then(suppliers => setSupplier(suppliers.data.result))
     }, [query]);
     const handleSupplierCompanyNameClick = () => { }
     return (<>
@@ -52,12 +52,19 @@ const AddNewProduct = ({ handleNewProductInputChange, newProduct, ...props }) =>
             <div>
                 <div className="input-wrapper">
                     <label>Supplier</label>
-                    <input onChange={handleSupplierSearch} on    type="text" ref={searchQuery} value={query} />
+                    <input
+                        onChange={handleSupplierSearch}
+                        onFocus={() => showSupplierDropdown()}
+                        onBlur={() => hideSupplierDropdown()}
+                        ref={searchQuery}
+                        value={query}
+                    />
                 </div>
-                <Dropdown el={searchQuery.current} show={supplierDialog}>
-                    {suppliers.map(supplier => {
+                <Dropdown el={searchQuery.current} show={supplierDropdown}>
+                    {/* {suppliers.map(supplier => {
                         <p data-id={supplier._id}>{supplier.company_name}</p>
-                    })}
+                    })} */}
+                    <h5>Dropdown</h5>
                 </Dropdown>
             </div>
         </div>
