@@ -17,7 +17,8 @@ const AddNewProduct = ({ handleNewProductInputChange, newProduct, addSupplier, .
             .then(suppliers => setSupplier(suppliers.data.result))
     }, [query]);
     const handleSupplierCompanyNameClick = (supplier) => {
-        addSupplier(supplier)
+        addSupplier(supplier);
+        hideSupplierDropdown();
     }
     return (<>
         <h3 className="mt-0">Add Product</h3>

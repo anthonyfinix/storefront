@@ -8,23 +8,19 @@ const useProduct = () => {
   const get = async () => {
     let response = await getProduct({ page: pageNo });
     if (response.status && response.status === 200) {
-      let { message, result, error } = response.data;
+      let { result, error } = response.data;
       if (error) return error;
       return result;
     }
   };
 
   useEffect(() => {
-    get().then(results => {
-      setProducts(products => {
-        return [...products, ...results];
-      });
-    });
+    get().then(results => setProducts(products => [...products, ...results]));
   }, [pageNo]);
 
   return {
     products,
-    productNextPage:addPage
+    productNextPage: addPage
   };
 };
 

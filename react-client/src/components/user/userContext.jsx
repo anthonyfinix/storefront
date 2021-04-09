@@ -2,36 +2,22 @@ import React from 'react';
 import getUser from './getUser';
 export const UserContext = React.createContext();
 
-class UserProvider extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            user: null,
-            isloading: true,
-            redirect: null,
-        };
-        this.setUser = this.setUser.bind(this);
-    }
-    componentDidMount() {
+function UserProvider(props) {
+    const [user, setUser] = React.useState(null);
+    const [isLoading, setLoading] = React.useState(true);
+    const [redirect, setRedirect] = React.useState(null);
+    React.useEffect(() => {
         getUser().then(response => {
-            let { error, user } = response;
-            if (user) {
-                this.setState({ user:user, isloading: false })
-            } else {
-                this.setState({ isloading: false });
-            };
+            let { user } = response;
+            if (user) setUser(user);
         })
-    }
-    setUser(user) {
-        this.setState({ user })
-    }
-    render() {
-        return (
-            <UserContext.Provider value={{ user: this.state.user, setUser: this.setUser }} >
-                {this.state.isloading ? <h1>Is Loading</h1> : this.props.children}
-            </UserContext.Provider>
-        );
-    }
+        .finally(()=>setLoading(false));
+    }, [])
+    return (
+        <UserContext.Provider value={{ user, setUser}} >
+            {isLoading ? <h1>Is Loading</h1> : props.children}
+        </UserContext.Provider>
+    );
 }
 
 export default UserProvider;

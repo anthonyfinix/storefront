@@ -1,14 +1,14 @@
 ### ADD / EDIT
-POST http://localhost:80/register
+POST http://localhost:8080/register
 Content-Type: application/json
 
 {
     "name":{
-        "first_name":"Nitin",
-        "last_name":"Verma"
+        "first_name":"Anthony",
+        "last_name":"Finix"
     },
-    "username":"nitinverma",
-    "password":"nitinverma@123",
+    "username":"anthonyfinix@gmail.com",
+    "password":"anthonyfinix@1234",
     "contact_details":{
         "primary_number":123123123,
         "email":"nitinverma@gmail.com",

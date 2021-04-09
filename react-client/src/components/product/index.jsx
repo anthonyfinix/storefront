@@ -41,6 +41,7 @@ const Product = () => {
         const { scrollTop, clientHeight, scrollHeight } = e.currentTarget;
         if (scrollHeight - scrollTop === clientHeight) productNextPage();
     }
+    const closeDialog = () => setShowDialog(false);
     const toggleDialog = () => setShowDialog(!showDialog);
     return (
         <article className="entity-wrapper" id="product-wrapper">
@@ -53,7 +54,11 @@ const Product = () => {
                     <Table data={products} toggleSidebar={handleShowSupplier} />
                 </div>
                 <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} items={products} />
-                <Dialog toggleDialog={toggleDialog} show={showDialog}>
+                <Dialog
+                    close={closeDialog}
+                    toggleDialog={toggleDialog}
+                    show={showDialog}
+                >
                     <AddNewProduct
                         addSupplier={addSupplier}
                         handleNewProductInputChange={handleNewProductInputChange}
