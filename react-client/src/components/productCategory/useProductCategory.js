@@ -7,7 +7,6 @@ const useProductCategory = () => {
   const addPage = () => setPageNo(pageNo + 1);
   const get = async () => {
     let response = await getProductCategory({ page: pageNo });
-    console.log(response);
     if (!!response && response.status === 200) {
       let { message, result, error } = response.data;
       if (error) return error;

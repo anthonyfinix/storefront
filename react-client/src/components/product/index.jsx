@@ -18,12 +18,17 @@ const Product = () => {
         productSalePrice: "",
         productCurrentPrice: "",
         productBuyingPrice: "",
-        productSupplierId: [],
-        productCategoryId: "",
+        productSupplier: [],
+        productCategory: {},
     });
     const addSupplier = (supplier) => {
         let product = newProduct;
-        product.productSupplierId.push(supplier)
+        product.productSupplier.push(supplier)
+        setNewProduct(product);
+    }
+    const setProductCategory = (productCategory) => {
+        let product = newProduct;
+        product.productCategory = productCategory;
         setNewProduct(product);
     }
     const addNewProduct = () => { }
@@ -64,6 +69,7 @@ const Product = () => {
                         handleNewProductInputChange={handleNewProductInputChange}
                         newProduct={newProduct}
                         addNewProduct={addNewProduct}
+                        setProductCategory={setProductCategory}
                     />
                 </Dialog>
             </div>
