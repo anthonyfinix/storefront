@@ -14,12 +14,14 @@ const Product = () => {
         productName: "",
         productSKU: "",
         productManufacturer: "",
+        dimension: { weight: "", height: "", length: "", width: "" },
         productBrand: "",
         productSalePrice: "",
         productCurrentPrice: "",
         productBuyingPrice: "",
         productSupplier: [],
-        productCategory: {},
+        productCategory: { name: '' },
+        store: []
     });
     const addSupplier = (supplier) => {
         let product = newProduct;
@@ -31,7 +33,9 @@ const Product = () => {
         product.productCategory = productCategory;
         setNewProduct(product);
     }
-    const addNewProduct = () => { }
+    const addNewProduct = () => {
+
+    }
     const handleNewProductInputChange = (e) => {
         let updatedProductDetails = newProduct;
         updatedProductDetails[e.currentTarget.getAttribute('name')] = e.currentTarget.value;
@@ -65,6 +69,7 @@ const Product = () => {
                     show={showDialog}
                 >
                     <AddNewProduct
+                        toggleDialog={toggleDialog}
                         addSupplier={addSupplier}
                         handleNewProductInputChange={handleNewProductInputChange}
                         newProduct={newProduct}

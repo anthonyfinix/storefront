@@ -10,6 +10,8 @@ const AddNewProduct = ({
     newProduct,
     addSupplier,
     setProductCategory,
+    toggleDialog,
+    addNewProduct,
     ...props
 }) => {
     const supplierSearchQueryRef = React.useRef();
@@ -28,15 +30,11 @@ const AddNewProduct = ({
     const hideProductCategoryDropdown = () => setProductCategoryDropdown(false);
     const showProductCategoryDropdown = () => setProductCategoryDropdown(true);
 
-
     React.useEffect(() => {
-        getSupplier({ supplierSearchQuery })
+        getSupplier({ query: supplierSearchQuery })
             .then(response => setSupplier(response.data.result))
-        getProductCategory({ productCategorySearchQuery })
-            .then(response => {
-                console.log(response)
-                setProductCategories(response.data.result)
-            })
+        getProductCategory({ query: productCategorySearchQuery })
+            .then(response => setProductCategories(response.data.result))
     }, [supplierSearchQuery, productCategorySearchQuery]);
 
     const handleProductCategoryNameClick = (productCategory) => {
@@ -90,11 +88,9 @@ const AddNewProduct = ({
                         ref={supplierSearchQueryRef}
                         value={supplierSearchQuery}
                     />
-                    {
-                        newProduct.productSupplier.map(supplier => {
-                            return <p>{supplier.company_name}</p>
-                        })
-                    }
+                    {newProduct.productSupplier.map(supplier => {
+                        return <p>{supplier.company_name}</p>
+                    })}
                 </div>
                 <Dropdown
                     el={supplierSearchQueryRef.current}
@@ -113,6 +109,7 @@ const AddNewProduct = ({
                         ref={productCategorySearchQueryRef}
                         value={productCategorySearchQuery}
                     />
+                    {newProduct.productCategory.name}
                 </div>
                 <Dropdown
                     el={productCategorySearchQueryRef.current}
@@ -125,7 +122,7 @@ const AddNewProduct = ({
         </div>
         <div>
             <button>close</button>
-            <button>Add New Product</button>
+            <button onClick={addNewProduct}>Add New Product</button>
         </div>
     </>
     )
