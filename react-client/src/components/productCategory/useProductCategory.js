@@ -5,6 +5,14 @@ const useProductCategory = () => {
   const [productCategories, setProductCategories] = React.useState([]);
   const [pageNo, setPageNo] = React.useState(1);
   const addPage = () => setPageNo(pageNo + 1);
+  const setLatestProductCategory = () => {
+    get().then(results => {
+      setProductCategories(productCategories => [
+        ...productCategories,
+        ...results
+      ]);
+    });
+  };
   const get = async () => {
     let response = await getProductCategory({ page: pageNo });
     if (!!response && response.status === 200) {
@@ -24,7 +32,8 @@ const useProductCategory = () => {
 
   return {
     productCategories,
-    productCategoriesNextPage: addPage
+    productCategoriesNextPage: addPage,
+    refresh: setLatestProductCategory
   };
 };
 
