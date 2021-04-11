@@ -5,7 +5,13 @@ const useSupplier = () => {
   const [suppliers, setSupplier] = React.useState([]);
   const [pageNo, setPageNo] = React.useState(1);
   const addPage = () => setPageNo(pageNo + 1);
-
+  const refresh = ()=>{
+    get().then(results => {
+      setSupplier(suppliers => {
+        return [...suppliers, ...results];
+      });
+    });
+  }
   const get = async () => {
     let response = await getSupplier({page:pageNo});
     if (response.status === 200) {
@@ -25,7 +31,8 @@ const useSupplier = () => {
 
   return {
     suppliers,
-    supplierNextPage:addPage
+    supplierNextPage:addPage,
+    refreshSupplier:refresh
   };
 };
 

@@ -1,5 +1,5 @@
-const validation = require("../../../validation/joi.supplier");
-const createSuppplier = require("./createSuppplier");
+const {joi_supplier} = require("../../../validation/joi.supplier");
+const createSupplier = require("./createSupplier");
 const nameExists = require("./checkNameExist");
 const checkCompanyName = require("./checkCompanyName");
 const config = require('../../../config');
@@ -7,7 +7,7 @@ const config = require('../../../config');
 module.exports = async (req, res) => {
   // fetch content
   let {company_name, name, contact_details, active, total_purchase } = req.body;
-  let { error } = validation.validate({
+  let { error } = joi_supplier.validate({
     company_name,
     name,
     contact_details,
@@ -21,7 +21,7 @@ module.exports = async (req, res) => {
   let created_at = Date.now();
   let created_by = req.user._id;
   if (!active) active = config.default_customer_state;
-  let { e, message, ...data } = await createSuppplier({
+  let { e, message, ...data } = await createSupplier({
     company_name,
     name,
     contact_details,

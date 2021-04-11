@@ -13,6 +13,7 @@ exports.joi_supplier_created_by = created_by;
 exports.joi_supplier_created_on = created_on;
 exports.joi_supplier_total_purchase = total_purchase;
 exports.joi_supplier_contact_details = contact_details;
+
 module.exports.joi_supplier = joi.object({
   company_name: company_name.required(),
   name: name.required(),
