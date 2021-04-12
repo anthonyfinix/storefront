@@ -11,10 +11,10 @@ function UserProvider(props) {
             let { user } = response;
             if (user) setUser(user);
         })
-        .finally(()=>setLoading(false));
+        .finally(() => setLoading(false));
     }, [])
     return (
-        <UserContext.Provider value={{ user, setUser}} >
+        <UserContext.Provider value={{ user, setUser }} >
             {isLoading ? <h1>Is Loading</h1> : props.children}
         </UserContext.Provider>
     );
