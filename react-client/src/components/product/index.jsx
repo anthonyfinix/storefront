@@ -5,11 +5,12 @@ import Sidebar from './sidebar';
 import { ContentContext } from '../contentProvider';
 import AddNewProduct from './addNewProduct';
 import Dialog from '../util/dialog';
-import useProduct from './useProduct';
+import getSuppliers from './api/getProduct';
 const Product = () => {
-    let [showDialog, setShowDialog] = React.useState(false);
-    let { product: { products, productNextPage } } = React.useContext(ContentContext);
-    let [isSidebarOpen, setSidebarOpen] = React.useState(false);
+    const { product: { products, productNextPage } } = React.useContext(ContentContext);
+    const [showDialog, setShowDialog] = React.useState(false);
+    const [selectedProductSuppliers, setSelectedProductSuppliers] = React.useState()
+    const [isSidebarOpen, setSidebarOpen] = React.useState(false);
     let [newProduct, setNewProduct] = React.useState({
         productName: "",
         productSKU: "",
@@ -40,6 +41,9 @@ const Product = () => {
         let updatedProductDetails = newProduct;
         updatedProductDetails[e.currentTarget.getAttribute('name')] = e.currentTarget.value;
         setNewProduct({ ...updatedProductDetails });
+    }
+    const handleSidebarOpen = () => {
+
     }
     const toggleSidebar = () => setSidebarOpen(!isSidebarOpen);
     const handleShowSupplier = (suppliers) => {

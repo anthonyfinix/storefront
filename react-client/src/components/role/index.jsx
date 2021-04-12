@@ -11,9 +11,7 @@ const Role = () => {
                 <button>Add</button>
             </div>
             <div className="entity-content" id="table-wrapper">
-                <div className="table-wrapper">
-                    <Table data={roles} />
-                </div>
+                <Table data={roles} />
             </div>
             <button onClick={roleNextPage}>Load more</button>
         </article>
