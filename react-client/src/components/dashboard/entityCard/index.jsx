@@ -1,6 +1,5 @@
 import "./entity-card.css";
 function Widget({ entity, name }) {
-  console.log(entity)
   return (
     <div className="widget-wrapper">
       <div className="widget">

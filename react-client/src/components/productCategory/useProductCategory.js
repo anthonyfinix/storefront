@@ -6,12 +6,7 @@ const useProductCategory = () => {
   const [pageNo, setPageNo] = React.useState(1);
   const addPage = () => setPageNo(pageNo + 1);
   const setLatestProductCategory = () => {
-    get().then(results => {
-      setProductCategories(productCategories => [
-        ...productCategories,
-        ...results
-      ]);
-    });
+    return get().then(results => setProductCategories([...results]));
   };
   const get = async () => {
     let response = await getProductCategory({ page: pageNo });

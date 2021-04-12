@@ -31,10 +31,11 @@ const ProductCategory = () => {
             .then(response => {
                 console.log('test');
                 let { error, result } = response;
-                if (result) {
-                    hideAddNewDialogState();
-                    setNewProductCategory('');
-                    productCategory.refresh();
+                if (!error) {
+                    productCategory.refresh().then(()=>{
+                        hideAddNewDialogState();
+                        setNewProductCategory('');
+                    })
                 }
             })
     }
