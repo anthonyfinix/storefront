@@ -39,7 +39,9 @@ const getCustomer = async ({
   // if (created_at) params.created_at = created_at;
   // if (created_by) params.created_by = created_by;
   try {
-    let result = await Customer.find(params)
+    let result = await Customer
+    .find(params)
+    .sort('-created_at')
       .skip(skip)
       .limit(limit);
     let count = result.length;

@@ -28,6 +28,7 @@ module.exports = async ({ company_name, id, query, name, skip, limit }) => {
   }
   try {
     let suppliers = await Supplier.find(params)
+      .sort("-created_at")
       .skip(skip)
       .limit(limit);
     let count = suppliers.length;

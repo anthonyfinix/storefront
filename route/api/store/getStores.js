@@ -39,7 +39,9 @@ module.exports = async ({
   // if (currency) params.currency = currency;
   // if (created_at) params.created_at = created_at;
   try {
-    let result = await Store.find(params)
+    let result = await Store
+    .find(params)
+      .sort("-created_at")
       .skip(skip)
       .limit(limit);
     let count = result.length;

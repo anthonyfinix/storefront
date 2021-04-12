@@ -2,4 +2,4 @@
 GET http://localhost:8080/api/customer?page=2&limit=3
 ### Limit
 
-GET http://localhost:8080/api/customer
+GET http://localhost:8080/api/customer?fields=name,created_at&limit=11

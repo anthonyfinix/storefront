@@ -1,4 +1,4 @@
 ###
 GET http://localhost:8080/api/supplier
 ###
-GET http://localhost:8080/api/supplier?fields=company_name&limit=2
+GET http://localhost:8080/api/supplier?fields=company_name

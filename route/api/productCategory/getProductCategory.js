@@ -1,7 +1,7 @@
 const ProductCategory = require("./modal");
 const {
   joi_productCategory_id,
-  joi_productCategory_name,
+  joi_productCategory_name
 } = require("../../../validation/joi.productCategory");
 const joi_query = require("../../../validation/joi.query");
 
@@ -15,7 +15,9 @@ module.exports = async ({ name, id, query, limit, skip }) => {
     params.name = { $regex: new RegExp(`\\w*${query}\\w*`, "g") };
   }
   if (name) {
-    let joi_productCategory_name_validation = joi_productCategory_name.validate(name);
+    let joi_productCategory_name_validation = joi_productCategory_name.validate(
+      name
+    );
     if (joi_productCategory_name_validation.error) {
       return { error: joi_productCategory_name_validation.error.details };
     }
@@ -29,9 +31,11 @@ module.exports = async ({ name, id, query, limit, skip }) => {
     params._id = id;
   }
   try {
-    let productCategory = await ProductCategory.find(params)
-      .limit(limit)
-      .skip(skip);
+    let productCategory = await ProductCategory
+    .find(params)
+    .sort('-created_at')
+    .limit(limit)
+    .skip(skip);
     let count = productCategory.length;
     if (productCategory)
       return { message: "success", result: productCategory, count };

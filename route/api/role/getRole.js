@@ -23,6 +23,7 @@ module.exports = async ({ name, id, query, limit, skip, page }) => {
   }
   try {
     let role = await Role.find(params)
+      .sort("-created_at")
       .limit(limit)
       .skip(skip);
     let count = role.length;
