@@ -6,12 +6,8 @@ const useSupplier = () => {
   const [pageNo, setPageNo] = React.useState(1);
   const addPage = () => setPageNo(pageNo + 1);
   const refresh = () => {
-    console.log('refreshing list');
-    get().then(results => {
-      return setSupplier(suppliers => {
-        return [...suppliers, ...results];
-      });
-    });
+    console.log("refreshing list");
+    return get().then(results => setSupplier([...results]));
   };
   const get = async () => {
     let response = await getSupplier({ page: pageNo });

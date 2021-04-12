@@ -36,10 +36,9 @@ const Supplier = () => {
     const handleAddNewSupplier = () => {
         createSupplier(newSupplier)
             .then(response => {
-                let { result } = response;
-                if (result) {
-                    supplier.refreshSupplier()
-                        .then(() => hideAddNewDialogState());
+                let { error } = response;
+                if (!error) {
+                    supplier.refreshSupplier().then(() => hideAddNewDialogState());
                 }
             })
     }
