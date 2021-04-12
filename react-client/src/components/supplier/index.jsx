@@ -8,7 +8,7 @@ import newSupplierStateUpdater from './newSupplierStateUpdater';
 import createSupplier from './api/createSupplier';
 
 const Supplier = () => {
-    const { supplier, refreshSupplier } = React.useContext(ContentContext);
+    const { supplier } = React.useContext(ContentContext);
     const [newSupplier, setNewSupplier] = React.useState({
         company_name: "",
         name: {
@@ -32,16 +32,15 @@ const Supplier = () => {
     const hideAddNewDialogState = () => setAddNewDialogState(false);
     const showAddNewDialogState = () => setAddNewDialogState(true);
     const toggleAddNewDialogState = () => setAddNewDialogState(!addNewDialogState);
-    const handleNewSupplierChange = (e) => {
-        console.log(newSupplierStateUpdater(e, newSupplier))
-        setNewSupplier({ ...newSupplierStateUpdater(e, newSupplier) })
-    };
+    const handleNewSupplierChange = (e) => setNewSupplier({ ...newSupplierStateUpdater(e, newSupplier) })
     const handleAddNewSupplier = () => {
         createSupplier(newSupplier)
             .then(response => {
                 let { result } = response;
-                if (result) refreshSupplier();
-                hideAddNewDialogState();
+                if (result) {
+                    supplier.refreshSupplier()
+                        .then(() => hideAddNewDialogState());
+                }
             })
     }
     return (
