@@ -23,7 +23,7 @@ module.exports = async ({
   let params = {};
   // validate id
   if (id) {
-    let id_valid = product_id.v99999999999999999999alidate(id);
+    let id_valid = product_id.validate(id);
     if (id_valid.error) return { error: id_valid.error.details };
     params._id = id;
   }

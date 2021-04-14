@@ -21,13 +21,27 @@ Content-Type: application/json
     ],
     "stores":[
         {
-            "id":"6040c1cd5c8da00015536bdf",
+            "id":"6040c1cd5c8da00015536bdh",
             "stock":{
                 "currentStock":3000,
                 "openingStock":4000
             }
+        },
+        {
+            "id":"6040c1cd5c8da00015536bdi",
+            "stock":{
+                "currentStock":3000,
+                "openingStock":4000
+            }
+        },
+        {
+            "id":"6040c1cd5c8da00015536bdf",
+            "stock":{
+                "currentStock":7000,
+                "openingStock":4000
+            }
         }
-    ],
+    ],  
     "manufacturer":"manufacturer",
     "brand":"brand",
     "sale_price":23,

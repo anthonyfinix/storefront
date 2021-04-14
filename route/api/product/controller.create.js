@@ -30,6 +30,7 @@ module.exports = async (req, res) => {
   if (!active) active = config.default_product_state;
   if (id) {
     let { error: updationError, result } = await updateProduct({
+      id,
       name,
       sku,
       media,

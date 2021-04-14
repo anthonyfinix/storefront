@@ -18,5 +18,7 @@ Content-Type: application/json
             "city":"faridabad",
             "pincode":12323
         }
-    }
+    },
+    "roles": "id",
+    "store":{}
 }
