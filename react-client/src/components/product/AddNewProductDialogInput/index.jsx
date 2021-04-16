@@ -1,18 +1,18 @@
 import React from 'react';
-import '../../util/dialog/dialog.css';
 import './addNewProduct.css';
-import getProductCategory from '../../productCategory/api/getProductCategory';
-import getSupplier from '../../supplier/api/getSupplier';
+import '../../util/dialog/dialog.css';
 import Dropdown from '../../util/dropdown';
+import getSupplier from '../../supplier/api/getSupplier';
+import getProductCategory from '../../productCategory/api/getProductCategory';
 
-const AddNewProduct = ({
+const AddNewProductDialogInput = ({
     handleNewProductInputChange,
     newProduct,
     addSupplier,
     setProductCategory,
     toggleDialog,
     addNewProduct,
-    ...props
+    handleNewProductStoreValueChange
 }) => {
     const supplierSearchQueryRef = React.useRef();
     const [suppliers, setSupplier] = React.useState([]);
@@ -52,31 +52,31 @@ const AddNewProduct = ({
             <div className="mr-2">
                 <div className="input-wrapper">
                     <label>Name</label>
-                    <input type="text" onChange={handleNewProductInputChange} value={newProduct.productName} name="productName" />
+                    <input type="text" onChange={handleNewProductInputChange} value={newProduct.productName} name="name" />
                 </div>
                 <div className="input-wrapper">
                     <label>SKU</label>
-                    <input type="text" onChange={handleNewProductInputChange} value={newProduct.productSKU} name="productSKU" />
+                    <input type="text" onChange={handleNewProductInputChange} value={newProduct.productSKU} name="sku" />
                 </div>
                 <div className="input-wrapper">
                     <label>Manufacturer</label>
-                    <input type="text" onChange={handleNewProductInputChange} value={newProduct.productManufacturer} name="productManufacturer" />
+                    <input type="text" onChange={handleNewProductInputChange} value={newProduct.productManufacturer} name="manufacturer" />
                 </div>
                 <div className="input-wrapper">
                     <label>Brand</label>
-                    <input type="text" onChange={handleNewProductInputChange} value={newProduct.productBrand} name="productBrand" />
+                    <input type="text" onChange={handleNewProductInputChange} value={newProduct.productBrand} name="brand" />
                 </div>
                 <div className="input-wrapper">
                     <label>Sale Price</label>
-                    <input type="text" onChange={handleNewProductInputChange} value={newProduct.productSalePrice} name="productSalePrice" />
+                    <input type="text" onChange={handleNewProductInputChange} value={newProduct.productSalePrice} name="sale_price" />
                 </div>
                 <div className="input-wrapper">
                     <label>Current Price</label>
-                    <input type="text" onChange={handleNewProductInputChange} value={newProduct.productCurrentPrice} name="productCurrentPrice" />
+                    <input type="text" onChange={handleNewProductInputChange} value={newProduct.productCurrentPrice} name="current_price" />
                 </div>
                 <div className="input-wrapper">
                     <label>Buying Price</label>
-                    <input type="text" onChange={handleNewProductInputChange} value={newProduct.productBuyingPrice} name="productBuyingPrice" />
+                    <input type="text" onChange={handleNewProductInputChange} value={newProduct.productBuyingPrice} name="buying_price" />
                 </div>
             </div>
             <div>
@@ -87,6 +87,7 @@ const AddNewProduct = ({
                         onFocus={() => showSupplierDropdown()}
                         ref={supplierSearchQueryRef}
                         value={supplierSearchQuery}
+                        name="supplier"
                     />
                     {newProduct.productSupplier.map(supplier => {
                         return <p>{supplier.company_name}</p>
@@ -97,7 +98,9 @@ const AddNewProduct = ({
                     close={hideSupplierDropdown}
                     show={supplierDropdown}
                 >
-                    {suppliers.map(supplier => <p data-id={supplier._id} onClick={(e) => handleSupplierCompanyNameClick(supplier)}>{supplier.company_name}</p>)}
+                    {suppliers.map(supplier => <p data-id={supplier._id} onClick={(e) => {
+                        handleSupplierCompanyNameClick(supplier)
+                    }}>{supplier.company_name}</p>)}
                 </Dropdown>
             </div>
             <div>
@@ -108,6 +111,7 @@ const AddNewProduct = ({
                         onFocus={() => showProductCategoryDropdown()}
                         ref={productCategorySearchQueryRef}
                         value={productCategorySearchQuery}
+                        name="product_category"
                     />
                     {newProduct.productCategory.name}
                 </div>
@@ -118,6 +122,38 @@ const AddNewProduct = ({
                 >
                     {productCategories.map(productCategory => <p data-id={productCategory._id} onClick={(e) => handleProductCategoryNameClick(productCategory)}>{productCategory.name}</p>)}
                 </Dropdown>
+                <div className="input-wrapper">
+                    <label>Width</label>
+                    <input type="text" onChange={handleNewProductInputChange} value={newProduct.dimension.width} name="productBuyingPrice" />
+                </div>
+                <div className="input-wrapper">
+                    <label>Height</label>
+                    <input type="text" onChange={handleNewProductInputChange} value={newProduct.dimension.height} name="productBuyingPrice" />
+                </div>
+                <div className="input-wrapper">
+                    <label>Length</label>
+                    <input type="text" onChange={handleNewProductInputChange} value={newProduct.dimension.length} name="productBuyingPrice" />
+                </div>
+                <div className="input-wrapper">
+                    <label>Weight</label>
+                    <input type="text" onChange={handleNewProductInputChange} value={newProduct.dimension.weight} name="productBuyingPrice" />
+                </div>
+            </div>
+            <div>
+                {newProduct.stores.map((store, i) => {
+                    return (
+                        <div key={store.id} className="input-wrapper">
+                            <label>{store.name}</label>
+                            <input
+                                type="text"
+                                data-id={store.id}
+                                onChange={handleNewProductStoreValueChange}
+                                value={store.stock.currentStock}
+                                name="productBuyingPrice"
+                            />
+                        </div>
+                    )
+                })}
             </div>
         </div>
         <div>
@@ -128,4 +164,4 @@ const AddNewProduct = ({
     )
 }
 
-export default AddNewProduct;
+export default AddNewProductDialogInput;

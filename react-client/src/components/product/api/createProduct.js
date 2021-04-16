@@ -11,7 +11,7 @@ export default async ({
   brand,
   sale_price,
   current_price,
-  buying_price,
+  buying_price
 }) => {
   return await axios
     .post("api/product", {
@@ -25,14 +25,14 @@ export default async ({
       brand,
       sale_price,
       current_price,
-      buying_price,
+      buying_price
     })
-    .then((response) => {
+    .then(response => {
       let { error, product } = response.data;
       if (error) return error;
       return product;
     })
-    .catch((e) => {
+    .catch(e => {
       return { error: e.message };
     });
 };

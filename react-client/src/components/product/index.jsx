@@ -2,19 +2,27 @@ import './product.css';
 import React from 'react';
 import Table from './table';
 import Sidebar from './sidebar';
-import { ContentContext } from '../contentProvider';
-import AddNewProduct from './addNewProduct';
 import Dialog from '../util/dialog';
-import getSuppliers from './api/getProduct';
+import { ContentContext } from '../contentProvider';
+import { StoreContext } from '../store/storeProvider';
+import AddNewProductDialogInput from './AddNewProductDialogInput';
+import createProduct from './api/createProduct';
+import getUpdatedProductState from './getUpdatedProductState';
 const Product = () => {
+    const { stores } = React.useContext(StoreContext);
     const { product: { products, productNextPage } } = React.useContext(ContentContext);
     const [showDialog, setShowDialog] = React.useState(false);
-    const [selectedProductSuppliers, setSelectedProductSuppliers] = React.useState()
     const [isSidebarOpen, setSidebarOpen] = React.useState(false);
     let [newProduct, setNewProduct] = React.useState({
         productName: "",
         productSKU: "",
         productManufacturer: "",
+        dimension: {
+            width: "",
+            height: "",
+            weight: "",
+            length: ""
+        },
         dimension: { weight: "", height: "", length: "", width: "" },
         productBrand: "",
         productSalePrice: "",
@@ -22,8 +30,17 @@ const Product = () => {
         productBuyingPrice: "",
         productSupplier: [],
         productCategory: { name: '' },
-        store: []
+        stores: []
     });
+    React.useEffect(() => {
+        let newProductCurrentValue = newProduct;
+        newProductCurrentValue.stores = [...stores.map(store => ({
+            name: store.name,
+            id: store._id,
+            stock: { currentStock: 0 }
+        }))]
+        setNewProduct({ ...newProductCurrentValue });
+    }, [])
     const addSupplier = (supplier) => {
         let product = newProduct;
         product.productSupplier.push(supplier)
@@ -34,17 +51,34 @@ const Product = () => {
         product.productCategory = productCategory;
         setNewProduct(product);
     }
-    const addNewProduct = () => {
+    const handleAddNewProduct = () => {
+        let postData = {}
+        postData.name = newProduct.productName;
+        postData.sku = newProduct.sku;
+        postData.category = newProduct.productCategory._id;
+        postData.dimension = newProduct.dimension
+        postData.supplier = newProduct.productSupplier.map(supplier => ({ id: supplier._id }))
+        // postData.stores = newProduct.stores.map(store=>{
+        //     return {
 
+        //     }
+        // })
+    }
+    const handleNewProductStoreValueChange = (e) => {
+        let id = e.currentTarget.dataset.id;
+        let value = e.currentTarget.value;
+        let currentProduct = newProduct;
+        let updatedStoreDetails = currentProduct.stores.map(store => {
+            if (store.id == id) store.stock.currentStock = value
+            return store;
+        })
+        currentProduct.stores = updatedStoreDetails;
+        setNewProduct({ ...currentProduct });
     }
     const handleNewProductInputChange = (e) => {
-        let updatedProductDetails = newProduct;
-        updatedProductDetails[e.currentTarget.getAttribute('name')] = e.currentTarget.value;
-        setNewProduct({ ...updatedProductDetails });
+        setNewProduct({ ...getUpdatedProductState(e,newProduct) });
     }
-    const handleSidebarOpen = () => {
-
-    }
+    const handleSidebarOpen = () => {}
     const toggleSidebar = () => setSidebarOpen(!isSidebarOpen);
     const handleShowSupplier = (suppliers) => {
         toggleSidebar();
@@ -72,13 +106,14 @@ const Product = () => {
                     toggleDialog={toggleDialog}
                     show={showDialog}
                 >
-                    <AddNewProduct
+                    <AddNewProductDialogInput
                         toggleDialog={toggleDialog}
                         addSupplier={addSupplier}
                         handleNewProductInputChange={handleNewProductInputChange}
                         newProduct={newProduct}
-                        addNewProduct={addNewProduct}
+                        handleAddNewProduct={handleAddNewProduct}
                         setProductCategory={setProductCategory}
+                        handleNewProductStoreValueChange={handleNewProductStoreValueChange}
                     />
                 </Dialog>
             </div>
