@@ -34,6 +34,7 @@ const Product = () => {
     });
     React.useEffect(() => {
         let newProductCurrentValue = newProduct;
+        console.log(newProductCurrentValue.stores);
         newProductCurrentValue.stores = [...stores.map(store => ({
             name: store.name,
             id: store._id,
@@ -76,9 +77,11 @@ const Product = () => {
         setNewProduct({ ...currentProduct });
     }
     const handleNewProductInputChange = (e) => {
-        setNewProduct({ ...getUpdatedProductState(e,newProduct) });
+        let element =  e.currentTarget;
+        console.log(getUpdatedProductState(element,newProduct));
+        // setNewProduct({ ...getUpdatedProductState(element, newProduct) });
     }
-    const handleSidebarOpen = () => {}
+    const handleSidebarOpen = () => { }
     const toggleSidebar = () => setSidebarOpen(!isSidebarOpen);
     const handleShowSupplier = (suppliers) => {
         toggleSidebar();
