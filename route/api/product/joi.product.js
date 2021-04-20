@@ -29,7 +29,7 @@ const stores = joi
       id: joi.string().required(),
       stock: joi.object({
         currentStock: joi.number().required(),
-        openingStock: joi.number().required(),
+        openingStock: joi.number(),
       }).required(),
     })
   )

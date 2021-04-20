@@ -36,7 +36,7 @@ const schema = new mongoose.Schema(
         id: { type: String, required: true },
         stock: {
           currentStock: { type: Number, required: true },
-          openingStock: { type: Number, required: true }
+          openingStock: { type: Number }
         }
       }
     ],

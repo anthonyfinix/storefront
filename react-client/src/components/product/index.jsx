@@ -8,9 +8,10 @@ import { StoreContext } from '../store/storeProvider';
 import AddNewProductDialogInput from './AddNewProductDialogInput';
 import createProduct from './api/createProduct';
 import getUpdatedProductState from './getUpdatedProductState';
-const Product = () => {
+import sanitizeProduct from './sanitizeProduct';
+const Product = (props) => {
     const { stores } = React.useContext(StoreContext);
-    const { product: { products, productNextPage } } = React.useContext(ContentContext);
+    const { product: { products, productNextPage, productRefresh } } = React.useContext(ContentContext);
     const [showDialog, setShowDialog] = React.useState(false);
     const [isSidebarOpen, setSidebarOpen] = React.useState(false);
     let [newProduct, setNewProduct] = React.useState({
@@ -32,16 +33,7 @@ const Product = () => {
         productCategory: { name: '' },
         stores: []
     });
-    React.useEffect(() => {
-        let newProductCurrentValue = newProduct;
-        console.log(newProductCurrentValue.stores);
-        newProductCurrentValue.stores = [...stores.map(store => ({
-            name: store.name,
-            id: store._id,
-            stock: { currentStock: 0 }
-        }))]
-        setNewProduct({ ...newProductCurrentValue });
-    }, [])
+    React.useEffect(() => { }, [])
     const addSupplier = (supplier) => {
         let product = newProduct;
         product.productSupplier.push(supplier)
@@ -53,17 +45,13 @@ const Product = () => {
         setNewProduct(product);
     }
     const handleAddNewProduct = () => {
-        let postData = {}
-        postData.name = newProduct.productName;
-        postData.sku = newProduct.sku;
-        postData.category = newProduct.productCategory._id;
-        postData.dimension = newProduct.dimension
-        postData.supplier = newProduct.productSupplier.map(supplier => ({ id: supplier._id }))
-        // postData.stores = newProduct.stores.map(store=>{
-        //     return {
-
-        //     }
-        // })
+        console.log(sanitizeProduct(newProduct));
+        createProduct(sanitizeProduct(newProduct))
+            .then(result => {
+                console.log(result);
+                let { error } = result;
+                if (!error) productRefresh();
+            })
     }
     const handleNewProductStoreValueChange = (e) => {
         let id = e.currentTarget.dataset.id;
@@ -77,9 +65,8 @@ const Product = () => {
         setNewProduct({ ...currentProduct });
     }
     const handleNewProductInputChange = (e) => {
-        let element =  e.currentTarget;
-        console.log(getUpdatedProductState(element,newProduct));
-        // setNewProduct({ ...getUpdatedProductState(element, newProduct) });
+        let element = e.currentTarget;
+        setNewProduct({ ...getUpdatedProductState(element, newProduct) });
     }
     const handleSidebarOpen = () => { }
     const toggleSidebar = () => setSidebarOpen(!isSidebarOpen);
@@ -93,11 +80,21 @@ const Product = () => {
     }
     const closeDialog = () => setShowDialog(false);
     const toggleDialog = () => setShowDialog(!showDialog);
+    const handleAddProductBtnClick = () => {
+        let newProductCurrentValue = newProduct;
+        newProductCurrentValue.stores = [...stores.map(store => ({
+            name: store.name,
+            id: store._id,
+            stock: { currentStock: 0 }
+        }))]
+        setNewProduct({ ...newProductCurrentValue });
+        toggleDialog();
+    }
     return (
         <article className="entity-wrapper" id="product-wrapper">
             <div className="entity-header" id="product-header">
                 <h3>Product</h3>
-                <button onClick={toggleDialog}>Add</button>
+                <button onClick={handleAddProductBtnClick}>Add</button>
             </div>
             <div className="entity-content" id="product-content">
                 <div id="table-wrapper" onScroll={handleListScroll}>
@@ -114,6 +111,7 @@ const Product = () => {
                         addSupplier={addSupplier}
                         handleNewProductInputChange={handleNewProductInputChange}
                         newProduct={newProduct}
+                        addNewProduct={handleAddNewProduct}
                         handleAddNewProduct={handleAddNewProduct}
                         setProductCategory={setProductCategory}
                         handleNewProductStoreValueChange={handleNewProductStoreValueChange}

@@ -1,6 +1,5 @@
 const getUpdatedProductState = (element, currentState) => {
     let latestState = currentState;
-    console.log(element.getAttribute("name"));
     switch (element.getAttribute("name")) {
         case "name":
             latestState.productName = element.value;
@@ -15,13 +14,13 @@ const getUpdatedProductState = (element, currentState) => {
             latestState.productBrand = element.value;
             break;
         case "sale_price":
-            latestState.sale_price = element.value;
+            latestState.productSalePrice = element.value;
             break;
         case "current_price":
-            latestState.current_price = element.value;
+            latestState.productCurrentPrice = element.value;
             break;
         case "buying_price":
-            latestState.buying_price = element.value;
+            latestState.productBuyingPrice = element.value;
             break;
         case "width":
             latestState.dimension.width = element.value;

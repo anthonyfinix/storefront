@@ -124,24 +124,23 @@ const AddNewProductDialogInput = ({
                 </Dropdown>
                 <div className="input-wrapper">
                     <label>Width</label>
-                    <input type="text" onChange={handleNewProductInputChange} value={newProduct.dimension.width} name="productBuyingPrice" />
+                    <input type="text" onChange={handleNewProductInputChange} value={newProduct.dimension.width} name="width" />
                 </div>
                 <div className="input-wrapper">
                     <label>Height</label>
-                    <input type="text" onChange={handleNewProductInputChange} value={newProduct.dimension.height} name="productBuyingPrice" />
+                    <input type="text" onChange={handleNewProductInputChange} value={newProduct.dimension.height} name="height" />
                 </div>
                 <div className="input-wrapper">
                     <label>Length</label>
-                    <input type="text" onChange={handleNewProductInputChange} value={newProduct.dimension.length} name="productBuyingPrice" />
+                    <input type="text" onChange={handleNewProductInputChange} value={newProduct.dimension.length} name="length" />
                 </div>
                 <div className="input-wrapper">
                     <label>Weight</label>
-                    <input type="text" onChange={handleNewProductInputChange} value={newProduct.dimension.weight} name="productBuyingPrice" />
+                    <input type="text" onChange={handleNewProductInputChange} value={newProduct.dimension.weight} name="weight" />
                 </div>
             </div>
             <div>
                 {newProduct.stores.map((store, i) => {
-                    console.log(store);
                     return (
                         <div key={store.id} className="input-wrapper">
                             <label>{store.name}</label>
