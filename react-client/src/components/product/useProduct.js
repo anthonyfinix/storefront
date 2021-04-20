@@ -6,7 +6,7 @@ const useProduct = () => {
   const [pageNo, setPageNo] = React.useState(1);
   const addPage = () => setPageNo(pageNo + 1);
   const refresh = ()=>{
-    get().then(results => setProducts(products => [...products]));
+    get().then(results => setProducts(results => [...results]));
   }
   const get = async () => {
     let response = await getProduct({ page: pageNo });

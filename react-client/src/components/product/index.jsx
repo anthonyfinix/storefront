@@ -45,11 +45,10 @@ const Product = (props) => {
         setNewProduct(product);
     }
     const handleAddNewProduct = () => {
-        console.log(sanitizeProduct(newProduct));
         createProduct(sanitizeProduct(newProduct))
-            .then(result => {
-                console.log(result);
-                let { error } = result;
+            .then(response => {
+                console.log(response);
+                let { error, result } = response;
                 if (!error) productRefresh();
             })
     }

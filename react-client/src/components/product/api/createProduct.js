@@ -30,7 +30,7 @@ export default async ({
     .then((response) => {
       let { error, result } = response.data;
       if (error) return error;
-      return result;
+      return { result };
     })
     .catch((e) => {
       return { error: e.message };

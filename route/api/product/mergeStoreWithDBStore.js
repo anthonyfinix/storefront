@@ -1,15 +1,15 @@
-module.exports = (dbStores, requestStores) => {
+module.exports = (dbStores, stores) => {
   let mergedStore = [];
-  requestStores.forEach((element, i) => {
-    if (requestStores[i]["id"] == dbStores[i]["_id"]) {
-      mergedStore.push({
-        id: requestStores[i]["id"],
-        name: dbStores[i]["name"],
-        stock: {
-          ...requestStores[i]["stock"]
-        }
-      });
+  for (let i = 0; i < stores.length; i++) {
+    for (let j = 0; j < dbStores.length; j++) {
+      if (dbStores[i]["_id"] == stores[j]["id"]) {
+        mergedStore.push({
+          id: dbStores[j]["id"],
+          name: dbStores[j]["name"],
+          stock: { ...stores[j]["stock"] },
+        });
+      }
     }
-  });
+  }
   return mergedStore;
 };

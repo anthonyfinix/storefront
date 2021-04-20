@@ -1,14 +1,15 @@
-module.exports = (dbSuppliers, requestSuppliers) => {
-  let mergedStore = [];
+module.exports = (dbSuppliers, suppliers) => {
 
-  dbSuppliers.forEach((element, i) => {
-    if (element._id === requestSuppliers[i].id) {
-      mergedStore.push({
-        id: element._id,
-        company_name: element.company_name,
-      });
+  let mergedStore = [];
+  for (let i = 0; i < suppliers.length; i++) {
+    for (let j = 0; j < dbSuppliers.length; j++) {
+      if (dbSuppliers[i]["_id"] == suppliers[j]["id"]) {
+        mergedStore.push({
+          id: suppliers[j]["id"],
+          company_name: dbSuppliers[j]["name"],
+        });
+      }
     }
-  });
+  }
   return mergedStore;
-  
 };
