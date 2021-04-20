@@ -11,7 +11,7 @@ import getUpdatedProductState from './getUpdatedProductState';
 import sanitizeProduct from './sanitizeProduct';
 const Product = (props) => {
     const { stores } = React.useContext(StoreContext);
-    const { product: { products, productNextPage, productRefresh } } = React.useContext(ContentContext);
+    const { product: { products, productNextPage, productRefresh, deleteProduct } } = React.useContext(ContentContext);
     const [showDialog, setShowDialog] = React.useState(false);
     const [isSidebarOpen, setSidebarOpen] = React.useState(false);
     let [newProduct, setNewProduct] = React.useState({
@@ -89,6 +89,7 @@ const Product = (props) => {
         setNewProduct({ ...newProductCurrentValue });
         toggleDialog();
     }
+    const handleDeleteProductClick = (e, id) => deleteProduct(id);
     return (
         <article className="entity-wrapper" id="product-wrapper">
             <div className="entity-header" id="product-header">
@@ -97,7 +98,7 @@ const Product = (props) => {
             </div>
             <div className="entity-content" id="product-content">
                 <div id="table-wrapper" onScroll={handleListScroll}>
-                    <Table data={products} toggleSidebar={handleShowSupplier} />
+                    <Table data={products} deleteProduct={handleDeleteProductClick} toggleSidebar={handleShowSupplier} />
                 </div>
                 <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} items={products} />
                 <Dialog
