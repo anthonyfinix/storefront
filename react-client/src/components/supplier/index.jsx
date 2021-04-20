@@ -36,7 +36,7 @@ const Supplier = () => {
     const handleAddNewSupplier = () => {
         createSupplier(newSupplier)
             .then(response => {
-                let { error } = response;
+                let { error, result } = response;
                 if (!error) {
                     supplier.refreshSupplier().then(() => hideAddNewDialogState());
                 }

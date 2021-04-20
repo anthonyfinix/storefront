@@ -6,9 +6,10 @@ const Table = ({ data }) => {
         <table className="data-table">
             <thead>
                 <tr>
+                    <th style={{ flexBasis: "10%" }}>Company Name</th>
                     <th style={{ flexBasis: "10%" }}>Name</th>
-                    <th style={{ flexBasis: "30%" }}>Primary Number</th>
-                    <th style={{ flexBasis: "30%" }}>Email</th>
+                    <th style={{ flexBasis: "10%" }}>Primary Number</th>
+                    <th style={{ flexBasis: "10%" }}>Email</th>
                 </tr>
             </thead>
             <tbody>
