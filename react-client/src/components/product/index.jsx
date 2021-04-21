@@ -102,6 +102,9 @@ const Product = (props) => {
         setNewProduct({ ...newProductCurrentValue });
         toggleDialog();
     }
+    const removeProductSupplier = (e,id)=>{
+        console.log(id)
+    }
     const handleDeleteProductClick = (e, id) => deleteProduct(id);
     return (
         <article className="entity-wrapper" id="product-wrapper">
@@ -124,6 +127,7 @@ const Product = (props) => {
                         handleAddNewProduct={handleAddNewProduct}
                         setProductCategory={setProductCategory}
                         handleNewProductStoreValueChange={handleNewProductStoreValueChange}
+                        removeSupplier={removeProductSupplier}
                     />
                 </Dialog>
             </div>

@@ -4,6 +4,7 @@ import '../../util/dialog/dialog.css';
 import Dropdown from '../../util/dropdown';
 import getSupplier from '../../supplier/api/getSupplier';
 import getProductCategory from '../../productCategory/api/getProductCategory';
+import Pill from '../../util/pill';
 
 const AddNewProductDialogInput = ({
     handleNewProductInputChange,
@@ -12,7 +13,8 @@ const AddNewProductDialogInput = ({
     setProductCategory,
     toggleDialog,
     addNewProduct,
-    handleNewProductStoreValueChange
+    handleNewProductStoreValueChange,
+    removeSupplier
 }) => {
     const supplierSearchQueryRef = React.useRef();
     const [suppliers, setSupplier] = React.useState([]);
@@ -90,7 +92,8 @@ const AddNewProductDialogInput = ({
                         name="supplier"
                     />
                     {newProduct.productSupplier.map(supplier => {
-                        return <p>{supplier.company_name}</p>
+                        console.log(supplier)
+                        return <Pill title={supplier.company_name} key={supplier._id} closeHandle={removeSupplier}/>
                     })}
                 </div>
                 <Dropdown
