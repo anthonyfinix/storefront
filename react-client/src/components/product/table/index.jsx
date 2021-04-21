@@ -1,7 +1,7 @@
 import React from 'react';
 import Rows from './Rows';
 import './table.css';
-const Table = ({ data, toggleSidebar,deleteProduct }) => {
+const Table = ({ data, toggleSidebar, deleteProduct, editProduct }) => {
     const dataTable = React.useRef(null);
     const toggleDropdown = (e, id) => {
         let row = dataTable.current.querySelector(`.row[data-row="${id}"]+div`);
@@ -21,7 +21,7 @@ const Table = ({ data, toggleSidebar,deleteProduct }) => {
                 </tr>
             </thead>
             <tbody>
-                <Rows rows={data} deleteProduct={deleteProduct} toggleSidebar={toggleSidebar} toggleDropdown={toggleDropdown} />
+                <Rows rows={data} deleteProduct={deleteProduct} editProduct={editProduct} toggleSidebar={toggleSidebar} toggleDropdown={toggleDropdown} />
             </tbody>
         </table>
     )

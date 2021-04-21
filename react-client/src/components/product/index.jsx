@@ -9,12 +9,10 @@ import AddNewProductDialogInput from './AddNewProductDialogInput';
 import createProduct from './api/createProduct';
 import getUpdatedProductState from './getUpdatedProductState';
 import sanitizeProduct from './sanitizeProduct';
+import getNewEmptyProduct from './getNewEmptyProduct';
 const Product = (props) => {
-    const { stores } = React.useContext(StoreContext);
-    const { product: { products, productNextPage, productRefresh, deleteProduct } } = React.useContext(ContentContext);
-    const [showDialog, setShowDialog] = React.useState(false);
-    const [isSidebarOpen, setSidebarOpen] = React.useState(false);
     let [newProduct, setNewProduct] = React.useState({
+        productId: "",
         productName: "",
         productSKU: "",
         productManufacturer: "",
@@ -33,6 +31,10 @@ const Product = (props) => {
         productCategory: { name: '' },
         stores: []
     });
+    const { stores } = React.useContext(StoreContext);
+    const { product: { products, productNextPage, productRefresh, deleteProduct } } = React.useContext(ContentContext);
+    const [showDialog, setShowDialog] = React.useState(false);
+    const [isSidebarOpen, setSidebarOpen] = React.useState(false);
     React.useEffect(() => { }, [])
     const addSupplier = (supplier) => {
         let product = newProduct;
@@ -78,7 +80,18 @@ const Product = (props) => {
         if (scrollHeight - scrollTop === clientHeight) productNextPage();
     }
     const closeDialog = () => setShowDialog(false);
-    const toggleDialog = () => setShowDialog(!showDialog);
+    const toggleDialog = () => {
+        setShowDialog(!showDialog);
+        setNewProduct({ ...getNewEmptyProduct() });
+    }
+    const handleEditProductClick = (e, id) => {
+        let selectedProduct;
+        for (let product of products) {
+            if (product._id === id) {
+                console.log(product)
+            }
+        }
+    }
     const handleAddProductBtnClick = () => {
         let newProductCurrentValue = newProduct;
         newProductCurrentValue.stores = [...stores.map(store => ({
@@ -98,14 +111,10 @@ const Product = (props) => {
             </div>
             <div className="entity-content" id="product-content">
                 <div id="table-wrapper" onScroll={handleListScroll}>
-                    <Table data={products} deleteProduct={handleDeleteProductClick} toggleSidebar={handleShowSupplier} />
+                    <Table data={products} deleteProduct={handleDeleteProductClick} editProduct={handleEditProductClick} toggleSidebar={handleShowSupplier} />
                 </div>
                 <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} items={products} />
-                <Dialog
-                    close={closeDialog}
-                    toggleDialog={toggleDialog}
-                    show={showDialog}
-                >
+                <Dialog close={closeDialog} toggleDialog={toggleDialog} show={showDialog}>
                     <AddNewProductDialogInput
                         toggleDialog={toggleDialog}
                         addSupplier={addSupplier}

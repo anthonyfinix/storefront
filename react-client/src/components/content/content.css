@@ -47,6 +47,12 @@
   min-height: 130px;
   padding: 10px;
 }
+.data-table .row:hover .expand-btn{
+  display: flex;
+}
+.data-table .row .expand-btn{
+  display: none;
+}
 .data-table .row-dropdown.hide {
   display: none;
 }
