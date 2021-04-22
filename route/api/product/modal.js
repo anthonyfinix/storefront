@@ -16,6 +16,7 @@ const schema = new mongoose.Schema(
       },
       id: {
         type: mongoose.Schema.Types.ObjectId,
+        ref:"ProductCategory",
         required: true
       }
     },
@@ -33,7 +34,7 @@ const schema = new mongoose.Schema(
     stores: [
       {
         name: { type: String, required: true },
-        id: { type: String, required: true },
+        id: { type: mongoose.Schema.Types.ObjectId,ref:"Store", required: true },
         stock: {
           currentStock: { type: Number, required: true },
           openingStock: { type: Number }

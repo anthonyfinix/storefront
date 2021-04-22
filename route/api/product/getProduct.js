@@ -48,11 +48,14 @@ module.exports = async ({
   // }
 
   try {
-    let products = await Product
-    .find(params)
-    .sort('-created_at')
-    .limit(limit)
-    .skip(skip);
+    let products = await Product.find(params)
+      .sort("-created_at")
+      .limit(limit)
+      .populate("stores.id")
+      .populate("category.id")
+      .populate("created_by")
+      .skip(skip)
+      .exec();
     let count = products.length;
     let message = "success";
     if (count < 0) message = "no products";
