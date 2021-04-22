@@ -39,7 +39,7 @@ const Product = (props) => {
     const addSupplier = (supplier) => {
         let product = newProduct;
         product.productSupplier.push(supplier)
-        setNewProduct(product);
+        setNewProduct({ ...product });
     }
     const setProductCategory = (productCategory) => {
         let product = newProduct;
@@ -102,8 +102,10 @@ const Product = (props) => {
         setNewProduct({ ...newProductCurrentValue });
         toggleDialog();
     }
-    const removeProductSupplier = (e,id)=>{
-        console.log(id)
+    const removeProductSupplier = (e, id) => {
+        let product = newProduct;
+        product.productSupplier = product.productSupplier.filter(supplier => supplier._id === id ? false : true);
+        setNewProduct({ ...product });
     }
     const handleDeleteProductClick = (e, id) => deleteProduct(id);
     return (

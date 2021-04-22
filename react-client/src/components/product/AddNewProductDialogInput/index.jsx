@@ -93,7 +93,7 @@ const AddNewProductDialogInput = ({
                     />
                     {newProduct.productSupplier.map(supplier => {
                         console.log(supplier)
-                        return <Pill title={supplier.company_name} key={supplier._id} closeHandle={removeSupplier}/>
+                        return <Pill title={supplier.company_name} key={supplier._id} id={supplier._id} closeHandle={removeSupplier}/>
                     })}
                 </div>
                 <Dropdown
