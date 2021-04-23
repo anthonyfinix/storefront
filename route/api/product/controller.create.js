@@ -83,7 +83,7 @@ module.exports = async (req, res) => {
     return res.json({ error: "there was an error fetching store details" });
   if (dbStores.result && dbStores.result < 0)
     return res.json({ error: "no stores found" });
-    stores = mergeStoreWithDBStore(dbStores.result, stores);
+  stores = mergeStoreWithDBStore(dbStores.result, stores);
   // handle supplier details
   let dbSuppliers = await getManySupplier(
     suppliers.map((supplier) => ({ _id: supplier.id }))

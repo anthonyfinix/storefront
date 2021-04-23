@@ -1,5 +1,5 @@
 const Product = require("./modal");
-const { product_productName, product_id } = require("./joi.product");
+const { joi_product_name, joi_product_id } = require("./joi.product");
 module.exports = async ({
   limit,
   skip,
@@ -23,14 +23,14 @@ module.exports = async ({
   let params = {};
   // validate id
   if (id) {
-    let id_valid = product_id.validate(id);
+    let id_valid = joi_product_id.validate(id);
     if (id_valid.error) return { error: id_valid.error.details };
     params._id = id;
   }
   if (query) params.name = { $regex: new RegExp(`\\w*${query}\\w*`, "g") };
   // validate name
   if (name) {
-    let name_valid = product_productName.validate(name);
+    let name_valid = joi_product_name.validate(name);
     if (name_valid.error) return { error: name_valid.error.details };
     params.name = name;
   }
