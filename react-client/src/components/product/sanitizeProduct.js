@@ -1,5 +1,6 @@
 module.exports = (newProduct) => {
   let product = {};
+  if (newProduct.productId) product.id = newProduct.productId;
   product.name = newProduct.productName;
   product.sku = newProduct.productSKU;
   product.category = new Object({ id: newProduct.productCategory._id });
@@ -9,7 +10,7 @@ module.exports = (newProduct) => {
   }));
   product.stores = newProduct.stores.map((store) => ({
     id: store.id,
-    stock:store.stock,
+    stock: store.stock,
   }));
   product.manufacturer = newProduct.productManufacturer;
   product.brand = newProduct.productBrand;

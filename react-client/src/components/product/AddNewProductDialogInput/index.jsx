@@ -12,7 +12,7 @@ const AddNewProductDialogInput = ({
     addSupplier,
     setProductCategory,
     toggleDialog,
-    addNewProduct,
+    handleDialogSubmit,
     handleNewProductStoreValueChange,
     removeSupplier
 }) => {
@@ -93,7 +93,7 @@ const AddNewProductDialogInput = ({
                     />
                     {newProduct.productSupplier.map(supplier => {
                         console.log(supplier)
-                        return <Pill title={supplier.company_name} key={supplier._id} id={supplier._id} closeHandle={removeSupplier}/>
+                        return <Pill title={supplier.company_name} key={supplier._id} id={supplier._id} closeHandle={removeSupplier} />
                     })}
                 </div>
                 <Dropdown
@@ -161,7 +161,7 @@ const AddNewProductDialogInput = ({
         </div>
         <div>
             <button>close</button>
-            <button onClick={addNewProduct}>Add New Product</button>
+            <button onClick={handleDialogSubmit}>{newProduct.productId ? "Update Product" : "Add New Product"}</button>
         </div>
     </>
     )

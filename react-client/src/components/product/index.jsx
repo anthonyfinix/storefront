@@ -7,6 +7,7 @@ import { ContentContext } from '../contentProvider';
 import { StoreContext } from '../store/storeProvider';
 import AddNewProductDialogInput from './AddNewProductDialogInput';
 import createProduct from './api/createProduct';
+import updateProduct from './api/updateProduct';
 import getUpdatedProductState from './getUpdatedProductState';
 import sanitizeProduct from './sanitizeProduct';
 import getNewEmptyProduct from './getNewEmptyProduct';
@@ -45,13 +46,22 @@ const Product = (props) => {
         product.productCategory = productCategory;
         setNewProduct(product);
     }
-    const handleAddNewProduct = () => {
-        createProduct(sanitizeProduct(newProduct))
-            .then(response => {
-                console.log(response);
-                let { error, result } = response;
-                if (!error) productRefresh();
-            })
+    const handleProductUpdateCreateClick = () => {
+        if (newProduct.productId) {
+            createProduct(sanitizeProduct(newProduct))
+                .then(response => {
+                    console.log(response);
+                    let { error, result } = response;
+                    if (!error) productRefresh();
+                })
+        } else {
+            updateProduct(sanitizeProduct(newProduct))
+                .then(response => {
+                    console.log(response);
+                    let { error, result } = response;
+                    if (!error) productRefresh();
+                })
+        }
     }
     const handleNewProductStoreValueChange = (e) => {
         let id = e.currentTarget.dataset.id;
@@ -78,14 +88,18 @@ const Product = (props) => {
         const { scrollTop, clientHeight, scrollHeight } = e.currentTarget;
         if (scrollHeight - scrollTop === clientHeight) productNextPage();
     }
-    const closeDialog = () => setShowDialog(false);
+    const closeDialog = () => {
+        setShowDialog(false)
+    };
     const toggleDialog = () => {
+        if (showDialog) setNewProduct({ ...getNewEmptyProduct() })
         setShowDialog(!showDialog);
     }
     const handleEditProductClick = (id) => {
         for (let product of products) {
             if (product._id === id) {
                 let stores = product.stores.map((store => ({ name: store.name, id: store.id._id, stock: store.stock })))
+                let suppliers = product.suppliers.map((supplier => ({ company_name: supplier.id.company_name, id: supplier.id._id })))
                 console.log(product.suppliers)
                 setNewProduct(() => {
                     return {
@@ -103,7 +117,7 @@ const Product = (props) => {
                         productSalePrice: product.sale_price,
                         productCurrentPrice: product.current_price,
                         productBuyingPrice: product.buying_price,
-                        productSupplier: product.suppliers,
+                        productSupplier: suppliers,
                         productCategory: product.category,
                         stores: stores,
                     }
@@ -147,8 +161,8 @@ const Product = (props) => {
                         addSupplier={addSupplier}
                         handleNewProductInputChange={handleNewProductInputChange}
                         newProduct={newProduct}
-                        addNewProduct={handleAddNewProduct}
-                        handleAddNewProduct={handleAddNewProduct}
+                        handleDialogSubmit={handleProductUpdateCreateClick}
+                        handleAddNewProduct={handleProductUpdateCreateClick}
                         setProductCategory={setProductCategory}
                         handleNewProductStoreValueChange={handleNewProductStoreValueChange}
                         removeSupplier={removeProductSupplier}
