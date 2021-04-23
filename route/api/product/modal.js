@@ -6,25 +6,25 @@ const schema = new mongoose.Schema(
     media: [
       {
         name: { type: String, required: true },
-        src: { type: String, required: true }
-      }
+        src: { type: String, required: true },
+      },
     ],
     category: {
       name: {
         type: String,
-        required: true
+        required: true,
       },
       id: {
         type: mongoose.Schema.Types.ObjectId,
-        ref:"ProductCategory",
-        required: true
-      }
+        ref: "ProductCategory",
+        required: true,
+      },
     },
     dimension: {
       height: { type: Number, required: true },
       width: { type: Number, required: true },
       length: { type: Number, required: true },
-      weight: { type: Number, required: true }
+      weight: { type: Number, required: true },
     },
     manufacturer: { type: String, required: true },
     brand: { type: String, required: true },
@@ -34,26 +34,34 @@ const schema = new mongoose.Schema(
     stores: [
       {
         name: { type: String, required: true },
-        id: { type: mongoose.Schema.Types.ObjectId,ref:"Store", required: true },
+        id: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Store",
+          required: true,
+        },
         stock: {
           currentStock: { type: Number, required: true },
-          openingStock: { type: Number }
-        }
-      }
+          openingStock: { type: Number },
+        },
+      },
     ],
     suppliers: [
       {
         company_name: { type: String, required: true },
-        id: { type: String, required: true }
-      }
+        id: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Supplier",
+          required: true,
+        },
+      },
     ],
     created_by: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
-      required: true
+      required: true,
     },
     created_at: { type: Number, required: true, default: Date.now() },
-    active: { type: Boolean, required: true, default: true }
+    active: { type: Boolean, required: true, default: true },
   },
   { versionKey: false }
 );

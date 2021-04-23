@@ -10,7 +10,6 @@ export default () => {
       weight: "",
       length: "",
     },
-    dimension: { weight: "", height: "", length: "", width: "" },
     productBrand: "",
     productSalePrice: "",
     productCurrentPrice: "",

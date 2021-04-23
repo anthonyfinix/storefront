@@ -54,6 +54,7 @@ module.exports = async ({
       .populate("stores.id")
       .populate("category.id")
       .populate("created_by")
+      .populate("suppliers.id")
       .skip(skip)
       .exec();
     let count = products.length;

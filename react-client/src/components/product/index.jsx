@@ -22,7 +22,6 @@ const Product = (props) => {
             weight: "",
             length: ""
         },
-        dimension: { weight: "", height: "", length: "", width: "" },
         productBrand: "",
         productSalePrice: "",
         productCurrentPrice: "",
@@ -82,15 +81,38 @@ const Product = (props) => {
     const closeDialog = () => setShowDialog(false);
     const toggleDialog = () => {
         setShowDialog(!showDialog);
-        setNewProduct({ ...getNewEmptyProduct() });
     }
-    const handleEditProductClick = (e, id) => {
-        let selectedProduct;
+    const handleEditProductClick = (id) => {
         for (let product of products) {
             if (product._id === id) {
-                console.log(product)
-            }
+                let stores = product.stores.map((store => ({ name: store.name, id: store.id._id, stock: store.stock })))
+                console.log(product.suppliers)
+                setNewProduct(() => {
+                    return {
+                        productId: product._id,
+                        productName: product.name,
+                        productSKU: product.sku,
+                        productManufacturer: product.manufacturer,
+                        dimension: {
+                            width: product.dimension.width,
+                            height: product.dimension.height,
+                            weight: product.dimension.weight,
+                            length: product.dimension.length
+                        },
+                        productBrand: product.brand,
+                        productSalePrice: product.sale_price,
+                        productCurrentPrice: product.current_price,
+                        productBuyingPrice: product.buying_price,
+                        productSupplier: product.suppliers,
+                        productCategory: product.category,
+                        stores: stores,
+                    }
+                })
+                toggleDialog();
+                break;
+            };
         }
+
     }
     const handleAddProductBtnClick = () => {
         let newProductCurrentValue = newProduct;

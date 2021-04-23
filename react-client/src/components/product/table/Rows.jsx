@@ -6,7 +6,7 @@ const GetProducts = ({ rows, toggleDropdown, toggleSidebar, deleteProduct,editPr
                 <td className="row-data product-data">{row.name}</td>
                 <td className="row-data product-data">{row.sku}</td>
                 <td className="row-data product-data">{row.buying_price}</td>
-                <td className="row-data product-data expand-btn" style={{flexBasis:"5%"}} onClick={(e) => editProduct(e, row._id)}>
+                <td className="row-data product-data expand-btn" style={{flexBasis:"5%"}} onClick={(e) => editProduct(row._id)}>
                     <span className="material-icons md-18">edit</span>
                 </td>
                 <td className="row-data product-data expand-btn" style={{flexBasis:"5%"}} onClick={(e) => deleteProduct(e, row._id)}>
