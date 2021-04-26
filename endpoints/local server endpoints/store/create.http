@@ -1,0 +1,23 @@
+### CREATE
+POST http://localhost:8080/api/store
+Content-Type: application/json
+
+{
+    "name":"Store 1",
+    "contact_details":{
+        "primary_number":9818031042,
+        "email":"anthonyfinix@gmail.com",
+        "address":{
+            "full":"Sector 7, Faridabad, Haryana, 121006",
+            "city":"fariabad",
+            "state":"haryana",
+            "pincode":123213
+        }
+    },
+    "active":true,
+    "roles":[
+        "6083b3f40cd5a5136c6ba2a2"
+    ],
+    "currency":"USD",
+    "gmt":"+5:30"
+}

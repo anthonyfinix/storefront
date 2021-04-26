@@ -1,0 +1,2 @@
+### DELETE
+DELETE http://localhost:8080/api/product?id=60587dd30ec982458477f753

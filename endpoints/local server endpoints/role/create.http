@@ -1,0 +1,14 @@
+### GET ALL
+POST http://localhost:8080/api/role
+Content-Type: application/json
+
+{
+    "name": "manager",
+    "product": {},
+    "store": {},
+    "user": {},
+    "customer": {},
+    "supplier": {},
+    "productCategory": {},
+    "role":{}
+}

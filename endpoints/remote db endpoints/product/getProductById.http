@@ -1,0 +1,4 @@
+
+
+### GET NAME
+GET http://localhost:8080/api/product?id=604af12d5495114eac3cffc3

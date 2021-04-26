@@ -1,0 +1,37 @@
+### ADD / EDIT
+POST http://localhost:8080/api/product
+Content-Type: application/json
+
+{
+    "id":"608657f5b78d860380bfa8c9",
+    "name":"Xiaomo Redmi Note 10 Pro",
+    "sku":"xrn10p",
+    "category":{
+        "id":"608657ebb78d860380bfa8c6"
+    },
+    "dimension":{
+        "weight":20,
+        "height":30,
+        "length":23,
+        "width":12
+    },
+    "suppliers":[
+        {
+            "id":"608657c8b78d860380bfa8c1"
+        }
+    ],
+    "stores":[
+        {
+            "id":"6083fe9b0545d62eb4141700",
+            "stock":{
+                "currentStock":3000,
+                "openingStock":4000
+            }
+        }
+    ],  
+    "manufacturer":"manufacturer",
+    "brand":"brand",
+    "sale_price":23,
+    "current_price":45,
+    "buying_price":26
+}

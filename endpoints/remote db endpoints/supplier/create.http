@@ -1,0 +1,19 @@
+POST http://localhost:8080/api/supplier
+Content-Type: application/json
+
+{
+    "company_name":"Client",
+    "name":{
+        "first_name":"Anthony Finix"
+    },
+    "contact_details":{
+        "primary_number":3432342345,
+        "email":"dilvrey@gmail.com",
+        "address":{
+            "full":"2190/7 Faridabad, Haryana",
+            "city":"Okhla",
+            "state":"Delhi",
+            "pincode":"121006"
+        }
+    }
+}

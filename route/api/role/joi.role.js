@@ -1,66 +1,39 @@
 const joi = require("joi");
-
 const name = joi.string().required();
-const product = joi.object({
-  read: joi.boolean(),
-  write: joi.boolean(),
-  update: joi.boolean(),
-  delete: joi.boolean()
-});
-const store = joi.object({
-  read: joi.boolean(),
-  write: joi.boolean(),
-  update: joi.boolean(),
-  delete: joi.boolean()
-});
-const user = joi.object({
-  read: joi.boolean(),
-  write: joi.boolean(),
-  update: joi.boolean(),
-  delete: joi.boolean()
-});
-const customer = joi.object({
-  read: joi.boolean(),
-  write: joi.boolean(),
-  update: joi.boolean(),
-  delete: joi.boolean()
-});
-const productCategory = joi.object({
-  read: joi.boolean(),
-  write: joi.boolean(),
-  update: joi.boolean(),
-  delete: joi.boolean()
-});
-const supplier = joi.object({
-  read: joi.boolean(),
-  write: joi.boolean(),
-  update: joi.boolean(),
-  delete: joi.boolean()
-});
-const role = joi.object({
-  read: joi.boolean(),
-  write: joi.boolean(),
-  update: joi.boolean(),
-  delete: joi.boolean()
-});
+const permission = joi.boolean();
+const permissions = joi.object({
+    read: joi.boolean(),
+    write: joi.boolean(),
+    update: joi.boolean(),
+    delete: joi.boolean()
+})
+const user = permissions;
+const role = permissions;
+const store = permissions;
+const customer = permissions;
+const supplier = permissions;
+const product = permissions;
+const productCategory = permissions;
 
-exports.role_name = name;
-exports.role_role = role;
-exports.role_productCategory = productCategory;
-exports.role_product = product;
-exports.role_supplier = supplier;
-exports.role_customer = customer;
-exports.role_user = user;
-exports.role_store = store;
+exports.joi_role_user = user;
+exports.joi_role_name = name;
+exports.joi_role_role = role;
+exports.joi_role_store = store;
+exports.joi_role_product = product;
+exports.joi_role_supplier = supplier;
+exports.joi_role_customer = customer;
+exports.joi_role_permission = permission;
+exports.joi_role_permissions = permissions;
+exports.joi_role_productCategory = productCategory;
 
 module.exports = joi.object({
-  name: name.required(),
-  product,
-  store,
-  user,
-  customer,
-  product,
-  productCategory,
-  supplier,
-  role
+    name: name.required(),
+    product,
+    store,
+    user,
+    customer,
+    product,
+    productCategory,
+    supplier,
+    role
 });

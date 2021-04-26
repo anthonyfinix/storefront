@@ -1,0 +1,22 @@
+### LOCAL DATABSE
+POST http://localhost:8080/login
+Content-Type: application/json
+
+{
+    "username":"anthonyfinix",
+    "password":"anthonyfinix@123"
+}
+
+### REMOTE DATABSE
+POST http://localhost:8080/login
+Content-Type: application/json
+
+{
+    "username":"anthonyfinix@gmail.com",
+    "password" :"anthonyfinix@1234"
+}
+
+
+###
+GET http://localhost:8080/logout
+Content-Type: application/json

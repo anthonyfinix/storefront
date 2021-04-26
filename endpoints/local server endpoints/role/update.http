@@ -1,0 +1,14 @@
+### UPDATE ROLE
+POST http://localhost:8080/api/role
+Content-Type: application/json
+
+{
+    "id":"6083b3f40cd5a5136c6ba2a2",
+    "name":"Manager",
+    "store": {
+      "read": false,
+      "write": false,
+      "update": false,
+      "delete": false
+    }
+}
