@@ -3,9 +3,15 @@ POST http://localhost:8080/api/role
 Content-Type: application/json
 
 {
+    "id":"608668f510bd9128401f54ee",
     "name": "manager",
     "product": {},
-    "store": {},
+    "store": {
+        "read":false,
+        "write":false,
+        "delete":false,
+        "update":false
+    },
     "user": {},
     "customer": {},
     "supplier": {},

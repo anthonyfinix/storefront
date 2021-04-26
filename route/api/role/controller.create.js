@@ -14,8 +14,6 @@ module.exports = async (req, res) => {
     supplier,
     role
   } = req.body;
-  let { count } = await getRole({ name });
-  if (count > 0) return res.json({ error: "name already exists" });
   if (id) {
     let { error, result, message } = await updateRole({
       id,
