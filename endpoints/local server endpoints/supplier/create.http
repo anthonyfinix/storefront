@@ -2,9 +2,9 @@ POST http://localhost:8080/api/supplier
 Content-Type: application/json
 
 {
-    "company_name":"Client",
+    "company_name":"MI",
     "name":{
-        "first_name":"Anthony Finix"
+        "first_name":"Quintus Panmei"
     },
     "contact_details":{
         "primary_number":3432342345,

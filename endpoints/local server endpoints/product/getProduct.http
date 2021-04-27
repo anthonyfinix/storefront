@@ -1,6 +1,7 @@
 ### GET ALL
 GET http://localhost:8080/api/product?limit=1
-### GET ALL
+
+
 GET http://localhost:8000/api/product?fields=name
 ### GET ALL
 GET http://localhost:8080/api/product?id=6040a4bf5c8da00015536b73

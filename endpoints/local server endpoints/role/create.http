@@ -4,7 +4,7 @@ Content-Type: application/json
 
 {
     "id":"608668f510bd9128401f54ee",
-    "name": "manager",
+    "name": "Manager",
     "product": {},
     "store": {
         "read":false,

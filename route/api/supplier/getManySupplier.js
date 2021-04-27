@@ -2,8 +2,8 @@ const Supplier = require("./modal");
 
 module.exports = async (suppliers = []) => {
   let ids = [];
-  suppliers.forEach(store => {
-    if (store._id) ids.push(`${store._id}`);
+  suppliers.forEach(supplier => {
+    if (supplier._id) ids.push(`${supplier._id}`);
   });
   try {
     let suppliers = await Supplier.find({

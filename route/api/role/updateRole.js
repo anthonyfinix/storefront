@@ -108,7 +108,6 @@ module.exports = async ({
       }
     }
   }
-  console.log(dbRole)
 
   if (role) {
     let joi_role_validation = joi_role_role.validate(role);
