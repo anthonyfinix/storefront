@@ -18,6 +18,9 @@ Content-Type: application/json
     "suppliers":[
         {
             "id":"6086760958eb792ba0b82d80"
+        },
+        {
+            "id":"6087d5cfae3f3a0a3016ee44"
         }
     ],
     "stores":[
