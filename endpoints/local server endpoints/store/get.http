@@ -1,5 +1,5 @@
 ### GET ALL
-GET http://localhost:8080/api/store
+GET http://localhost:8000/api/store
 ### GET ALL
 GET http://localhost:8080/api/store?id=608674b958eb792ba0b82d74
 ### GET ALL

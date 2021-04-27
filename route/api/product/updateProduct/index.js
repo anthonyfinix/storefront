@@ -1,6 +1,7 @@
-const Product = require("./modal");
-const getManyStores = require("../store/getManyStore");
-const getManySupplier = require("../supplier/getManySupplier");
+const Product = require("../modal");
+const getManyStores = require("../../store/getManyStore");
+const getManySupplier = require("../../supplier/getManySupplier");
+// const handleNameUpdate = require("./compareDbStoreWithReqStore");
 const {
   joi_product_name,
   joi_product_sku,
@@ -15,7 +16,7 @@ const {
   joi_product_height,
   joi_product_length,
   joi_product_weight,
-} = require("./joi.product");
+} = require("../joi.product");
 module.exports = async ({
   id,
   name,
@@ -118,23 +119,36 @@ module.exports = async ({
         product.dimension.weight = dimension.weight;
       }
     }
+    // store handling
     if (stores) {
+      // validate store structure and value
       let storesValidation = joi_product_stores.validate(stores);
       if (storesValidation.error)
         return { error: storesValidation.error.details };
+      // validate store id from
       let dbStores = await getManyStores(
         stores.map((store) => ({ _id: store.id }))
       );
+      if (dbStores.error) return { error: dbStores.error };
+      let updatedStores = [];
       for (let store of stores) {
         let storeIdFound = false;
-        if (storeIdFound.error) return { error };
-        for (let storeId of dbStores.result) {
-          if (store.id == storeId._id) storeIdFound = true;
+        for (let dbStore of dbStores.result) {
+          if (store.id == dbStore._id) {
+            updatedStores.push({
+              name: dbStore.name,
+              id: dbStore._id,
+              stock: store.stock,
+            });
+            storeIdFound = true;
+          }
         }
         if (!storeIdFound) return { error: `store id provided not found` };
       }
-      product.stores = stores;
+      product.stores = updatedStores;
     }
+
+    // handling supplier
     if (suppliers) {
       let suppliersValidation = joi_product_suppliers.validate(suppliers);
       if (suppliersValidation.error)
@@ -142,20 +156,27 @@ module.exports = async ({
       let dbSuppliers = await getManySupplier(
         suppliers.map((supplier) => ({ _id: supplier.id }))
       );
-      if (dbSuppliers.error) return { error };
+      if (dbSuppliers.error) return { error: dbSuppliers.error };
+      let updatedSuppliers = [];
       for (let supplier of suppliers) {
         let supplierIdFound = false;
         for (let dbSupplier of dbSuppliers.result) {
-          if (supplier.id == dbSupplier._id) supplierIdFound = true;
+          if (supplier.id == dbSupplier._id) {
+            updatedSuppliers.push({
+              company_name: dbSupplier.company_name,
+              id: dbSupplier._id,
+            });
+            supplierIdFound = true;
+          }
         }
         if (!supplierIdFound)
           return { error: `supplier id provided not found` };
       }
-      product.suppliers = suppliers;
+      product.suppliers = updatedSuppliers;
     }
     try {
-      // let updatedProduct = await product.save();
-      // return { result: updatedProduct, message };
+      let updatedProduct = await product.save();
+      return { result: updatedProduct, message };
       return { result: "test", message: "test" };
     } catch (e) {
       return { error: e.message };

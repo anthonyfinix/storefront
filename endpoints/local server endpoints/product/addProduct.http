@@ -1,34 +1,41 @@
 ### ADD / EDIT
-POST http://localhost:8080/api/product
+POST http://localhost:8000/api/product
 Content-Type: application/json
 
 {
-    "id":"608678f758eb792ba0b82d99",
-    "name":"Xiaomi Redmi Note 10 Pro",
-    "sku":"xrn10p",
+    "id":"607f2395f680fc3b70aaa748",
+    "name":"MI Xiaomi Redmi Note 10 Pro",
+    "sku":"xrn10ph",
     "category":{
         "id":"608674e958eb792ba0b82d7d"
     },
     "dimension":{
-        "weight":20,
-        "height":30,
-        "length":23,
-        "width":12
+        "weight":200,
+        "height":300,
+        "length":230,
+        "width":120
     },
     "suppliers":[
         {
-            "id":"6086760958eb792ba0b82d80"
+            "id":"607f27ad9d42e24ac47c031b"
         },
         {
-            "id":"6087d5cfae3f3a0a3016ee44"
+            "id":"607f25009d42e24ac47c02e6"
         }
     ],
     "stores":[
         {
-            "id":"608674b958eb792ba0b82d74",
+            "id":"60645bfbb07fb70015e14e4f",
             "stock":{
-                "currentStock":3000,
-                "openingStock":4000
+                "currentStock":300,
+                "openingStock":400
+            }
+        },
+        {
+            "id":"60645becb07fb70015e14e4b",
+            "stock":{
+                "currentStock":300,
+                "openingStock":400
             }
         }
     ],  

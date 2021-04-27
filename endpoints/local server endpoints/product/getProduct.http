@@ -1,5 +1,5 @@
 ### GET ALL
-GET http://localhost:8080/api/product?limit=1
+GET http://localhost:8000/api/product?limit=1
 ###
 GET http://localhost:8000/api/product?fields=name
 ### GET ALL
