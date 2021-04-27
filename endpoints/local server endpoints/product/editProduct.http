@@ -1,8 +1,24 @@
 ### ADD / EDIT
-POST http://localhost:8080/api/product/604af12d5495114eac3cffc3
+POST http://localhost:8080/api/product
 Content-Type: application/json
 
 {
-    "id":"606132bce0483015d0eceb1e",
-    "name":"Red Chief Shoes"
+    "id":"608657f5b78d860380bfa8c9",
+    "name":"MI Xiaomi Redmi Note 10 Pro",
+    "sku":"MXRN10Pro",
+    "brand":"XIAOMI",
+    "manufacturer":"MI",
+    "sale_price":11000,
+    "buying_price":11000,
+    "current_price":11000,
+    "dimension":{
+        "length":30,
+        "height":30,
+        "width":30,
+        "weight":30
+    },
+    "stores":[
+        
+    ],
+    "suppliers":[]
 }
