@@ -1,7 +1,7 @@
 const Product = require("../modal");
 const getManyStores = require("../../store/getManyStore");
 const getManySupplier = require("../../supplier/getManySupplier");
-// const handleNameUpdate = require("./compareDbStoreWithReqStore");
+const getProduct = require('../getProduct');
 const {
   joi_product_name,
   joi_product_sku,
@@ -39,6 +39,7 @@ module.exports = async ({
     if (name) {
       let nameValidation = joi_product_name.validate(name);
       if (nameValidation.error) return { error: nameValidation.error.details };
+      
       message + "name ";
       product.name = name;
     }

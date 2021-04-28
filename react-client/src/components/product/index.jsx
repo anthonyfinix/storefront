@@ -100,7 +100,6 @@ const Product = (props) => {
             if (product._id === id) {
                 let stores = product.stores.map((store => ({ name: store.name, id: store.id._id, stock: store.stock })))
                 let suppliers = product.suppliers.map((supplier => ({ company_name: supplier.id.company_name, id: supplier.id._id })))
-                console.log(product.suppliers)
                 setNewProduct(() => {
                     return {
                         productId: product._id,

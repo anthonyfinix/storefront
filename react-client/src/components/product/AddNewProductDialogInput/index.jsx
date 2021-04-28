@@ -92,7 +92,6 @@ const AddNewProductDialogInput = ({
                         name="supplier"
                     />
                     {newProduct.productSupplier.map(supplier => {
-                        console.log(supplier)
                         return <Pill title={supplier.company_name} key={supplier._id} id={supplier._id} closeHandle={removeSupplier} />
                     })}
                 </div>
@@ -144,6 +143,7 @@ const AddNewProductDialogInput = ({
             </div>
             <div>
                 {newProduct.stores.map((store, i) => {
+                    console.log(store);
                     return (
                         <div key={store.id} className="input-wrapper">
                             <label>{store.name}</label>
