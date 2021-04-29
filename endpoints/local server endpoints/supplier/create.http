@@ -1,19 +1,21 @@
-POST http://localhost:8080/api/supplier
+POST http://localhost:8000/api/supplier
 Content-Type: application/json
 
 {
-    "company_name":"Samsung",
+    "id":"607f27ad9d42e24ac47c031b",
+    "company_name":"DTDC",
     "name":{
-        "first_name":"Quintus Pani"
+        "first_name":"Ramesh",
+        "last_name":"Nayar"
     },
-    "contact_details":{
-        "primary_number":3432342345,
-        "email":"dilvrey@gmail.com",
-        "address":{
-            "full":"2190/7 Faridabad, Haryana",
-            "city":"Okhla",
-            "state":"Delhi",
-            "pincode":"121006"
-        }
+    "contact_details": {
+      "address": {
+        "full": "Shop No-132, near Singh Sabha Gurudwara, Sector 15, Faridabad, Haryana",
+        "city": "Faridabad",
+        "state": "14863",
+        "pincode":123123
+      },
+      "primary_number": 9818031042,
+      "email": "support@amanturbanhouse.com"
     }
 }

@@ -8,9 +8,17 @@ module.exports = async ({
   currency,
   active,
   created_at,
-  created_by
+  created_by,
 }) => {
   try {
+    let { error } = joi_supplier.validate({
+      company_name,
+      name,
+      contact_details,
+      active,
+      total_purchase,
+    });
+    if (error) return { error: error };
     let response = await Supplier({
       company_name,
       name,
@@ -20,10 +28,10 @@ module.exports = async ({
       currency,
       active,
       created_at,
-      created_by
+      created_by,
     }).save();
     return { message: "success", result: response };
   } catch (e) {
-    return e;
+    return { error: e };
   }
 };
