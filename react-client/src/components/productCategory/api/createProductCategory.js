@@ -3,7 +3,6 @@ import axios from "../../../axios";
 export default ({ name }) => {
   return axios.post("api/productCategory", { name })
     .then(response => {
-        console.log(response)
       let { error, result } = response.data;
       if (error) return error;
       return result;

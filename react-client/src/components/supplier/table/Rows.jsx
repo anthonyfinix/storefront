@@ -2,7 +2,6 @@ const GetProducts = ({ rows }) => {
     return rows.map(row => {
         return (
             <tr key={row._id}>
-                {console.log(row)}
                 <td style={{ flexBasis: "10%" }}>{row.company_name}</td>
                 <td style={{ flexBasis: "10%" }}>{row.name.first_name + ' ' + (row.name.middle_name ? row.name.middle_name : '') + '' + (row.name.list_name ? row.name.list_name : '')}</td>
                 <td style={{ flexBasis: "10%" }}>{row.contact_details.primary_number}</td>

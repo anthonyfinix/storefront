@@ -17,7 +17,6 @@ const Login = (props) => {
         getUser(username, password)
             .then(response => {
                 let { error, message, user } = response;
-                console.log(response);
                 if (error) return window.alert(error);
                 if (user && message === 'success') {
                     setUser(user)

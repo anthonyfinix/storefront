@@ -7,7 +7,6 @@ const StoreProvider = (props) => {
     const [stores, setStores] = React.useState([]);
     const [isLoading, setIsLoading] = React.useState(true);
     React.useEffect(() => {
-        console.log('Store Context UseEffect')
         getUserStore()
             .then(response => {
                 setIsLoading(false);

@@ -17,7 +17,6 @@ const useProduct = () => {
   };
   const refresh = () => {
     get().then((response) => {
-      console.log(response);
       let { result } = response;
       if (result) setProducts([...result]);
     });

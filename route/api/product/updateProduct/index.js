@@ -1,6 +1,7 @@
 const Product = require("../modal");
 const getManyStores = require("../../store/getManyStore");
 const getManySupplier = require("../../supplier/getManySupplier");
+const getProductCategory = require("../../productCategory/getProductCategory");
 const {
   joi_product_name,
   joi_product_sku,
@@ -15,6 +16,7 @@ const {
   joi_product_height,
   joi_product_length,
   joi_product_weight,
+  joi_product_category,
 } = require("../joi.product");
 module.exports = async ({
   id,
@@ -118,13 +120,25 @@ module.exports = async ({
         product.dimension.weight = dimension.weight;
       }
     }
-    // store handling
+    if (category) {
+      let categoryValidation = joi_product_category.validate(category);
+      if (categoryValidation.error)
+        return { error: categoryValidation.error.details };
+      let productCategoryResult = await getProductCategory({
+        id: category.id,
+      });
+      if (productCategoryResult.error) return { error };
+      if (productCategoryResult.count < 0)
+        return { error: "product category not found" };
+      product.category = {
+        id: productCategoryResult.result[0]._id,
+        name: productCategoryResult.result[0].name,
+      };
+    }
     if (stores) {
-      // validate store structure and value
       let storesValidation = joi_product_stores.validate(stores);
       if (storesValidation.error)
         return { error: storesValidation.error.details };
-      // validate store id from
       let dbStores = await getManyStores(
         stores.map((store) => ({ _id: store.id }))
       );
@@ -146,8 +160,6 @@ module.exports = async ({
       }
       product.stores = updatedStores;
     }
-
-    // handling supplier
     if (suppliers) {
       let suppliersValidation = joi_product_suppliers.validate(suppliers);
       if (suppliersValidation.error)
@@ -176,7 +188,6 @@ module.exports = async ({
     try {
       let updatedProduct = await product.save();
       return { result: updatedProduct, message };
-      return { result: "test", message: "test" };
     } catch (e) {
       return { error: e.message };
     }

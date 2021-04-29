@@ -3,10 +3,10 @@ module.exports = (newProduct) => {
   if (newProduct.productId) product.id = newProduct.productId;
   product.name = newProduct.productName;
   product.sku = newProduct.productSKU;
-  product.category = new Object({ id: newProduct.productCategory._id });
+  product.category = { id: newProduct.productCategory.id._id };
   product.dimension = newProduct.dimension;
   product.suppliers = newProduct.productSupplier.map((supplier) => ({
-    id: supplier._id,
+    id: supplier.id,
   }));
   product.stores = newProduct.stores.map((store) => ({
     id: store.id,

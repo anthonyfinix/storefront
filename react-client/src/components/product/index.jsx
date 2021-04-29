@@ -6,8 +6,7 @@ import Dialog from '../util/dialog';
 import { ContentContext } from '../contentProvider';
 import { StoreContext } from '../store/storeProvider';
 import AddNewProductDialogInput from './AddNewProductDialogInput';
-import createProduct from './api/createProduct';
-import updateProduct from './api/updateProduct';
+import createUpdateProduct from './api/createUpdateProduct';
 import getUpdatedProductState from './getUpdatedProductState';
 import sanitizeProduct from './sanitizeProduct';
 import getNewEmptyProduct from './getNewEmptyProduct';
@@ -47,21 +46,15 @@ const Product = (props) => {
         setNewProduct(product);
     }
     const handleProductUpdateCreateClick = () => {
-        if (newProduct.productId) {
-            createProduct(sanitizeProduct(newProduct))
-                .then(response => {
-                    console.log(response);
-                    let { error, result } = response;
-                    if (!error) productRefresh();
-                })
-        } else {
-            updateProduct(sanitizeProduct(newProduct))
-                .then(response => {
-                    console.log(response);
-                    let { error, result } = response;
-                    if (!error) productRefresh();
-                })
-        }
+        createUpdateProduct(sanitizeProduct(newProduct))
+            .then(response => {
+                console.log(response);
+                let { error, result } = response;
+                if (!error) {
+                    productRefresh();
+                    toggleDialog()
+                };
+            })
     }
     const handleNewProductStoreValueChange = (e) => {
         let id = e.currentTarget.dataset.id;
@@ -101,7 +94,7 @@ const Product = (props) => {
                 let currentStore = stores.map(store => {
                     let stock = { currentStock: 0 };
                     for (let productStore of product.stores) {
-                        if (productStore.id._id == store._id){
+                        if (productStore.id._id == store._id) {
                             stock = productStore.stock;
                         }
                     }

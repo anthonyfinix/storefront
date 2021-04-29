@@ -29,7 +29,6 @@ const ProductCategory = () => {
     const handleAddNewProductCategory = () => {
         createProductCategory(newProductCategory)
             .then(response => {
-                console.log('test');
                 let { error, result } = response;
                 if (!error) {
                     productCategory.refresh().then(()=>{
