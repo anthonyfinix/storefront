@@ -143,7 +143,6 @@ const AddNewProductDialogInput = ({
             </div>
             <div>
                 {newProduct.stores.map((store, i) => {
-                    console.log(store);
                     return (
                         <div key={store.id} className="input-wrapper">
                             <label>{store.name}</label>

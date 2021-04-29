@@ -98,7 +98,19 @@ const Product = (props) => {
     const handleEditProductClick = (id) => {
         for (let product of products) {
             if (product._id === id) {
-                let stores = product.stores.map((store => ({ name: store.name, id: store.id._id, stock: store.stock })))
+                let currentStore = stores.map(store => {
+                    let stock = { currentStock: 0 };
+                    for (let productStore of product.stores) {
+                        if (productStore.id._id == store._id){
+                            stock = productStore.stock;
+                        }
+                    }
+                    return {
+                        name: store.name,
+                        id: store._id,
+                        stock
+                    }
+                })
                 let suppliers = product.suppliers.map((supplier => ({ company_name: supplier.id.company_name, id: supplier.id._id })))
                 setNewProduct(() => {
                     return {
@@ -118,14 +130,13 @@ const Product = (props) => {
                         productBuyingPrice: product.buying_price,
                         productSupplier: suppliers,
                         productCategory: product.category,
-                        stores: stores,
+                        stores: currentStore,
                     }
                 })
                 toggleDialog();
                 break;
             };
         }
-
     }
     const handleAddProductBtnClick = () => {
         let newProductCurrentValue = newProduct;
