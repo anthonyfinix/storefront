@@ -5,6 +5,7 @@ import deleteProduct from "./api/deleteSupplier";
 const useProduct = () => {
   const [products, setProducts] = React.useState([]);
   const [pageNo, setPageNo] = React.useState(1);
+  const [limit, setLimit] = React.useState(5);
   const addPage = () => setPageNo(pageNo + 1);
   const deleteAndGetLatestProduct = async (id) => {
     let response = await deleteProduct(id);
@@ -16,23 +17,16 @@ const useProduct = () => {
     }
   };
   const refresh = () => {
-    get().then((response) => {
+    getProduct({ skip: 0, limit: pageNo * 5 }).then((response) => {
       let { result } = response;
       if (result) setProducts([...result]);
     });
   };
-  const get = async () => {
-    let response = await getProduct({ page: pageNo });
-    if (response.status && response.status === 200) {
-      let { result, error } = response.data;
-      if (error) return error;
-      return { result };
-    }
-  };
 
   useEffect(() => {
-    get().then((response) => {
-      let { result } = response;
+    getProduct({ page: pageNo }).then((response) => {
+      let { result, error } = response;
+      if (error) console.log(error);
       setProducts((products) => [...products, ...result]);
     });
   }, [pageNo]);

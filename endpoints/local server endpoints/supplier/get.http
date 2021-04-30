@@ -1,2 +1,6 @@
 ###
-GET http://localhost:8000/api/supplier?limit=1
+GET http://localhost:8000/api/supplier?id=60587d37c011550015c41c76,607f27ad9d42e24ac47c031b
+###
+GET http://localhost:8000/api/supplier?id=60587c56c011550015c41c70
+###
+GET http://localhost:8000/api/supplier
