@@ -17,7 +17,6 @@ module.exports = async (req, res) => {
   } = req.body;
   let created_at = Date.now();
   let created_by = req.user._id;
-  if (!active) active = config.default_customer_state;
   if (id) {
     let { error, result } = await updateSupplier({
       id,
@@ -32,7 +31,8 @@ module.exports = async (req, res) => {
     if (error) return res.json({ error });
     return res.json({ result });
   }
-  let { e, message, ...data } = await createSupplier({
+  if (!active) active = config.default_customer_state;
+  let { error, message, ...data } = await createSupplier({
     company_name,
     name,
     contact_details,
@@ -41,6 +41,6 @@ module.exports = async (req, res) => {
     created_at,
     created_by,
   });
-  if (e) return res.json({ error: e.message });
+  if (error) return res.json({ error });
   return res.json({ message, ...data });
 };

@@ -21,7 +21,13 @@ const Table = ({ data, toggleSidebar, deleteProduct, editProduct }) => {
                 </tr>
             </thead>
             <tbody>
-                <Rows rows={data} deleteProduct={deleteProduct} editProduct={editProduct} toggleSidebar={toggleSidebar} toggleDropdown={toggleDropdown} />
+                <Rows
+                    rows={data}
+                    deleteProduct={deleteProduct}
+                    editProduct={editProduct}
+                    toggleSidebar={toggleSidebar}
+                    toggleDropdown={toggleDropdown}
+                />
             </tbody>
         </table>
     )

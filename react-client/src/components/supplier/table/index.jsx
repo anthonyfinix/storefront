@@ -1,7 +1,7 @@
 import React from 'react';
 import Rows from './Rows';
 import './table.css';
-const Table = ({ data }) => {
+const Table = ({ data, deleteSupplier, editSupplier }) => {
     return (
         <table className="data-table">
             <thead>
@@ -13,7 +13,11 @@ const Table = ({ data }) => {
                 </tr>
             </thead>
             <tbody>
-                <Rows rows={data} />
+                <Rows
+                    deleteSupplier={deleteSupplier}
+                    editSupplier={editSupplier}
+                    rows={data}
+                />
             </tbody>
         </table>
     )

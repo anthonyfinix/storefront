@@ -1,14 +1,8 @@
 import axios from "../../../axios";
 
-export default ({ id, company_name, name, contact_details }) => {
-  let data = {
-    company_name,
-    name,
-    contact_details,
-  };
-  if (id) data.id = id;
+export default ({ id }) => {
   return axios
-    .post("api/supplier", data)
+    .delete(`api/supplier?id=${id}`)
     .then((response) => {
       let { error, result } = response.data;
       if (error) return { error };

@@ -35,7 +35,7 @@ const AddNewSupplier = ({
                     </div>
                     <div className="input-wrapper">
                         <label>Full Address</label>
-                        <input type="text" onChange={handleNewSupplierChange} value={newSupplier.contact_details.full} name="full" />
+                        <input type="text" onChange={handleNewSupplierChange} value={newSupplier.contact_details.address.full} name="full" />
                     </div>
                     <div className="input-wrapper">
                         <label>City</label>
@@ -53,7 +53,7 @@ const AddNewSupplier = ({
             </div>
             <div>
                 <button onClick={hideAddNewDialogState}>Close</button>
-                <button onClick={handleAddNewSupplier}>Add New Supplier</button>
+                <button onClick={handleAddNewSupplier}>{newSupplier.id ? "Update Supplier":"Add New Supplier"}</button>
             </div>
         </>
     )

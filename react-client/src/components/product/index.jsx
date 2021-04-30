@@ -48,7 +48,6 @@ const Product = (props) => {
     const handleProductUpdateCreateClick = () => {
         createUpdateProduct(sanitizeProduct(newProduct))
             .then(response => {
-                console.log(response);
                 let { error, result } = response;
                 if (!error) {
                     productRefresh();
@@ -155,7 +154,12 @@ const Product = (props) => {
             </div>
             <div className="entity-content" id="product-content">
                 <div id="table-wrapper" onScroll={handleListScroll}>
-                    <Table data={products} deleteProduct={handleDeleteProductClick} editProduct={handleEditProductClick} toggleSidebar={handleShowSupplier} />
+                    <Table
+                        data={products}
+                        deleteProduct={handleDeleteProductClick}
+                        editProduct={handleEditProductClick}
+                        toggleSidebar={handleShowSupplier}
+                    />
                 </div>
                 <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} items={products} />
                 <Dialog close={closeDialog} toggleDialog={toggleDialog} show={showDialog}>

@@ -6,10 +6,12 @@ import { ContentContext } from '../contentProvider';
 import AddNewSupplier from './addNewSupplier'
 import newSupplierStateUpdater from './newSupplierStateUpdater';
 import createSupplier from './api/createSupplier';
+import deleteSupplier from './api/deleteSupplier';
 
 const Supplier = () => {
     const { supplier } = React.useContext(ContentContext);
     const [newSupplier, setNewSupplier] = React.useState({
+        id: "",
         company_name: "",
         name: {
             first_name: "",
@@ -31,14 +33,42 @@ const Supplier = () => {
     const [addNewDialogState, setAddNewDialogState] = React.useState(false);
     const hideAddNewDialogState = () => setAddNewDialogState(false);
     const showAddNewDialogState = () => setAddNewDialogState(true);
-    const toggleAddNewDialogState = () => setAddNewDialogState(!addNewDialogState);
-    const handleNewSupplierChange = (e) => setNewSupplier({ ...newSupplierStateUpdater(e, newSupplier) })
+    const toggleAddNewDialogState = () => {
+        setAddNewDialogState(!addNewDialogState)
+    };
+    const handleNewSupplierChange = (e) => setNewSupplier({
+        ...newSupplierStateUpdater(e, newSupplier)
+    })
+    const handleEditProductClick = (id) => {
+        for (let item of supplier.suppliers) {
+            if (item._id == id) {
+                setNewSupplier({
+                    id: item._id,
+                    company_name: item.company_name,
+                    name: item.name,
+                    contact_details: item.contact_details
+                })
+                toggleAddNewDialogState();
+                break;
+            }
+        }
+    }
+    const handleDeleteSupplierClick = (id) => {
+        deleteSupplier({id})
+            .then(response => {
+                console.log(response)
+                let { error, result } = response;
+                if (!error) supplier.refreshSupplier();
+            })
+    }
     const handleAddNewSupplier = () => {
         createSupplier(newSupplier)
             .then(response => {
+                console.log(response);
                 let { error, result } = response;
                 if (!error) {
-                    supplier.refreshSupplier().then(() => hideAddNewDialogState());
+                    supplier.refreshSupplier()
+                        .then(() => hideAddNewDialogState());
                 }
             })
     }
@@ -49,9 +79,14 @@ const Supplier = () => {
                 <button onClick={showAddNewDialogState}>Add</button>
             </div>
             <div className="entity-content" id="table-wrapper">
-                <Table data={supplier.suppliers} />
+                <Table
+                    data={supplier.suppliers}
+                    editSupplier={handleEditProductClick}
+                    deleteSupplier={handleDeleteSupplierClick}
+                />
             </div>
-            <Dialog toggleDialog={toggleAddNewDialogState} show={addNewDialogState}>
+            <Dialog toggleDialog={toggleAddNewDialogState} show={addNewDialogState}
+            >
                 <AddNewSupplier
                     newSupplier={newSupplier}
                     handleNewSupplierChange={handleNewSupplierChange}
