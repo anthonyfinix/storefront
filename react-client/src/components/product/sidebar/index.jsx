@@ -7,7 +7,7 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar, items, ...props }) => {
         <div className={`sidebar`} style={{ display }}>
             <div style={{ textAlign: "right" }} onClick={toggleSidebar}><span className="material-icons md-18">close</span></div>
             {/* {!items ? <NoSupplier /> : items.map(item => <Supplier supplier={item} />)} */}
-            {(!items || (typeof items == 'array' && items.length > 0)) ? <NoSupplier /> : items.map(item=><Supplier supplier={item} />)}
+            {(!items || (items.length == 0)) ? <NoSupplier /> : items.map(item => <Supplier supplier={item} />)}
         </div>
     )
 }
@@ -17,7 +17,7 @@ const NoSupplier = () => {
         <p>No Supplier</p>
     )
 }
-const Supplier = ({supplier}) => {
+const Supplier = ({ supplier }) => {
     console.log(supplier)
     return (
         <div>
