@@ -34,6 +34,7 @@ const Product = (props) => {
     const { product: { products, productNextPage, productRefresh, deleteProduct } } = React.useContext(ContentContext);
     const [showDialog, setShowDialog] = React.useState(false);
     const [isSidebarOpen, setSidebarOpen] = React.useState(false);
+    const [selectedProductSupplier,setSelectedProductSupplier] = React.useState([]);
     React.useEffect(() => { }, [])
     const addSupplier = (supplier) => {
         let product = newProduct;
@@ -73,8 +74,8 @@ const Product = (props) => {
     const handleSidebarOpen = () => { }
     const toggleSidebar = () => setSidebarOpen(!isSidebarOpen);
     const handleShowSupplier = (suppliers) => {
+        setSelectedProductSupplier(suppliers)
         toggleSidebar();
-        let supplierDetailsPromise = suppliers.map(supplier => console.log(supplier))
     }
     const handleListScroll = (e) => {
         const { scrollTop, clientHeight, scrollHeight } = e.currentTarget;
@@ -161,7 +162,7 @@ const Product = (props) => {
                         toggleSidebar={handleShowSupplier}
                     />
                 </div>
-                <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} items={products} />
+                <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} items={selectedProductSupplier} />
                 <Dialog close={closeDialog} toggleDialog={toggleDialog} show={showDialog}>
                     <AddNewProductDialogInput
                         toggleDialog={toggleDialog}

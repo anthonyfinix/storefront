@@ -6,7 +6,24 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar, items, ...props }) => {
     return (
         <div className={`sidebar`} style={{ display }}>
             <div style={{ textAlign: "right" }} onClick={toggleSidebar}><span className="material-icons md-18">close</span></div>
-            {(!!items && (typeof items === 'array' && items.length > 0)) ? (<h1>Bad Data</h1>) : items.map(item => <p>{item.name}</p>)}
+            {/* {!items ? <NoSupplier /> : items.map(item => <Supplier supplier={item} />)} */}
+            {(!items || (typeof items == 'array' && items.length > 0)) ? <NoSupplier /> : items.map(item=><Supplier supplier={item} />)}
+        </div>
+    )
+}
+
+const NoSupplier = () => {
+    return (
+        <p>No Supplier</p>
+    )
+}
+const Supplier = ({supplier}) => {
+    console.log(supplier)
+    return (
+        <div>
+            <p>{supplier.company_name}</p>
+            <small>{supplier.id ? supplier.id.contact_details.primary_number : "either deleted or no provided"}</small>
+            <hr />
         </div>
     )
 }

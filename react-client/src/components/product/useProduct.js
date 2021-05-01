@@ -29,6 +29,7 @@ const useProduct = () => {
       if (error) console.log(error);
       setProducts((products) => [...products, ...result]);
     });
+    return ()=>{console.log('unmounted')}
   }, [pageNo]);
 
   return {

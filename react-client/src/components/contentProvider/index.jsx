@@ -8,6 +8,9 @@ import useRole from '../role/useRole'
 
 export const ContentContext = React.createContext();
 const ContentProvider = ({ children, ...props }) => {
+    React.useEffect(()=>{
+        return ()=>{console.log('unmount')}
+    })
     const product = useProduct();
     const supplier = useSupplier();
     const customer = useCustomer();
