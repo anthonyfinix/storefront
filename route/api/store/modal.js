@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const generic = require("../../../util/generic");
 const schema = new mongoose.Schema(
   {
     name: { type: String, require: true },
@@ -25,12 +26,7 @@ const schema = new mongoose.Schema(
     ],
     gmt: { type: String, required: true },
     currency: { type: String, required: true },
-    created_by: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-      require: true
-    },
-    created_at: { type: Number, require: true, default: Date.now() }
+   ...generic
   },
   { versionKey: false }
 );

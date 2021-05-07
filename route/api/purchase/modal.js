@@ -1,5 +1,6 @@
 const { string } = require("joi");
 const mongoose = require("mongoose");
+const generic = require("../../../util/generic");
 const schema = new mongoose.Schema(
   {
     customer: {
@@ -28,12 +29,8 @@ const schema = new mongoose.Schema(
       price: { type: Number, required: true },
       discount: Number
     },
-    created_by: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-      required: true
-    },
-    created_at: { type: Number, required: true, defualt: Date.now() }
+    ...generic
+   
   },
   { versionKey: false }
 );

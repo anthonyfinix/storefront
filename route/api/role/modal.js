@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const generic = require("../../../util/generic");
 
 const schema = new mongoose.Schema(
   {
@@ -51,12 +52,7 @@ const schema = new mongoose.Schema(
       update: { type: Boolean, required: true, default: true },
       delete: { type: Boolean, required: true, default: true }
     },
-    created_at: { type: Number, required: true },
-    created_by: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-      required: true
-    }
+    ...generic
   },
   { versionKey: false }
 );

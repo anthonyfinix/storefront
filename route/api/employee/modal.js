@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const generic = require("../../../util/generic");
 const schema = new mongoose.Schema(
   {
     user: { type: mongoose.Schema.Type.ObjectId, ref: "User", require: true },
@@ -11,12 +12,7 @@ const schema = new mongoose.Schema(
       }
     ],
     is_verified: true,
-    created_by: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-      require: true
-    },
-    created_at: { type: Number, require: true, defualt: Date.now() }
+    ...generic
   },
   { versionKey: false }
 );
