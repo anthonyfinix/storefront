@@ -9,7 +9,10 @@ import './pos.css';
 
 
 const PointOfSale = (props) => {
+    const { stores } = React.useContext(StoreContext);
+    const { product } = React.useContext(ContentContext);
     const [shoppingList, setShoppingList] = React.useState([]);
+    const [total, setTotal] = React.useState(0);
     const [customerDetails, setCustomerDetails] = React.useState({
         name: {
             first_name: "",
@@ -48,17 +51,15 @@ const PointOfSale = (props) => {
         let currentShoppingList = shoppingList;
         for (let i = 0; i < currentShoppingList.length; i++) {
             if (productId == currentShoppingList[i].product._id) {
-                if(currentShoppingList[i].qty == 1){
-                    currentShoppingList.splice(i,1)
-                }else{
+                if (currentShoppingList[i].qty == 1) {
+                    currentShoppingList.splice(i, 1)
+                } else {
                     currentShoppingList[i].qty = currentShoppingList[i].qty - 1;
                 }
             }
         }
         setShoppingList([...currentShoppingList]);
     }
-    const { stores } = React.useContext(StoreContext);
-    const { product } = React.useContext(ContentContext);
     return (
         <div className="point_of_sale_wrapper">
             <div className="wrapper">

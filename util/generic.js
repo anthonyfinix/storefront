@@ -6,5 +6,5 @@ module.exports = {
         ref: "User",
         require: true
     },
-    created_at: { type: Number, require: true, defualt: Date.now() }
+    created_at: { type: Number, require: true, default: Date.now() }
 }
