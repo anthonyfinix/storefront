@@ -4,6 +4,7 @@ import { ContentContext } from '../contentProvider';
 import ProductGrids from './productGrid';
 import CustomerDetails from './customerDetails';
 import ShoppingList from './shoppingList';
+import InvoiceDetails from './invoiceDetails';
 import getUpdatedCustomerDetails from './customerDetails/getUpdatedCustomerDetails';
 import './pos.css';
 
@@ -43,6 +44,7 @@ const PointOfSale = (props) => {
         for (let i = 0; i < currentShoppingList.length; i++) {
             if (productId == currentShoppingList[i].product._id) {
                 currentShoppingList[i].qty = currentShoppingList[i].qty + 1;
+                break;
             }
         }
         setShoppingList([...currentShoppingList]);
@@ -56,10 +58,25 @@ const PointOfSale = (props) => {
                 } else {
                     currentShoppingList[i].qty = currentShoppingList[i].qty - 1;
                 }
+                break
             }
         }
         setShoppingList([...currentShoppingList]);
     }
+    const calculateTotal = () => {
+        let total = 0;
+        for (let item of shoppingList) {
+            console.log('test')
+            let price = parseInt(item.product.current_price)
+            let qty = parseInt(item.qty)
+            total = (total + (price * qty))
+        }
+        console.log(total)
+        setTotal(total);
+    }
+    React.useEffect(() => {
+        calculateTotal()
+    }, [shoppingList])
     return (
         <div className="point_of_sale_wrapper">
             <div className="wrapper">
@@ -74,6 +91,7 @@ const PointOfSale = (props) => {
                         incQty={increaseProductQty}
                         decQty={decreaseProductQty}
                     />
+                    <InvoiceDetails total={total} />
                 </div>
             </div>
         </div>
