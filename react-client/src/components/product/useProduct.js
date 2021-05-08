@@ -6,6 +6,8 @@ const useProduct = () => {
   const [products, setProducts] = React.useState([]);
   const [pageNo, setPageNo] = React.useState(1);
   const [limit, setLimit] = React.useState(5);
+  const [query, setQuery] = React.useState("");
+  const isSearching = React.useRef(false);
   const addPage = () => setPageNo(pageNo + 1);
   const deleteAndGetLatestProduct = async (id) => {
     let response = await deleteProduct(id);
@@ -16,6 +18,13 @@ const useProduct = () => {
       return result;
     }
   };
+  const setSearchQuery = (searchTerm) => {
+    setQuery((query) => {
+      if (query != "") setPageNo(1);
+      isSearching.current = true;
+      return searchTerm;
+    });
+  };
   const refresh = () => {
     getProduct({ skip: 0, limit: pageNo * 5 }).then((response) => {
       let { result } = response;
@@ -24,19 +33,25 @@ const useProduct = () => {
   };
 
   useEffect(() => {
-    getProduct({ page: pageNo }).then((response) => {
+    getProduct({ page: pageNo, query }).then((response) => {
       let { result, error } = response;
       if (error) console.log(error);
-      setProducts((products) => [...products, ...result]);
+      if (query) {
+        setProducts([...result]);
+        isSearching.current = false;
+      } else {
+        setProducts((products) => [...products, ...result]);
+        isSearching.current = false;
+      }
     });
-    return ()=>{console.log('unmounted')}
-  }, [pageNo]);
+  }, [pageNo, query]);
 
   return {
     products,
     productNextPage: addPage,
     productRefresh: refresh,
     deleteProduct: deleteAndGetLatestProduct,
+    searchProduct: setSearchQuery,
   };
 };
 

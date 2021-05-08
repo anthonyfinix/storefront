@@ -1,0 +1,11 @@
+.point_of_sale_wrapper > .wrapper{
+    display: flex;
+}
+.point_of_sale_wrapper > .wrapper > div:nth-child(1){
+    flex-grow: 1;
+}
+.point_of_sale_wrapper > .wrapper > div:nth-child(2){
+    flex-basis: 400px;
+    flex-grow: 0;
+    flex-shrink: 0;
+}

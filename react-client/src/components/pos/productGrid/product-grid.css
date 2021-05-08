@@ -1,0 +1,11 @@
+.product-grid-wrapper{
+    display: flex;
+}
+.product-grid-wrapper > div{
+    flex-basis: 10%;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+.product-grid{
+    border: 2px solid black;
+}

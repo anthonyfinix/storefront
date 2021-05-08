@@ -7,6 +7,7 @@ import Customer from '../customer';
 import Supplier from '../supplier';
 import Dashboard from '../dashboard';
 import Purchase from '../purchase';
+import PointOfSale from '../pos';
 import ProductCategory from '../productCategory';
 import ContentProvider from '../contentProvider';
 import StoreProvider from '../store/storeProvider';
@@ -26,6 +27,7 @@ const Content = () => {
                         <Route exact path="/purchase" component={Purchase} />
                         <Route exact path="/productCategory" component={ProductCategory} />
                         <Route exact path="/dashboard" component={Dashboard} />
+                        <Route exact path="/pos" component={PointOfSale} />
                     </Switch>
                 </ContentProvider>
             </StoreProvider>

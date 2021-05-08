@@ -31,10 +31,17 @@ const Product = (props) => {
         stores: []
     });
     const { stores } = React.useContext(StoreContext);
-    const { product: { products, productNextPage, productRefresh, deleteProduct } } = React.useContext(ContentContext);
+    const searchQueryTimeout = React.useRef(false);
+    const { product: { products,
+        productNextPage,
+        productRefresh,
+        deleteProduct,
+        searchProduct
+    } } = React.useContext(ContentContext);
     const [showDialog, setShowDialog] = React.useState(false);
     const [isSidebarOpen, setSidebarOpen] = React.useState(false);
-    const [selectedProductSupplier,setSelectedProductSupplier] = React.useState([]);
+    const [selectedProductSupplier, setSelectedProductSupplier] = React.useState([]);
+    const [searchTerm, setSearchTerm] = React.useState();
     React.useEffect(() => { }, [])
     const addSupplier = (supplier) => {
         let product = newProduct;
@@ -71,7 +78,6 @@ const Product = (props) => {
         let element = e.currentTarget;
         setNewProduct({ ...getUpdatedProductState(element, newProduct) });
     }
-    const handleSidebarOpen = () => { }
     const toggleSidebar = () => setSidebarOpen(!isSidebarOpen);
     const handleShowSupplier = (suppliers) => {
         setSelectedProductSupplier(suppliers)
@@ -82,8 +88,16 @@ const Product = (props) => {
         if (scrollHeight - scrollTop === clientHeight) productNextPage();
     }
     const closeDialog = () => {
-        setShowDialog(false)
+        setShowDialog(false);
     };
+    const handleSearchInputChange = (e) => {
+        let value = e.currentTarget.value
+        setSearchTerm(value);
+        clearTimeout(searchQueryTimeout.current)
+        searchQueryTimeout.current = setTimeout(() => {
+            searchProduct(value);
+        }, 2000)
+    }
     const toggleDialog = () => {
         if (showDialog) setNewProduct({ ...getNewEmptyProduct() })
         setShowDialog(!showDialog);
@@ -151,7 +165,10 @@ const Product = (props) => {
         <article className="entity-wrapper" id="product-wrapper">
             <div className="entity-header" id="product-header">
                 <h3>Product</h3>
-                <button onClick={handleAddProductBtnClick}>Add</button>
+                <div style={{ display: "flex" }}>
+                    <input value={searchTerm} onChange={handleSearchInputChange} type="text" placeholder="Search" />
+                    <button onClick={handleAddProductBtnClick}>Add</button>
+                </div>
             </div>
             <div className="entity-content" id="product-content">
                 <div id="table-wrapper" onScroll={handleListScroll}>

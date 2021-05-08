@@ -20,6 +20,9 @@ const menu = {
         supplier:{
             name:"Supplier"
         },
+        pos:{
+            name:"Point of Sale"
+        },
         setting:{
             name:"Setting"
         },
