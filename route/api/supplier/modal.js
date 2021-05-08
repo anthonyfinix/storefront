@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const generic = require("../../../util/generic");
 const schema = new mongoose.Schema(
   {
     company_name: { type: String, required: true, unique: true },
@@ -21,13 +22,7 @@ const schema = new mongoose.Schema(
       },
     },
     total_purchase: { amount: { type: Number, require: true } },
-    created_at: { type: Number, require: true, default: Date.now() },
-    created_by: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-      require: true,
-    },
-    active: { type: Boolean, require: true },
+   ...generic
   },
   { versionKey: false }
 );

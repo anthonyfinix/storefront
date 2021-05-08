@@ -55,15 +55,8 @@ const schema = new mongoose.Schema(
         },
       },
     ],
-    created_by: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-      required: true,
-    },
-    created_at: { type: Number, required: true, default: Date.now() },
-    active: { type: Boolean, required: true, default: true },
+    ...generic
   },
   { versionKey: false }
 );
-
 module.exports = mongoose.model("Product", schema);

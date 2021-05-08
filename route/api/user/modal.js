@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const config = require("../../../config");
+const generic = require("../../../util/generic");
 
 const nameSchema = new mongoose.Schema({
   first_name: { type: String, required: true },
@@ -34,8 +35,7 @@ const Userschema = new mongoose.Schema(
     },
     role: String,
     employeeId: { type: mongoose.Schema.Types.ObjectId, ref: "Employee" },
-    active: { type: Boolean, default: config.default_user_state },
-    created_at: { type: Number, required: true, default: Date.now() }
+    ...generic
   },
   { versionKey: false }
 );

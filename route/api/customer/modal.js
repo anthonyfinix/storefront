@@ -1,5 +1,6 @@
 const { ref } = require("joi");
 const mongoose = require("mongoose");
+const generic = require('../../../util/generic');
 const schema = new mongoose.Schema(
   {
     name: {
@@ -27,6 +28,7 @@ const schema = new mongoose.Schema(
     ],
     last_visit: { type: Number, require: true, default: Date.now() },
     total_purchase: { amount: { type: Number, require: true } },
+<<<<<<< HEAD
     active: { type: Boolean, required: true },
     created_by: {
       type: mongoose.Schema.Types.ObjectId,
@@ -34,8 +36,10 @@ const schema = new mongoose.Schema(
       require: true
     },
     created_at: { type: Number, require: true, default: Date.now() }
+=======
+    ...generic
+>>>>>>> 3179e805cd9d23a1c158ac582831d820697e0d8a
   },
   { versionKey: false }
 );
-
 module.exports = mongoose.model("Customer", schema);
