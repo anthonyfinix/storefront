@@ -71,7 +71,6 @@ const PointOfSale = (props) => {
             let qty = parseInt(item.qty)
             total = (total + (price * qty))
         }
-        console.log(total)
         setTotal(total);
     }
     React.useEffect(() => {
@@ -91,7 +90,10 @@ const PointOfSale = (props) => {
                         incQty={increaseProductQty}
                         decQty={decreaseProductQty}
                     />
-                    <InvoiceDetails total={total} />
+                    <div>
+                        <InvoiceDetails total={total} />
+                        <button>Generate</button>
+                    </div>
                 </div>
             </div>
         </div>

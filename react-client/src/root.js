@@ -10,21 +10,24 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import UserProvider from "./components/user/userContext";
 import PrivateRoute from "./components/util/privateRoute";
 import App from "./components/app";
+import StoreProvider from "./components/store/storeProvider";
 
 function Root() {
   return (
     <Router>
       <UserProvider>
-        <div id="app">
-          <div id="app-header-wrapper">
-            <Header />
+        <StoreProvider>
+          <div id="app">
+            <div id="app-header-wrapper">
+              <Header />
+            </div>
+            <Switch>
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/register" component={Register} />
+              <PrivateRoute to="/" component={App}></PrivateRoute>
+            </Switch>
           </div>
-          <Switch>
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/register" component={Register} />
-            <PrivateRoute to="/" component={App}></PrivateRoute>
-          </Switch>
-        </div>
+        </StoreProvider>
       </UserProvider>
     </Router>
   );

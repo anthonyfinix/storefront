@@ -3,22 +3,16 @@ const mongoose = require("mongoose");
 const generic = require("../../../util/generic");
 let schema = {
   customer: {
-    name: { type: String, required: true },
-    id: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Customer",
-      required: true,
-    },
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Customer",
+    required: true,
   },
-  product: [
+  products: [
     {
-      name: { type: String, required: true },
-      product_id: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Product",
-        required: true,
-      },
-    },
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Product",
+      required: true,
+    }, 
   ],
   store: {
     name: { type: String, required: true },

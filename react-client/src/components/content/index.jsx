@@ -10,13 +10,11 @@ import Purchase from '../purchase';
 import PointOfSale from '../pos';
 import ProductCategory from '../productCategory';
 import ContentProvider from '../contentProvider';
-import StoreProvider from '../store/storeProvider';
 
 const Content = () => {
     const [isLoading, setLoading] = React.useState(true);
     return (
         <article id="content-wrapper">
-            <StoreProvider>
                 <ContentProvider>
                     <Switch>
                         <Route exact path="/" component={Dashboard} />
@@ -30,7 +28,6 @@ const Content = () => {
                         <Route exact path="/pos" component={PointOfSale} />
                     </Switch>
                 </ContentProvider>
-            </StoreProvider>
         </article>
     )
 }
