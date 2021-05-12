@@ -9,21 +9,21 @@ let schema = {
   },
   products: [
     {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Product",
-      required: true,
-    }, 
+      product: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Product",
+        required: true,
+      },
+      qty: { type: Number, required: true },
+    },
   ],
-  store: {
-    name: { type: String, required: true },
-    id: { type: mongoose.Schema.Types.ObjectId, ref: "store" },
-  },
+  store: { type: mongoose.Schema.Types.ObjectId, ref: "store" },
   amount: {
-    price: { type: Number, required: true },
+    total: { type: Number, required: true },
     discount: Number,
   },
   ...generic,
 };
 schema = new mongoose.Schema(schema, { versionKey: false });
 
-module.exports = mongoose.model("Employee", schema);
+module.exports = mongoose.model("Purchase", schema);

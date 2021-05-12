@@ -1,16 +1,45 @@
-const validation = require("../../../validation/joi.purchase");
+const { joi_purchase } = require("../../../validation/joi.purchase");
+const { joi_customer } = require("../../../validation/joi.customer");
 const createPurchase = require("./createPurchase");
+const createCustomer = require("../customer/createCustomer");
 const config = require("../../../config");
 module.exports = async (req, res) => {
-  let { store, customer, amount, product, active } = req.body;
-  let { error } = validation.validate({
+  let { store, customer, amount, product, active, id } = req.body;
+  if (id) {
+    let { result, error, count, message } = await updatePurchase(
+      store,
+      customer,
+      amount,
+      product,
+      active,
+      id
+    );
+    if (error) return res.json({ error: error });
+    return res.json({ result, count, message });
+  }
+  customer.total_purchase = { amount: 0 };
+  customer.store_visited = [store];
+  let newCustomer = { ...customer };
+  delete newCustomer.id;
+  let { error: customerError } = joi_customer.validate(newCustomer);
+  if (customerError) return res.json({ error: customerError.details });
+  if (!customer.id) {
+    let { error: createCustomerError, result } = await createCustomer({
+      ...customer,
+      active: true,
+    });
+    if (createCustomerError) return res.json({ error: createCustomerError });
+    customer = String(result._id);
+  } else {
+    customer = customer.id;
+  }
+  let { error: purchaseError } = joi_purchase.validate({
     store,
     customer,
     amount,
     product,
-    active
   });
-  if (error) return res.json({ error: error.details });
+  if (purchaseError) return res.json({ error: purchaseError.details });
   let created_at = Date.now();
   let created_by = req.user._id;
   if (!active) active = config.default_purchase_state;
@@ -21,7 +50,7 @@ module.exports = async (req, res) => {
     product,
     active,
     created_at,
-    created_by
+    created_by,
   });
   if (e) res.json({ error: e.message });
   return res.json({ message, ...data });

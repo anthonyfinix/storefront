@@ -1,22 +1,18 @@
 const Customer = require("./modal");
-const validator = require("../../../validation/joi.customer");
+const { joi_customer } = require("../../../validation/joi.customer");
 const nameExists = require("./checkNameExist");
 const createCustomer = require("./createCustomer");
 const config = require("../../../config");
 module.exports = async (req, res) => {
-  let {
+  let { name, contact_details, store_visited, total_purchase, active } =
+    req.body;
+  if (!total_purchase) total_purchase = 0;
+  let { error } = joi_customer.validate({
     name,
     contact_details,
     store_visited,
     total_purchase,
-    active
-  } = req.body;
-  let { error } = validator.validate({
-    name,
-    contact_details,
-    store_visited,
-    total_purchase,
-    active
+    active,
   });
   if (error) return res.json({ error: error.details });
   if ((await nameExists(name)).exist)
@@ -33,7 +29,7 @@ module.exports = async (req, res) => {
     active,
     last_visit,
     created_at,
-    created_by
+    created_by,
   });
   if (e) res.json({ error: e.message });
   return res.json({ message, ...data });

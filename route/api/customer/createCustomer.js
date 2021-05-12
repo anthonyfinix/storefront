@@ -7,7 +7,7 @@ module.exports = async ({
   active,
   last_visit,
   created_at,
-  created_by
+  created_by,
 }) => {
   let customer = new Customer({
     name,
@@ -17,12 +17,12 @@ module.exports = async ({
     total_purchase,
     active,
     created_at,
-    created_by
+    created_by,
   });
   try {
     await customer.save();
     return { message: "success", result: customer };
   } catch (e) {
-    return e;
+    return { error: e };
   }
 };

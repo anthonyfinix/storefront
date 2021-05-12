@@ -1,16 +1,18 @@
 import React from 'react';
 import { StoreContext } from '../store/storeProvider';
+import createPurchase from './api/createPurchase';
 import { ContentContext } from '../contentProvider';
 import ProductGrids from './productGrid';
 import CustomerDetails from './customerDetails';
 import ShoppingList from './shoppingList';
 import InvoiceDetails from './invoiceDetails';
 import getUpdatedCustomerDetails from './customerDetails/getUpdatedCustomerDetails';
+
 import './pos.css';
 
 
 const PointOfSale = (props) => {
-    const { stores } = React.useContext(StoreContext);
+    const { stores, currentStore } = React.useContext(StoreContext);
     const { product } = React.useContext(ContentContext);
     const [shoppingList, setShoppingList] = React.useState([]);
     const [total, setTotal] = React.useState(0);
@@ -66,12 +68,27 @@ const PointOfSale = (props) => {
     const calculateTotal = () => {
         let total = 0;
         for (let item of shoppingList) {
-            console.log('test')
             let price = parseInt(item.product.current_price)
             let qty = parseInt(item.qty)
             total = (total + (price * qty))
         }
         setTotal(total);
+    }
+    const generateInvoice = () => {
+        let productsId = shoppingList.map(item => {
+            return { id: item.product._id, qty: item.qty }
+        })
+        let purchase = {
+            customer: customerDetails,
+            store: currentStore._id,
+            product: productsId,
+            amount: { total },
+        }
+        createPurchase(purchase).then(result => {
+            console.log(result);
+        })
+
+
     }
     React.useEffect(() => {
         calculateTotal()
@@ -92,7 +109,7 @@ const PointOfSale = (props) => {
                     />
                     <div>
                         <InvoiceDetails total={total} />
-                        <button>Generate</button>
+                        <button onClick={generateInvoice}>Generate</button>
                     </div>
                 </div>
             </div>

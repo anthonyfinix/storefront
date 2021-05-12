@@ -19,12 +19,7 @@ let schema = {
       coordinates: [Number],
     },
   },
-  store_visited: [
-    {
-      id: mongoose.Schema.Types.ObjectId,
-      name: String,
-    },
-  ],
+  store_visited: [{ type: mongoose.Schema.Types.ObjectId, ref: "Store" }],
   last_visit: { type: Number, require: true, default: Date.now() },
   total_purchase: { amount: { type: Number, require: true } },
   ...generic,

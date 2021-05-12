@@ -11,7 +11,7 @@ function UserProvider(props) {
             let { user } = response;
             if (user) setUser(user);
         })
-        .finally(() => setLoading(false));
+            .finally(() => setLoading(false));
     }, [])
     return (
         <UserContext.Provider value={{ user, setUser }} >
