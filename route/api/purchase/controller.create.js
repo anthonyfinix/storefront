@@ -22,6 +22,7 @@ module.exports = async (req, res) => {
   let newCustomer = { ...customer };
   delete newCustomer.id;
   let { error: customerError } = joi_customer.validate(newCustomer);
+  console.log(customerError)
   if (customerError) return res.json({ error: customerError.details });
   if (!customer.id) {
     let { error: createCustomerError, result } = await createCustomer({

@@ -1,7 +1,10 @@
 import axios from "../../../axios";
 
 export default async ({ id, customer, store, product, amount }) => {
-  let data = {};
+  let data = {
+    customer, store, product, amount
+  };
+  console.log(data);
   if (id) data.id = id;
   return await axios
     .post("api/purchase", data)

@@ -19,7 +19,7 @@ const PointOfSale = (props) => {
     const [customerDetails, setCustomerDetails] = React.useState({
         name: {
             first_name: "",
-            secondary_name: "",
+            middle_name: "",
             last_name: ""
         },
         contact_details: {
@@ -84,11 +84,10 @@ const PointOfSale = (props) => {
             product: productsId,
             amount: { total },
         }
-        createPurchase(purchase).then(result => {
-            console.log(result);
+        createPurchase(purchase)
+        .then(result => {
+            console.log(result)
         })
-
-
     }
     React.useEffect(() => {
         calculateTotal()

@@ -6,10 +6,8 @@ Content-Type: application/json
     "store":"60645bfbb07fb70015e14e4f",
     "product":[{"id":"607f2395f680fc3b70aaa748","qty":3}],
     "customer":{
-        "id":"60645403b2de2f00159f1e02",
         "name": {
         "first_name": "Customer",
-        "middle_name": "Anthony",
         "last_name": "Finix"
         },
         "contact_details": {

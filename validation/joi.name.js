@@ -3,7 +3,7 @@ const first_name = joi.string();
 const middle_name = joi.string();
 const last_name = joi.string();
 const name = joi.object({
-  first_name: joi.string(),
+  first_name: joi.string().required(),
   middle_name: joi.string(),
   last_name: joi.string()
 });
