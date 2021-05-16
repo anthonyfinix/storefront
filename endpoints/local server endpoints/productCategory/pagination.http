@@ -1,2 +1,0 @@
-### Product Category
-GET http://localhost:8080/api/productCategory?limit=2&fields=name&page=2

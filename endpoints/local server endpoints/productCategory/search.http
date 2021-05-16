@@ -1,3 +1,0 @@
-
-### GET WITH NAME
-GET http://localhost:8080/api/productCategory?query=abc

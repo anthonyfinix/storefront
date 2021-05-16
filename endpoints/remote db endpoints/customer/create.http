@@ -1,21 +1,24 @@
 ### POST ALL
-POST http://localhost:8080/api/customer
+POST http://localhost:8000/api/customer
 Content-Type: application/json
 
 {
+   "id" : "606453eab2de2f00159f1dfe",
     "name":{
-        "first_name":"Nitin",
-        "last_name":"Verma"
+        "first_name":"Rakesh",
+        "last_name":"kumar"
     },
-    "store_visited":[{
-        "id":"6039d78c62c0570a18de58ca"
-    }],
+    "store_visited":[
+        "6040c1cd5c8da00015536bdf"
+
+    ],
     "total_purchase":{
-        "amount":12343
+        "amount":77777
     },
+
     "contact_details":{
-        "primary_number":123123123,
-        "email":"nitinverma@gmail.com",
+        "primary_number":1765423,
+        "email":"asdfasdfasd@gmail.com",
         "address":{
             "full":"2190/11 faridabad, Haryana",
             "state":"Haryana",
