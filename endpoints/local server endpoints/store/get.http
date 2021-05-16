@@ -1,8 +1,0 @@
-### GET ALL
-GET http://localhost:8000/api/store
-### GET ALL
-GET http://localhost:8080/api/store?id=608674b958eb792ba0b82d74
-### GET ALL
-GET http://localhost:8080/api/store?fields=name&name=hello
-### FIELDS
-GET http://localhost:8080/api/store?fields=name&id=6040c1cd5c8da00015536bdf

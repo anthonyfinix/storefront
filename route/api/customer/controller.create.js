@@ -1,10 +1,18 @@
 const Customer = require("./modal");
 const { joi_customer } = require("../../../validation/joi.customer");
 const nameExists = require("./checkNameExist");
+const updateCustomer = require('./updateCustomer')
 const createCustomer = require("./createCustomer");
 const config = require("../../../config");
 module.exports = async (req, res) => {
-  let { name, contact_details, store_visited, total_purchase, active } = req.body;
+  let { name, contact_details, store_visited, total_purchase, active, id } = req.body;
+  if (id) {
+    let { error, result, message } = await updateCustomer({
+      name, contact_details, store_visited, total_purchase, active, id
+    })
+    if (error) return res.json({ error })
+    return res.json({ result, message })
+  }
   if (!total_purchase) total_purchase = 0;
   let { error } = joi_customer.validate({
     name,

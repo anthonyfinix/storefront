@@ -1,2 +1,2 @@
 ### GET ALL
-GET http://localhost:80/api/purchase
+Get http://localhost:8000/api/purchase

@@ -1,3 +1,0 @@
-### ADD / EDIT
-GET http://localhost:8080/api/product/count
-Content-Type: application/json

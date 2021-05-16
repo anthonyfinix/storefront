@@ -1,69 +1,50 @@
-const Purchase = require("./modal");
-const Store = require("../store/modal");
-const Product = require("../product/modal");
-const Customer = require("../customer/modal");
-const {
-  joi_purchase_amount,
-  joi_purchase_active,
-  joi_purchase_product,
-} = require("../../../validation/joi.purchase");
-
-module.exports = async ({
-  id,
-  store,
-  customer,
-  amount,
-  product,
-  active,
-  created_at,
-  created_by,
-}) => {
-  let purchase = await Purchase.findOne({ _id: id });
-  if (purchase) {
-    // check store
+const { joi_customer_name } = require('../../../validation/joi.customer');
+const { purchase_store } = require('../../../validation/joi.purchase');
+const { joi_purchase_store, joi_purchase_customer, joi_purchase_amount, joi_purchase_products, joi_purchase_active } = require('../../../validation/joi.purchase');
+const { product } = require('../product/joi.product');
+module.exports = async ({ id, store, customer, amount, products, active }) => {
+    let purchase = await purchase.findOne({ _id: id });
+    if (!purchase) return { error: "No purchase Found" }
     if (store) {
-      if (await Store.countDocuments({ _id: store._id })) params.store = store;
+        let storeValidation = joi_purchase_store.validate(store);
+        if (storeValidation.error) return { error: storeValidation.error.details }
+        let store = await Store.findOne({ _id: store });
+        purchase.store = store;
+
     }
-    // check customer
     if (customer) {
-      if (await Customer.countDocuments({ _id: customer._id }))
-        params.customer = customer;
+        let customerValidation = joi_purchase_customer.validate(customer);
+        if (customerValidation.error) return { error: storeValidation.error.details }
+        let customer = await customer.findOne({ _id: customer });
+        purchase.customer = customer;
     }
-    // check amount
     if (amount) {
-      let amountValidation = joi_purchase_amount.validate(amount);
-      if (amountValidation.error) {
-        return { error: amountValidation.error.details };
-      } else {
-        params.amount = amount;
-      }
+        let amountValidation = joi_purchase_amount.validate(amount);
+        if (amountValidation.error) return { error: amountValidation.error.details }
+        purchase.amount = amount;
     }
-    // check active
+    if (products) {
+        let productsValidation = joi_purchase_products.validate(products);
+        if (productsValidation.error) return { error: productsValidation.error.details }
+        let productId = [];
+        for (i = 0; i < products.length; i++) {
+            productId.push(products[i].product)
+        }
+        let dbProduct = await product.find({ _id: { $in: productId } });
+        for (i = 0; i < products.length; i++) {
+            if (!dbProduct[i]) return { error: "id not found" }
+        }
+        purchase.products = products;
+    }
     if (active) {
-      let activeValidation = joi_purchase_active.validate(amount);
-      if (activeValidation.error) {
-        return { error: activeValidation.error.details };
-      }
+        let activeValidation = joi_purchase_active.validate(active);
+        if (activeValidation.error) return { error: activeValidation.error.details }
+        purchase.active = active;
     }
-    // check product
-    if (product) {
-      let productValidation = joi_purchase_product.validate(product);
-      if (productValidation.error) {
-        return { error: productValidation.error.details };
-      }
-      let productsId = product.map((item) => item.product._id);
-      let dbProducts = await Product.find({ _id: { $in: productsId } });
-      for(i=0;i<dbProducts.length;i++){
-        if(productsId[i] != dbProducts[i]._id) return {error:`${productsId} not found`}
-      }
-    }
-    try {
-      let response = await Purchase(params).save();
-      return { message: "success", result: response };
-    } catch (e) {
-      return { error: e };
-    }
-  } else {
-    return { error: "no purchase found with the id" };
-  }
-};
+}
+
+
+
+
+
+

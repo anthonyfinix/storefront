@@ -1,7 +1,0 @@
-### Fields
-GET http://localhost:8080/api/product?fields=name,sku
-### Page
-GET http://localhost:8080/api/product?page=1
-
-### limit
-GET http://localhost:8080/api/product?limit=3

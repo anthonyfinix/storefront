@@ -7,6 +7,6 @@ module.exports = async (req, res) => {
     let customer = await Customer.deleteOne({ _id: id });
     return res.json({ message: "success", customer });
   } catch (e) {
-    return res.json({ error: e });
+    return res.json({ error: e.message });
   }
 };

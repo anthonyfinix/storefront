@@ -1,6 +1,0 @@
-### GET ALL
-GET http://localhost:8080/api/role
-### GET NAME
-GET http://localhost:8080/api/role?limit=10&fields=name
-### GET
-GET http://localhost:8080/api/role

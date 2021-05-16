@@ -1,23 +1,24 @@
 ### GET ALL
-POST http://localhost:8080/api/purchase
+POST http://localhost:8000/api/purchase
 Content-Type: application/json
 
 {
-    "store":{
-        "name":"Store 2",
-        "id":"6039d78c62c0570a18de58ca"
-    },
+    "id" : "609f8bddf9398d2a64495595",
+    "store": "6039d78c62c0570a18de58ca",
+   
+
     "customer":{
-        "name":"Aditya Sharma",
-        "id":"603cafdafcbf3d491ccfc365"
+        "id":"606453eab2de2f00159f1dfe"
     },
     "amount":{
-        "price":2000
+        
+        "total" :7000
     },
-    "product":[
+    "products":[
         {
-            "name":"Red Chief Men's Blue Leather Casual Shoes",
-            "product_id":"603342c7ef006b1c1c16f5d6"
+            "qty":5,
+            "product":"603342c7ef006b1c1c16f5d6"
+    
         }
     ]
 
