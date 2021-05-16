@@ -9,13 +9,17 @@ import InvoiceDetails from './invoiceDetails';
 import getUpdatedCustomerDetails from './customerDetails/getUpdatedCustomerDetails';
 
 import './pos.css';
+import getCustomer from '../customer/api/getCustomer';
 
 
 const PointOfSale = (props) => {
-    const { stores, currentStore } = React.useContext(StoreContext);
+    const { currentStore } = React.useContext(StoreContext);
     const { product } = React.useContext(ContentContext);
     const [shoppingList, setShoppingList] = React.useState([]);
     const [total, setTotal] = React.useState(0);
+    const customerSearchQueryTimeout = React.useRef();
+    const [dropdownState, setDropdownState] = React.useState(false);
+    const [customerSearchResult, setCustomerSearchResult] = React.useState([]);
     const [customerDetails, setCustomerDetails] = React.useState({
         name: {
             first_name: "",
@@ -35,6 +39,9 @@ const PointOfSale = (props) => {
             }
         }
     });
+    const setCustomer = (customer)=>{
+        console.log(customer)
+    }
     const handleCustomerInputChange = (e) => {
         setCustomerDetails({ ...getUpdatedCustomerDetails(e, customerDetails) })
     }
@@ -85,10 +92,18 @@ const PointOfSale = (props) => {
             amount: { total },
         }
         createPurchase(purchase)
-        .then(result => {
-            console.log(result)
-        })
+            .then(result => console.log(result))
     }
+    const getCustomerQuery = (e) => {
+        let value = e.currentTarget.value
+        showDropdown();
+        clearTimeout(customerSearchQueryTimeout.current)
+        customerSearchQueryTimeout.current = setTimeout(() => {
+            getCustomer(value).then(response => setCustomerSearchResult(response.result))
+        }, 2000)
+    }
+    const hideDropdown = () => { setCustomerSearchResult([]); setDropdownState(false) }
+    const showDropdown = () => setDropdownState(true)
     React.useEffect(() => {
         calculateTotal()
     }, [shoppingList])
@@ -100,6 +115,11 @@ const PointOfSale = (props) => {
                     <CustomerDetails
                         handleInputChange={handleCustomerInputChange}
                         customerDetails={customerDetails}
+                        customerNameSearchHandle={getCustomerQuery}
+                        hideDropdown={hideDropdown}
+                        showDropdown={dropdownState}
+                        customerSearchResult={customerSearchResult}
+                        setCustomer={setCustomer}
                     />
                     <ShoppingList
                         shoppingList={shoppingList}

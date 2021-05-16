@@ -4,8 +4,7 @@ const nameExists = require("./checkNameExist");
 const createCustomer = require("./createCustomer");
 const config = require("../../../config");
 module.exports = async (req, res) => {
-  let { name, contact_details, store_visited, total_purchase, active } =
-    req.body;
+  let { name, contact_details, store_visited, total_purchase, active } = req.body;
   if (!total_purchase) total_purchase = 0;
   let { error } = joi_customer.validate({
     name,

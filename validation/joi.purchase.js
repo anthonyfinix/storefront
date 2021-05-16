@@ -16,10 +16,11 @@ const product = joi
   )
   .min(1);
 
-exports.purchase_store = store;
-exports.purchase_customer = customer;
-exports.purchase_amount = amount;
-exports.purchase_product = product;
+exports.joi_purchase_store = store;
+exports.joi_purchase_customer = customer;
+exports.joi_purchase_amount = amount;
+exports.joi_purchase_product = product;
+exports.joi_purchase_active = joi.boolean();
 module.exports.joi_purchase = joi.object({
   customer: customer.required(),
   product: product.required(),

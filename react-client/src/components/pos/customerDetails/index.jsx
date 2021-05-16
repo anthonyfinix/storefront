@@ -1,15 +1,29 @@
-const CustomerDetails = ({ customerDetails,handleInputChange }) => {
+import React from 'react';
+import Dropdown from '../../util/dropdown';
+const CustomerDetails = ({
+    customerDetails,
+    handleInputChange,
+    customerNameSearchHandle,
+    hideDropdown,
+    showDropdown,
+    customerSearchResult,
+    setCustomer
+}) => {
+    const firstNameElement = React.useRef();
     return (
         <div className="customer-details-wrapper">
             <div>
                 <h3>Customer Details</h3>
                 <div style={{ display: "flex" }}>
                     <div>
-                        <input type="text"
+                        <input
+                            ref={firstNameElement}
+                            type="text"
                             value={customerDetails.name.first_name}
                             name="first_name"
-                            onChange={handleInputChange}
-                            placeholder="First Name"/>
+                            onChange={(e) => { handleInputChange(e); customerNameSearchHandle(e) }}
+                            placeholder="First Name"
+                        />
                     </div>
                     <div>
                         <input
@@ -32,41 +46,41 @@ const CustomerDetails = ({ customerDetails,handleInputChange }) => {
                     <div>
                         <div>
                             <input
-                            value={customerDetails.contact_details.primary_number}
-                            onChange={handleInputChange}
-                            name="primary_number"
-                            type="text"
-                            placeholder="Primary Number" />
+                                value={customerDetails.contact_details.primary_number}
+                                onChange={handleInputChange}
+                                name="primary_number"
+                                type="text"
+                                placeholder="Primary Number" />
                         </div>
                         <div>
                             <input
-                            value={customerDetails.contact_details.secondary_number}
-                            onChange={handleInputChange}
-                            name="secondary_number"
-                            type="text"
-                            placeholder="Secondary Number" />
+                                value={customerDetails.contact_details.secondary_number}
+                                onChange={handleInputChange}
+                                name="secondary_number"
+                                type="text"
+                                placeholder="Secondary Number" />
                         </div>
                         <div>
                             <input
-                            name="email"
-                            onChange={handleInputChange}
-                            value={customerDetails.contact_details.email}
-                            type="text"
-                            placeholder="Email Address" />
+                                name="email"
+                                onChange={handleInputChange}
+                                value={customerDetails.contact_details.email}
+                                type="text"
+                                placeholder="Email Address" />
                         </div>
                         <div>
                             <input
-                            name="state"
-                            onChange={handleInputChange}
-                            value={customerDetails.contact_details.address.state}
-                            type="text" placeholder="City" />
+                                name="state"
+                                onChange={handleInputChange}
+                                value={customerDetails.contact_details.address.state}
+                                type="text" placeholder="City" />
                         </div>
                         <div>
                             <input
-                            name="city"
-                            onChange={handleInputChange}
-                            value={customerDetails.contact_details.address.city}
-                            type="text" placeholder="State" />
+                                name="city"
+                                onChange={handleInputChange}
+                                value={customerDetails.contact_details.address.city}
+                                type="text" placeholder="State" />
                         </div>
                     </div>
                     <div style={{ flexGrow: 1 }}>
@@ -79,6 +93,12 @@ const CustomerDetails = ({ customerDetails,handleInputChange }) => {
                             placeholder="Address"
                             id=""></textarea>
                     </div>
+                    <Dropdown show={showDropdown} close={hideDropdown} el={firstNameElement} >
+                        {customerSearchResult.map(customer => {
+                            console.log(customer);
+                            return (<p onClick={(e)=>setCustomer(customer)}>{`${customer.name.first_name} ${customer.name.middle_name?customer.name.middle_name:""} ${customer.name.last_name}`}</p>)
+                        })}
+                    </Dropdown>
                 </div>
             </div>
         </div>
