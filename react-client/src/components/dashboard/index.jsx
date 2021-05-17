@@ -9,7 +9,14 @@ const Dashboard = () => {
         <article id="dashboard-wrapper">
             <h1>Dashboard</h1>
             <div className="widget-main-wrapper">
-                <ProductWidget/>
+                <div className="Product-Wrapper">
+                    <ProductWidget />
+                </div>
+                <div className="Suppliers"></div>
+                <div className="Widget1"></div>
+                <div className="Widget2"></div>
+                <div className="Widget3"></div>
+                <div className="Widget4"></div>
             </div>
         </article>
     )

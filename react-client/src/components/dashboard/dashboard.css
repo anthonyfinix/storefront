@@ -1,5 +1,22 @@
-#dashboard-wrapper > .widget-main-wrapper{
-    padding: 10px;
-    display: flex;
-    justify-content: space-around;
+#dashboard-wrapper {
+  padding: 0px 10px;
 }
+#dashboard-wrapper > .widget-main-wrapper {
+  display: grid;
+  grid-template-columns: 1.1fr 1.1fr 0.8fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    "Product-Wrapper Product-Wrapper Suppliers"
+    "Widget1 Widget2 Suppliers"
+    "Widget3 Widget4 Suppliers";
+}
+
+.Product-Wrapper {
+  grid-area: Product-Wrapper;
+}
+.Suppliers { grid-area: Suppliers; }
+.Widget1 { grid-area: Widget1; }
+.Widget2 { grid-area: Widget2; }
+.Widget3 { grid-area: Widget3; }
+.Widget4 { grid-area: Widget4; }
