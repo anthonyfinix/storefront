@@ -1,0 +1,7 @@
+@import url('../../../../variable.css');
+
+.wrapper{
+    flex-basis: 200px;
+    width: 200px;
+    height: 180px;
+}

@@ -1,4 +1,5 @@
 import './header.css';
+import style from './header.module.css'
 import profileImage from '../../assets/images/profile.png';
 import React from 'react';
 import { UserContext } from '../user/userContext';
@@ -19,17 +20,17 @@ const Header = () => {
         <div id="header-wrapper">
             <p className="header-brand">Storefront</p>
             <div style={{ marginLeft: "auto" }}>
-                <select>
+                <select className={style.store_select}>
                     {stores.map(store => {
                         return <option key={store._id} {...optionAttributes(store)} >{store.name}</option>
                     })}
                 </select>
             </div>
-            <div style={{ display: "flex" }}>
-                <small> {user ? user.name.first_name : null}</small>
-                <div className="header-user-wrapper">
+            <div className={style.user_widget_wrapper}>
+                <div>
                     <img src={profileImage} alt="profile" />
                 </div>
+                <small> {user ? user.name.first_name : null}</small>
             </div>
         </div>
     )

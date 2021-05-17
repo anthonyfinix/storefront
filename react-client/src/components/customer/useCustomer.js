@@ -7,23 +7,23 @@ const useCustomer = () => {
   const addPage = () => setPageNo(pageNo + 1);
 
   const get = async () => {
-    let response = await getCustomer({page:pageNo});
-    if (response.status === 200) {
-      let { message, result, error } = response.data;
-      if (error) return error;
-      return result;
-    }
+    let response = await getCustomer({ page: pageNo });
+    let { message, result, error } = response;
+    if (error) return error;
+    return result;
   };
 
   useEffect(() => {
-    get().then(results => setCustomers(customers => {
-      return [...customers, ...results];
-    }));
+    get().then((results) =>
+      setCustomers((customers) => {
+        return [...customers, ...results];
+      })
+    );
   }, []);
 
   return {
     customers,
-    customerNextPage:addPage
+    customerNextPage: addPage,
   };
 };
 
