@@ -1,0 +1,11 @@
+@import url('../../../../../variable.css');
+
+.wrapper{
+    padding: var(--space-xxs);
+    margin: var(--space-xs) 0px;
+    box-shadow: 0 0 3px rgb(199, 199, 199);
+    border-radius: var(--space-xxs);
+}
+.wrapper p{
+    margin: 0px;
+}

@@ -1,15 +1,14 @@
 import Sidebar from '../sidebar';
 import Content from '../content';
+import style from './app.module.css'
 
 const App = () => {
     return (
-        <div id="app-main-wrapper">
+        <div className={style.wrapper} id="app-main-wrapper">
             <div id="app-sidebar-wrapper">
                 <Sidebar />
             </div>
-            <div id="app-content-wrapper">
-                <Content />
-            </div>
+            <Content />
         </div>
     );
 };

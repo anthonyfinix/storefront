@@ -14,21 +14,21 @@ import ContentProvider from '../contentProvider';
 const Content = () => {
     const [isLoading, setLoading] = React.useState(true);
     return (
-        <article id="content-wrapper">
-                <ContentProvider>
-                    <Switch>
-                        <Route exact path="/" component={Dashboard} />
-                        <Route exact path="/product" component={Product} />
-                        <Route exact path="/customer" component={Customer} />
-                        <Route exact path="/supplier" component={Supplier} />
-                        <Route exact path="/role" component={Role} />
-                        <Route exact path="/purchase" component={Purchase} />
-                        <Route exact path="/productCategory" component={ProductCategory} />
-                        <Route exact path="/dashboard" component={Dashboard} />
-                        <Route exact path="/pos" component={PointOfSale} />
-                    </Switch>
-                </ContentProvider>
-        </article>
+        < >
+            <ContentProvider>
+                <Switch>
+                    <Route exact path="/" component={Dashboard} />
+                    <Route exact path="/product" component={Product} />
+                    <Route exact path="/customer" component={Customer} />
+                    <Route exact path="/supplier" component={Supplier} />
+                    <Route exact path="/role" component={Role} />
+                    <Route exact path="/purchase" component={Purchase} />
+                    <Route exact path="/productCategory" component={ProductCategory} />
+                    <Route exact path="/dashboard" component={Dashboard} />
+                    <Route exact path="/pos" component={PointOfSale} />
+                </Switch>
+            </ContentProvider>
+        </>
     )
 }
 export default Content;

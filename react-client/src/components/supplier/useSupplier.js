@@ -10,11 +10,9 @@ const useSupplier = () => {
   };
   const get = async () => {
     let response = await getSupplier({ page: pageNo });
-    if (response.status === 200) {
-      let { message, result, error } = response.data;
+      let { message, result, error } = response;
       if (error) return error;
       return result;
-    }
   };
 
   useEffect(() => {
