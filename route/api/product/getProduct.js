@@ -49,7 +49,7 @@ module.exports = async ({
 
   try {
     let products = await Product.find(params)
-      .sort("-created_at")
+      .sort("+created_at")
       .limit(limit)
       .populate("stores.id")
       .populate("category.id")

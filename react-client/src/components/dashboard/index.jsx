@@ -1,14 +1,14 @@
 import React from 'react';
 import './dashboard.css';
-import { ContentContext } from '../contentProvider';
+import style from './dashboard.module.css'
 import SupplierWidget from './widgets/supplier_widget';
 import ProductWidget from './widgets/product_widget';
+import Header from './header';
 const Dashboard = () => {
-    let { product, customer, productCategory, supplier, } = React.useContext(ContentContext);
     return (
         <article id="dashboard-wrapper">
-            <h1>Dashboard</h1>
-            <div className="widget-main-wrapper">
+            <Header />
+            <div className={style.content}>
                 <div className="Product-Wrapper">
                     <ProductWidget />
                 </div>

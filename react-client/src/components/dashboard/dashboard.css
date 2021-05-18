@@ -3,16 +3,7 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-}
-#dashboard-wrapper > .widget-main-wrapper {
-  display: grid;
-  grid-template-columns: 1.1fr 1.1fr 0.8fr;
-  grid-template-rows: 1fr 1fr 1fr;
-  gap: 0px 10px;
-  grid-template-areas:
-    "Product-Wrapper Product-Wrapper Suppliers"
-    "Widget1 Widget2 Suppliers"
-    "Widget3 Widget4 Suppliers";
+  height: 100%;
 }
 
 .Product-Wrapper {

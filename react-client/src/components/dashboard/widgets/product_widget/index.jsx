@@ -46,6 +46,7 @@ const ProductWidget = ({ }) => {
         }
     };
     const handleProduct = (products) => {
+        console.log(products)
         let total = 0;
         let data = []
         let label = []
