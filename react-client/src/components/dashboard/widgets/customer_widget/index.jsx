@@ -2,8 +2,8 @@ import React from 'react';
 import style from './style.module.css';
 import { Line } from 'react-chartjs-2';
 import 'chartjs-adapter-date-fns';
-import getProduct from '../../../product/api/getProduct';
-const ProductWidget = ({ }) => {
+import getCustomer from '../../../customer/api/getCustomer';
+const CustomerWidget = ({ }) => {
     const [chartData, setChartData] = React.useState();
     const [labels, setLabels] = React.useState();
     const data = {
@@ -12,7 +12,7 @@ const ProductWidget = ({ }) => {
             {
                 data: chartData,
                 fill: true,
-                tension: 0.2,
+                tension: 0.3,
                 backgroundColor: '#4793eb',
                 borderColor: '#2873d6',
             },
@@ -58,12 +58,12 @@ const ProductWidget = ({ }) => {
 
     }
     React.useEffect(() => {
-        getProduct({ skip: 0, limit: 30 })
+        getCustomer({ skip: 0, limit: 30 })
             .then(response => handleProduct(response.result))
     }, [])
     return (
         <div className={style.wrapper}>
-            <h3>Product</h3>
+            <h3>Customer</h3>
             <Line
                 data={data}
                 width={"100%"}
@@ -73,4 +73,4 @@ const ProductWidget = ({ }) => {
     )
 }
 
-export default ProductWidget;
+export default CustomerWidget;

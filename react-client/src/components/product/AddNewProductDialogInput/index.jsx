@@ -34,7 +34,7 @@ const AddNewProductDialogInput = ({
 
     React.useEffect(() => {
         getSupplier({ query: supplierSearchQuery })
-            .then(response => setSupplier(response.data.result))
+            .then(response => setSupplier(response.result))
         getProductCategory({ query: productCategorySearchQuery })
             .then(response => setProductCategories(response.data.result))
     }, [supplierSearchQuery, productCategorySearchQuery]);

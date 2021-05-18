@@ -3,6 +3,7 @@ import './dashboard.css';
 import style from './dashboard.module.css'
 import SupplierWidget from './widgets/supplier_widget';
 import ProductWidget from './widgets/product_widget';
+import CustomerWidget from './widgets/customer_widget';
 import Header from './header';
 const Dashboard = () => {
     return (
@@ -15,7 +16,9 @@ const Dashboard = () => {
                 <div className="Suppliers">
                     <SupplierWidget />
                 </div>
-                <div className="Widget1"></div>
+                <div className="Widget1">
+                    <CustomerWidget />
+                </div>
                 <div className="Widget2"></div>
                 <div className="Widget3"></div>
                 <div className="Widget4"></div>
