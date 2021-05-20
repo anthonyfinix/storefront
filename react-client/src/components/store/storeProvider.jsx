@@ -1,6 +1,7 @@
 import React from 'react';
 import { UserContext } from '../user/userContext';
 import getUserStore from './api/getUserStore';
+import Loading from '../util/loading';
 export const StoreContext = React.createContext();
 const StoreProvider = (props) => {
     const { user } = React.useContext(UserContext);
@@ -21,7 +22,11 @@ const StoreProvider = (props) => {
     }
     return (
         <StoreContext.Provider value={{ stores, currentStore }}>
-            {isLoading ? <h1>Loading Stores</h1> : props.children}
+            {isLoading ? (
+                <div style={{height:"100vh"}}>
+                    <Loading subtitle="loading store details" />
+                </div>
+            ) : props.children}
         </StoreContext.Provider>
     )
 }

@@ -1,0 +1,16 @@
+.wrapper{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: auto;
+}
+.loading_svg{
+    width: 40px;
+    height: 40px;
+}
+.wrapper p{
+    margin-top: 5px;
+}

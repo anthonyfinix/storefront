@@ -1,6 +1,8 @@
 import React from 'react';
 import getUser from './getUser';
+import Loading from '../util/loading';
 export const UserContext = React.createContext();
+
 
 function UserProvider(props) {
     const [user, setUser] = React.useState(null);
@@ -11,11 +13,15 @@ function UserProvider(props) {
             let { user } = response;
             if (user) setUser(user);
         })
-            .finally(() => setLoading(false));
+        .finally(() => setLoading(false));
     }, [])
     return (
         <UserContext.Provider value={{ user, setUser }} >
-            {isLoading ? <h1>Is Loading</h1> : props.children}
+            {isLoading ? (
+                <div style={{height:"100vh"}}>
+                    <Loading subtitle="loading user" />
+                </div>
+            ) : props.children}
         </UserContext.Provider>
     );
 }
