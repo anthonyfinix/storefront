@@ -1,0 +1,12 @@
+.wrapper{
+    display: grid;
+    height: calc(100vh - 45px);
+    grid-template-columns: auto 400px;
+    flex-grow: 1;
+}
+
+.sidebar{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 150px auto 80px;
+}

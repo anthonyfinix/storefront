@@ -1,0 +1,10 @@
+.wrapper{
+    display: grid;
+    grid-template-rows: 1fr;
+    text-align: right;
+}
+.wrapper p{
+    font-weight: bolder;
+    margin: auto 20px auto auto;
+    font-size: 60px;
+}

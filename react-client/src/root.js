@@ -21,7 +21,7 @@ function Root() {
             <Switch>
               <Route exact path="/login" component={Login} />
               <Route exact path="/register" component={Register} />
-              <PrivateRoute to="/" component={App}></PrivateRoute>
+              <PrivateRoute to="/" component={App} />
             </Switch>
           </div>
         </StoreProvider>

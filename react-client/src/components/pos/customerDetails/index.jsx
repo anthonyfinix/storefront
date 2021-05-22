@@ -12,7 +12,7 @@ const CustomerDetails = ({
     const firstNameElement = React.useRef();
     return (
         <div className="customer-details-wrapper">
-            <div>
+            {/* <div>
                 <h3>Customer Details</h3>
                 <div style={{ display: "flex" }}>
                     <div>
@@ -100,7 +100,7 @@ const CustomerDetails = ({
                         })}
                     </Dropdown>
                 </div>
-            </div>
+            </div> */}
         </div>
     )
 }

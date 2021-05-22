@@ -1,0 +1,7 @@
+@import url("../../../variable.css");
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  column-gap: var(--space-xs);
+  padding: var(--space-xs);
+}

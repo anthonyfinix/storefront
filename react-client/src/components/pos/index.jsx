@@ -7,7 +7,7 @@ import CustomerDetails from './customerDetails';
 import ShoppingList from './shoppingList';
 import InvoiceDetails from './invoiceDetails';
 import getUpdatedCustomerDetails from './customerDetails/getUpdatedCustomerDetails';
-
+import style from './pos.module.css';
 import './pos.css';
 import getCustomer from '../customer/api/getCustomer';
 
@@ -39,7 +39,7 @@ const PointOfSale = (props) => {
             }
         }
     });
-    const setCustomer = (customer)=>{
+    const setCustomer = (customer) => {
         console.log(customer)
     }
     const handleCustomerInputChange = (e) => {
@@ -108,29 +108,28 @@ const PointOfSale = (props) => {
         calculateTotal()
     }, [shoppingList])
     return (
-        <div className="point_of_sale_wrapper">
-            <div className="wrapper">
-                <div><ProductGrids addToCart={handleProductAddToCart} products={product.products} /></div>
-                <div>
-                    <CustomerDetails
-                        handleInputChange={handleCustomerInputChange}
-                        customerDetails={customerDetails}
-                        customerNameSearchHandle={getCustomerQuery}
-                        hideDropdown={hideDropdown}
-                        showDropdown={dropdownState}
-                        customerSearchResult={customerSearchResult}
-                        setCustomer={setCustomer}
-                    />
-                    <ShoppingList
-                        shoppingList={shoppingList}
-                        incQty={increaseProductQty}
-                        decQty={decreaseProductQty}
-                    />
-                    <div>
-                        <InvoiceDetails total={total} />
-                        <button onClick={generateInvoice}>Generate</button>
-                    </div>
-                </div>
+        <div className={style.wrapper}>
+            <div>
+                <div>Search</div>
+                <ProductGrids addToCart={handleProductAddToCart} products={product.products} />
+            </div>
+            <div className={style.sidebar}>
+                <CustomerDetails
+                    handleInputChange={handleCustomerInputChange}
+                    customerDetails={customerDetails}
+                    customerNameSearchHandle={getCustomerQuery}
+                    hideDropdown={hideDropdown}
+                    showDropdown={dropdownState}
+                    customerSearchResult={customerSearchResult}
+                    setCustomer={setCustomer}
+                />
+                <ShoppingList
+                    shoppingList={shoppingList}
+                    incQty={increaseProductQty}
+                    decQty={decreaseProductQty}
+                />
+                    <InvoiceDetails total={total} />
+                    {/* <button onClick={generateInvoice}>Generate</button> */}
             </div>
         </div>
     )
