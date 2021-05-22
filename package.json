@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "env-cmd -f ./.env-dev nodemon index.js",
-    "test": "env-cmd -f ./.env-prod nodemon index.js",
-    "start": "node index.js"
+    "remote": "env-cmd -f ./.env-prod nodemon index.js",
+    "start": "node index.js",
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,7 @@
   "homepage": "https://github.com/anthonyfinix/storefront#readme",
   "dependencies": {
     "bcrypt": "^5.0.0",
+    "chai-json-schema": "^1.5.1",
     "connect-mongo": "^3.2.0",
     "cors": "^2.8.5",
     "env-cmd": "^10.1.0",
@@ -32,5 +34,10 @@
     "mongoose": "^5.11.15",
     "nodemon": "^2.0.7",
     "react-router-dom": "^5.2.0"
+  },
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "chai-http": "^4.3.0",
+    "mocha": "^8.4.0"
   }
 }

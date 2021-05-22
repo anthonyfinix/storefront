@@ -87,9 +87,7 @@ const Product = (props) => {
         const { scrollTop, clientHeight, scrollHeight } = e.currentTarget;
         if (scrollHeight - scrollTop === clientHeight) productNextPage();
     }
-    const closeDialog = () => {
-        setShowDialog(false);
-    };
+    const closeDialog = () => setShowDialog(false);
     const handleSearchInputChange = (e) => {
         let value = e.currentTarget.value
         setSearchTerm(value);
@@ -119,27 +117,44 @@ const Product = (props) => {
                     }
                 })
                 let suppliers = product.suppliers.map((supplier => ({ company_name: supplier.id.company_name, id: supplier.id._id })))
-                setNewProduct(() => {
-                    return {
-                        productId: product._id,
-                        productName: product.name,
-                        productSKU: product.sku,
-                        productManufacturer: product.manufacturer,
-                        dimension: {
-                            width: product.dimension.width,
-                            height: product.dimension.height,
-                            weight: product.dimension.weight,
-                            length: product.dimension.length
-                        },
-                        productBrand: product.brand,
-                        productSalePrice: product.sale_price,
-                        productCurrentPrice: product.current_price,
-                        productBuyingPrice: product.buying_price,
-                        productSupplier: suppliers,
-                        productCategory: product.category,
-                        stores: currentStore,
-                    }
+                console.log({
+                    productId: product._id,
+                    productName: product.name,
+                    productSKU: product.sku,
+                    productManufacturer: product.manufacturer,
+                    dimension: {
+                        width: product.dimension.width,
+                        height: product.dimension.height,
+                        weight: product.dimension.weight,
+                        length: product.dimension.length
+                    },
+                    productBrand: product.brand,
+                    productSalePrice: product.sale_price,
+                    productCurrentPrice: product.current_price,
+                    productBuyingPrice: product.buying_price,
+                    productSupplier: suppliers,
+                    productCategory: product.category,
+                    stores: currentStore,
                 })
+                setNewProduct(new Object({
+                    productId: product._id,
+                    productName: product.name,
+                    productSKU: product.sku,
+                    productManufacturer: product.manufacturer,
+                    dimension: {
+                        width: product.dimension.width,
+                        height: product.dimension.height,
+                        weight: product.dimension.weight,
+                        length: product.dimension.length
+                    },
+                    productBrand: product.brand,
+                    productSalePrice: product.sale_price,
+                    productCurrentPrice: product.current_price,
+                    productBuyingPrice: product.buying_price,
+                    productSupplier: suppliers,
+                    productCategory: product.category,
+                    stores: currentStore,
+                }))
                 toggleDialog();
                 break;
             };

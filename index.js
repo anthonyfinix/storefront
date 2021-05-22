@@ -14,7 +14,7 @@ const headers = require("./middleware/headers");
   try {
     await mongoose.connect(databaseURL, {
       useNewUrlParser: true,
-      useUnifiedTopology: true
+      useUnifiedTopology: true,
     });
     app.use(headers);
     app.use(cors({ origin: "http://localhost:3000" }));
@@ -26,9 +26,9 @@ const headers = require("./middleware/headers");
         cookie: {
           maxAge: config.cookie_maxAge,
           httpOnly: config.httpOnly,
-          secure: false
+          secure: false,
         },
-        store: new MongoStore({ mongooseConnection: mongoose.connection })
+        store: new MongoStore({ mongooseConnection: mongoose.connection }),
       })
     );
     app.use(express.urlencoded({ extended: true }));
@@ -41,3 +41,5 @@ const headers = require("./middleware/headers");
   }
   app.listen(port, () => console.log("Listening to " + port));
 })();
+
+module.exports = app;
