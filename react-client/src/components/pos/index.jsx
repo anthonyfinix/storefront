@@ -40,13 +40,24 @@ const PointOfSale = (props) => {
         }
     });
     const setCustomer = (customer) => {
-        console.log(customer)
+        //     console.log(customer)
     }
     const handleCustomerInputChange = (e) => {
         setCustomerDetails({ ...getUpdatedCustomerDetails(e, customerDetails) })
     }
     const handleProductAddToCart = (product) => {
-        setShoppingList([...shoppingList, { product, qty: 1 }])
+        if (shoppingList.length <= 0) return setShoppingList([{ product, qty: 1 }])
+        let products = shoppingList;
+        let found = false;
+        for (let i = 0; i < shoppingList.length; i++) {
+            if (shoppingList[i].product._id == product._id) {
+                products[i].qty += 1;
+                found = !found;
+                break
+            }
+        }
+        if (!found) products.push({ product, qty: 1 })
+        setShoppingList([...products]);
     }
     const increaseProductQty = (productId) => {
         let currentShoppingList = shoppingList;
@@ -128,8 +139,8 @@ const PointOfSale = (props) => {
                     incQty={increaseProductQty}
                     decQty={decreaseProductQty}
                 />
-                    <InvoiceDetails total={total} />
-                    {/* <button onClick={generateInvoice}>Generate</button> */}
+                <InvoiceDetails total={total} />
+                {/* <button onClick={generateInvoice}>Generate</button> */}
             </div>
         </div>
     )

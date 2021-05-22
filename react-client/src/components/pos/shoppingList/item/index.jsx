@@ -1,6 +1,5 @@
 import style from './item.module.css';
 const Item = ({ item, incQty, decQty }) => {
-    console.log(item)
     return (
         <div className={style.item}>
             <p>
