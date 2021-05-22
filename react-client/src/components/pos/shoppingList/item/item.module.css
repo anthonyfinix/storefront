@@ -1,9 +1,14 @@
+@import url('../../../../variable.css');
 .item{
     display: grid;
     grid-template-columns: 50% 30% 20%;
     align-items: center;
+    padding: var(--space-xxs) 0px;
 }
 .qty_wrapper{
     display: flex;
     align-items: center;
+}
+.product_name,.product_price{
+    margin: 0px;
 }

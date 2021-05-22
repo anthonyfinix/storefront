@@ -10,6 +10,7 @@ import getUpdatedCustomerDetails from './customerDetails/getUpdatedCustomerDetai
 import style from './pos.module.css';
 import './pos.css';
 import getCustomer from '../customer/api/getCustomer';
+import { MdSearch } from 'react-icons/md'
 
 
 const PointOfSale = (props) => {
@@ -121,7 +122,10 @@ const PointOfSale = (props) => {
     return (
         <div className={style.wrapper}>
             <div>
-                <div>Search</div>
+                <div className={style.header}>
+                    <MdSearch />
+                    <p>Search</p>
+                </div>
                 <ProductGrids addToCart={handleProductAddToCart} products={product.products} />
             </div>
             <div className={style.sidebar}>

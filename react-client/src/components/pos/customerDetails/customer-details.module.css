@@ -1,0 +1,13 @@
+@import url('../../../variable.css');
+.name_wrapper{
+    border-radius: 5px;
+    border: 2px solid rgba(0, 0, 0, 0.082);
+    padding: var(--space-xs);
+    margin-right: var(--space-xs);
+    display: grid;
+    grid-template-columns: auto 20px;
+    align-items: center;
+}
+.customer_name{
+    margin: 0px;
+}

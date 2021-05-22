@@ -8,5 +8,15 @@
 .sidebar{
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 150px auto 80px;
+    grid-template-rows: 120px auto 80px;
+}
+.header{
+    display: grid;
+    min-height: 40px;
+    grid-template-columns: 30px 1fr;
+    align-items: center;
+    justify-content: center;
+}
+.header > svg{
+    margin-left: 7px;
 }

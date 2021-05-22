@@ -1,5 +1,7 @@
 import React from 'react';
+import style from './customer-details.module.css';
 import Dropdown from '../../util/dropdown';
+import {MdEdit} from 'react-icons/md'
 const CustomerDetails = ({
     customerDetails,
     handleInputChange,
@@ -12,6 +14,11 @@ const CustomerDetails = ({
     const firstNameElement = React.useRef();
     return (
         <div className="customer-details-wrapper">
+            <h3>Customer Details</h3>
+            <div className={style.name_wrapper}>
+                <h3 className={style.customer_name}>Anthony Finix</h3>
+                <MdEdit/>
+            </div>
             {/* <div>
                 <h3>Customer Details</h3>
                 <div style={{ display: "flex" }}>
