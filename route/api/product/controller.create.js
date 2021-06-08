@@ -76,7 +76,6 @@ module.exports = async (req, res) => {
   if (!singleProductResult.result)
     return res.json({ error: "category does not exist" });
   category.name = singleProductResult.result.name;
-
   // handle supplier details
   let dbStores = await getManyStore(stores.map((store) => ({ _id: store.id })));
   if (dbStores.error)

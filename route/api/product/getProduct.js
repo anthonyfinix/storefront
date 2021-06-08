@@ -21,19 +21,7 @@ module.exports = async ({
   created_by,
 }) => {
   let params = {};
-  // validate id
-  if (id) {
-    let id_valid = joi_product_id.validate(id);
-    if (id_valid.error) return { error: id_valid.error.details };
-    params._id = id;
-  }
   if (query) params.name = { $regex: new RegExp(`\\w*${query}\\w*`, "g") };
-  // validate name
-  if (name) {
-    let name_valid = joi_product_name.validate(name);
-    if (name_valid.error) return { error: name_valid.error.details };
-    params.name = name;
-  }
   // if (sku && sku != "") params.sku = sku;
   // if (category) {
   //   let { name: categoryName, id: categoryId } = category;
